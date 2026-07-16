@@ -86,9 +86,9 @@
     .slide-lead {
       margin: 0;
       color: var(--muted);
-      font-size: clamp(15px, 1.05vw, 19px);
-      line-height: 1.4;
-      max-width: 720px;
+      font-size: clamp(20px, 2.2vw, 32px);
+      line-height: 1.45;
+      max-width: 1000px;
     }
 
     .slide-lead code {
@@ -146,35 +146,35 @@
 
     .content-panel,
     .statement {
-      width: min(100%, 820px);
-      padding: clamp(24px, 3vw, 42px);
-      border-left: 2px solid var(--accent);
+      width: min(100%, 1020px);
+      padding: clamp(32px, 4vw, 56px);
+      border-left: 4px solid var(--accent);
       background: linear-gradient(90deg, var(--accent-soft), transparent 72%);
     }
 
     .statement .slide-lead {
-      max-width: 700px;
+      max-width: 900px;
       color: var(--text);
-      font-size: clamp(18px, 1.45vw, 25px);
+      font-size: clamp(24px, 2.5vw, 36px);
       line-height: 1.35;
     }
 
     .feature-quote {
-      width: min(100%, 980px);
+      width: min(100%, 1100px);
       margin: 0;
-      padding: clamp(22px, 3vw, 44px) 0 clamp(22px, 3vw, 44px) clamp(24px, 3vw, 46px);
-      border-left: 3px solid var(--accent);
+      padding: clamp(32px, 4vw, 56px) 0 clamp(32px, 4vw, 56px) clamp(32px, 4vw, 56px);
+      border-left: 4px solid var(--accent);
       color: var(--text);
-      font-size: clamp(28px, 3.15vw, 54px);
+      font-size: clamp(36px, 4vw, 64px);
       font-weight: 560;
       letter-spacing: -0.04em;
-      line-height: 1.12;
+      line-height: 1.15;
     }
 
     .drainage-insight {
-      width: min(100%, 920px);
+      width: min(100%, 1100px);
       display: grid;
-      gap: clamp(18px, 2vw, 28px);
+      gap: clamp(24px, 3vw, 48px);
     }
 
     .drainage-insight .feature-quote {
@@ -182,11 +182,11 @@
     }
 
     .supporting-quote {
-      max-width: 720px;
-      margin: 0 0 0 clamp(28px, 3.4vw, 54px);
+      max-width: 900px;
+      margin: 0 0 0 clamp(32px, 4vw, 56px);
       color: var(--muted);
-      font-size: clamp(16px, 1.18vw, 22px);
-      line-height: 1.4;
+      font-size: clamp(22px, 2vw, 32px);
+      line-height: 1.45;
     }
 
     .supporting-quote strong {
@@ -272,90 +272,91 @@
     }
 
     .slide-body-agent .slide-lead {
-      margin: 0 auto 18px;
-      max-width: 640px;
+      margin: 0 auto 32px;
+      max-width: 1000px;
       text-align: center;
     }
 
     .loops-today-list {
       list-style: none;
-      margin: 6px auto 16px;
+      margin: 16px auto 32px;
       padding: 0;
-      max-width: 640px;
+      max-width: 1000px;
+      width: 100%;
       display: grid;
-      gap: 8px;
+      gap: 16px;
       text-align: left;
     }
 
     .loops-today-list li {
       position: relative;
-      padding: 10px 14px 10px 38px;
+      padding: 20px 24px 20px 56px;
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 16px;
       background: rgba(255, 255, 255, 0.03);
       color: var(--text);
-      font-size: clamp(13px, 0.95vw, 16px);
+      font-size: clamp(18px, 1.8vw, 26px);
       letter-spacing: -0.005em;
     }
 
     .loops-today-list li::before {
       content: "";
       position: absolute;
-      left: 16px;
+      left: 24px;
       top: 50%;
       transform: translateY(-50%);
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-soft);
+      box-shadow: 0 0 0 4px var(--accent-soft);
     }
 
     .loops-today-takeaway {
       margin: 0 auto;
-      max-width: 720px;
-      padding: 12px 18px;
-      border-left: 2px solid var(--accent);
-      border-radius: 8px;
+      max-width: 1000px;
+      padding: 24px 32px;
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
       background: rgba(255, 88, 152, 0.06);
       color: var(--text);
-      font-size: clamp(14px, 1vw, 17px);
+      font-size: clamp(20px, 2vw, 28px);
       line-height: 1.45;
       text-align: center;
       user-select: text;
     }
 
     .barrier-grid {
-      width: min(100%, 880px);
+      width: min(100%, 1060px);
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: clamp(18px, 2.2vw, 34px);
+      gap: clamp(24px, 3.5vw, 48px);
     }
 
     .barrier-card {
-      min-height: 230px;
+      min-height: 320px;
       display: grid;
       align-content: center;
-      gap: 16px;
-      padding: clamp(24px, 3vw, 42px);
+      gap: 24px;
+      padding: clamp(32px, 4vw, 56px);
       border: 1px solid var(--line);
-      border-top: 2px solid var(--accent);
+      border-top: 4px solid var(--accent);
       border-radius: var(--radius);
       background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
     }
 
     .barrier-card strong {
       color: var(--text);
-      font-size: clamp(25px, 2.2vw, 38px);
+      font-size: clamp(32px, 3.5vw, 48px);
       font-weight: 580;
       letter-spacing: -0.035em;
-      line-height: 1;
+      line-height: 1.1;
     }
 
     .barrier-card span {
       color: var(--muted);
-      font-size: clamp(14px, 1vw, 17px);
-      line-height: 1.45;
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.5;
     }
 
     .agent-line {
@@ -1052,10 +1053,19 @@
       <article class="slide" aria-labelledby="slide-8-title">
         <h2 id="slide-8-title" class="slide-title">What Makes Loops Possible</h2>
         <div class="slide-body">
-          <ul style="list-style:none;padding:0;margin:1.5em auto;max-width:640px;display:grid;gap:1.2em;">
-            <li><strong style="color:var(--accent);">Goal-driven work</strong><br><span style="color:var(--muted);font-size:0.9em;">A verifiable objective the loop can measure against.</span></li>
-            <li><strong style="color:var(--accent);">Self-validation</strong><br><span style="color:var(--muted);font-size:0.9em;">Browser use and computer use close the testing loop — impossible before.</span></li>
-            <li><strong style="color:var(--accent);">Multi-agent roles</strong><br><span style="color:var(--muted);font-size:0.9em;">Evaluator and builder — different context, same or different model, specialized prompts (code review).</span></li>
+          <ul style="list-style:none;padding:0;margin:0 auto;max-width:900px;display:grid;gap:42px; width: 100%;">
+            <li style="border-left: 4px solid var(--accent); padding-left: 24px;">
+              <strong style="color:var(--text);font-size: clamp(28px, 3.2vw, 42px); line-height: 1.2; display: block; margin-bottom: 8px;">Goal-driven work</strong>
+              <span style="color:var(--muted);font-size: clamp(20px, 2.2vw, 28px); line-height: 1.4; display: block;">A verifiable objective the loop can continuously measure itself against.</span>
+            </li>
+            <li style="border-left: 4px solid var(--accent); padding-left: 24px;">
+              <strong style="color:var(--text);font-size: clamp(28px, 3.2vw, 42px); line-height: 1.2; display: block; margin-bottom: 8px;">Self-validation</strong>
+              <span style="color:var(--muted);font-size: clamp(20px, 2.2vw, 28px); line-height: 1.4; display: block;">Browser use and computer use allow agents to close their own testing loops—something previously impossible.</span>
+            </li>
+            <li style="border-left: 4px solid var(--accent); padding-left: 24px;">
+              <strong style="color:var(--text);font-size: clamp(28px, 3.2vw, 42px); line-height: 1.2; display: block; margin-bottom: 8px;">Multi-agent roles</strong>
+              <span style="color:var(--muted);font-size: clamp(20px, 2.2vw, 28px); line-height: 1.4; display: block;">Separating Evaluator from Builder to prevent tunnel vision—leveraging different models, isolated context windows, and specialized prompts.</span>
+            </li>
           </ul>
         </div>
         <p class="slide-foot"><span>08 / 13</span></p>
