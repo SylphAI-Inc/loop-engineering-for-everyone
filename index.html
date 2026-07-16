@@ -401,20 +401,28 @@
     }
 
     .lifecycle {
+      width: min(100%, 1040px);
       display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: clamp(8px, 0.9vw, 14px);
-      align-items: stretch;
+      grid-template-columns: minmax(0, 5fr) minmax(150px, 1fr);
+      gap: clamp(28px, 3vw, 52px);
+      align-items: center;
+    }
+
+    .lifecycle-iteration {
       position: relative;
-      padding-bottom: 28px;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: clamp(8px, 0.9vw, 14px);
+      padding-bottom: 38px;
     }
 
     .stage {
+      position: relative;
       display: grid;
       align-content: center;
       gap: 6px;
       padding: 14px;
-      min-height: 130px;
+      min-height: 142px;
       border: 1px solid var(--line);
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.025);
@@ -434,6 +442,53 @@
       font-size: clamp(11px, 0.78vw, 13px);
       line-height: 1.3;
     }
+
+    .lifecycle-iteration .stage:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      top: 50%;
+      right: calc(clamp(8px, 0.9vw, 14px) / -2);
+      z-index: 2;
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      transform: translate(50%, -50%);
+      color: var(--accent);
+      font: 600 16px/1 var(--mono);
+      background: #0a0b0d;
+    }
+
+    .lifecycle-return {
+      position: absolute;
+      left: 4%;
+      right: 4%;
+      bottom: 0;
+      height: 26px;
+      border-right: 1.5px solid var(--accent);
+      border-bottom: 1.5px solid var(--accent);
+      border-left: 1.5px solid var(--accent);
+      border-radius: 0 0 14px 14px;
+      pointer-events: none;
+    }
+
+    .lifecycle-return::before {
+      content: "↖";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      color: var(--accent);
+      font: 700 20px/1 var(--mono);
+      background: #0a0b0d;
+    }
+
+    .stage-deliver {
+      min-height: 142px;
+      border-color: rgba(255, 88, 152, 0.58);
+      background: linear-gradient(145deg, rgba(255, 88, 152, 0.12), rgba(255, 255, 255, 0.025));
+    }
+
+
 
     .lifecycle-loop {
       position: absolute;
@@ -738,11 +793,6 @@
       user-select: text;
     }
 
-    .slide[aria-labelledby="slide-5-title"] .stage:nth-child(5) {
-      border-right: 2px dashed var(--accent);
-      padding-right: calc(14px + clamp(4px, 0.4vw, 6px));
-    }
-
     /* Illustration system: quiet surfaces, hairline geometry, and one pink signal. */
     .diagram {
       width: min(100%, 980px);
@@ -925,12 +975,15 @@
         <h2 id="slide-5-title" class="slide-title">The Manual Outer Loop</h2>
         <div class="slide-body">
           <div class="lifecycle" aria-label="Development lifecycle stages">
-            <div class="stage"><strong>Understand</strong><small>Deep research / codebase understanding</small></div>
-            <div class="stage"><strong>Plan</strong><small>task decomposition / architecture</small></div>
-            <div class="stage"><strong>Build</strong><small>coding agent</small></div>
-            <div class="stage"><strong>Test</strong><small>browser use / test runner</small></div>
-            <div class="stage"><strong>Review</strong><small>code review / evaluator</small></div>
-            <div class="stage"><strong>Deliver</strong><small>verification / human approval</small></div>
+            <div class="lifecycle-iteration" aria-label="Iterative manual loop">
+              <div class="stage"><strong>Understand</strong><small>Deep research / codebase understanding</small></div>
+              <div class="stage"><strong>Plan</strong><small>task decomposition / architecture</small></div>
+              <div class="stage"><strong>Build</strong><small>coding agent</small></div>
+              <div class="stage"><strong>Test</strong><small>browser use / test runner</small></div>
+              <div class="stage"><strong>Review</strong><small>code review / evaluator</small></div>
+              <div class="lifecycle-return" aria-label="Review feedback loops back to understanding"></div>
+            </div>
+            <div class="stage stage-deliver"><strong>Deliver</strong><small>verification / human approval</small></div>
           </div>
           <p class="react-note">Currently, different stages need different agent capabilities across local, cloud, and GitHub environments, forcing developers to manually run the iterative dev loop.</p>
         </div>
@@ -944,6 +997,7 @@
         </div>
         <div class="agent-cite-stack">
           <a class="agent-cite" href="https://addyosmani.com/blog/loop-engineering/" target="_blank" rel="noopener noreferrer">Addy Osmani — Loop Engineering ↗</a>
+          <a class="agent-cite" href="https://x.com/akshay_pachaar/article/2069118430582866051" target="_blank" rel="noopener noreferrer">Akshay Pachaar — Loop Engineering article ↗</a>
           <a class="agent-cite" href="https://gist.github.com/sanchez314c/a767997b030d2904c0d0f08fabae2d42" target="_blank" rel="noopener noreferrer">LOOPS.md — community mirror; attribution unverified ↗</a>
         </div>
         <p class="slide-foot"><span>06 / 11</span></p>
@@ -1143,6 +1197,7 @@
                 <a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer"><span>Harness Engineering: Leveraging Codex</span><small>OpenAI · 2026</small></a>
                 <a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents" target="_blank" rel="noopener noreferrer"><span>Effective Harnesses for Long-Running Agents</span><small>Anthropic · 2026</small></a>
                 <a href="https://addyosmani.com/blog/loop-engineering/" target="_blank" rel="noopener noreferrer"><span>Loop Engineering</span><small>Addy Osmani · 2025</small></a>
+                <a href="https://x.com/akshay_pachaar/article/2069118430582866051" target="_blank" rel="noopener noreferrer"><span>Loop Engineering article</span><small>Akshay Pachaar · X</small></a>
               </div>
             </div>
             <div class="reference-group">
