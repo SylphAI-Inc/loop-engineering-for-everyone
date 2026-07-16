@@ -8,7 +8,7 @@ After GitHub Pages deploys, open the repository’s Pages URL to view the intera
 
 ## Materials
 
-- `index.html` — shareable interactive slide deck
+- `beyond-loop-engineering.html` — canonical shareable interactive slide deck
 - `materials/lesson.md` — lesson script and research notes
 - `materials/demo_runbook.md` — demo companion
 - `materials/illustrations/` — editable Excalidraw sources and rendered diagrams
