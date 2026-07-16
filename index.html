@@ -325,6 +325,39 @@
       user-select: text;
     }
 
+    .barrier-grid {
+      width: min(100%, 880px);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(18px, 2.2vw, 34px);
+    }
+
+    .barrier-card {
+      min-height: 230px;
+      display: grid;
+      align-content: center;
+      gap: 16px;
+      padding: clamp(24px, 3vw, 42px);
+      border: 1px solid var(--line);
+      border-top: 2px solid var(--accent);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+    }
+
+    .barrier-card strong {
+      color: var(--text);
+      font-size: clamp(25px, 2.2vw, 38px);
+      font-weight: 580;
+      letter-spacing: -0.035em;
+      line-height: 1;
+    }
+
+    .barrier-card span {
+      color: var(--muted);
+      font-size: clamp(14px, 1vw, 17px);
+      line-height: 1.45;
+    }
+
     .agent-line {
       margin: 0 auto;
       padding: 16px 20px;
@@ -947,6 +980,23 @@
         <p class="slide-foot"><span>08 / 11</span></p>
       </article>
 
+      <article class="slide" aria-labelledby="slide-8a-title">
+        <h2 id="slide-8a-title" class="slide-title">What Makes Loops Inaccessible</h2>
+        <div class="slide-body">
+          <div class="barrier-grid">
+            <div class="barrier-card">
+              <strong>High complexity</strong>
+              <span>Reliable loops require coordinating goals, tools, workers, validation, recovery, state, and stop conditions.</span>
+            </div>
+            <div class="barrier-card">
+              <strong>High cost</strong>
+              <span>More capable models, longer contexts, browser use, repeated validation, and multiple workers compound runtime cost.</span>
+            </div>
+          </div>
+        </div>
+        <p class="slide-foot"><span>09 / 12</span></p>
+      </article>
+
       <article class="slide" aria-labelledby="slide-9-title">
         <h2 id="slide-9-title" class="slide-title">AdaL Engineer</h2>
         <div class="agent-cite-stack">
@@ -1032,23 +1082,23 @@
             <text x="550" y="520" fill="#bbb" font-size="11">Strong model capability</text>
             <text x="550" y="535" fill="#bbb" font-size="11">Weak company context</text>
             <path d="M 720,540 Q 700,545 680,520" stroke="#bbb" stroke-width="1" fill="none"/>
-            <line x1="800" y1="540" x2="800" y2="120" stroke="#FF5898" stroke-width="2" stroke-dasharray="6,4"/>
-            <polygon points="800,115 795,125 805,125" fill="#FF5898"/>
+            <path d="M780 540 C790 505 794 478 800 460 C811 425 817 390 825 360 C837 316 846 273 855 240 C868 193 877 144 885 120" fill="none" stroke="#FF5898" stroke-width="2" stroke-dasharray="6,4"/>
+            <polygon points="885,115 880,125 890,125" fill="#FF5898"/>
             <circle cx="800" cy="460" r="12" fill="none" stroke="#FF5898" stroke-width="2"/>
             <circle cx="800" cy="460" r="5" fill="#FF5898"/>
             <text x="840" y="450" fill="#FF5898" font-size="13" font-weight="bold">Loop Engineering</text>
             <text x="840" y="468" fill="#999" font-size="11">memory + planning + context</text>
             <text x="840" y="483" fill="#999" font-size="11">turn capability into autonomy</text>
-            <circle cx="800" cy="360" r="14" fill="none" stroke="#FF5898" stroke-width="2" opacity="0.8"/>
-            <circle cx="800" cy="360" r="6" fill="#FF5898"/>
-            <text x="840" y="350" fill="#FF5898" font-size="13" font-weight="bold">AdaL Engineer</text>
-            <text x="840" y="368" fill="#999" font-size="11">deliver a task end-to-end</text>
-            <circle cx="800" cy="240" r="10" fill="none" stroke="#FF5898" stroke-width="1.5" opacity="0.6"/>
-            <circle cx="800" cy="240" r="4" fill="#FF5898" opacity="0.6"/>
-            <text x="840" y="240" fill="#FF5898" font-size="13" font-weight="bold">Continuous Learning Memory Model</text>
-            <circle cx="800" cy="100" r="20" fill="none" stroke="#FF5898" stroke-width="2" opacity="0.6"/>
-            <circle cx="800" cy="100" r="8" fill="#FF5898"/>
-            <text x="840" y="100" fill="#FF5898" font-size="14" font-weight="bold">Company Brain</text>
+            <circle cx="825" cy="360" r="14" fill="none" stroke="#FF5898" stroke-width="2" opacity="0.8"/>
+            <circle cx="825" cy="360" r="6" fill="#FF5898"/>
+            <text x="865" y="350" fill="#FF5898" font-size="13" font-weight="bold">AdaL Engineer</text>
+            <text x="865" y="368" fill="#999" font-size="11">deliver a task end-to-end</text>
+            <circle cx="855" cy="240" r="10" fill="none" stroke="#FF5898" stroke-width="1.5" opacity="0.6"/>
+            <circle cx="855" cy="240" r="4" fill="#FF5898" opacity="0.6"/>
+            <text x="895" y="240" fill="#FF5898" font-size="13" font-weight="bold">Continuous Learning Memory Model</text>
+            <circle cx="885" cy="100" r="20" fill="none" stroke="#FF5898" stroke-width="2" opacity="0.6"/>
+            <circle cx="885" cy="100" r="8" fill="#FF5898"/>
+            <text x="925" y="100" fill="#FF5898" font-size="14" font-weight="bold">Company Brain</text>
           </svg>
         </div>
         <p class="slide-foot"><span>10 / 11</span></p>
