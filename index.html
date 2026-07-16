@@ -171,6 +171,29 @@
       line-height: 1.12;
     }
 
+    .drainage-insight {
+      width: min(100%, 920px);
+      display: grid;
+      gap: clamp(18px, 2vw, 28px);
+    }
+
+    .drainage-insight .feature-quote {
+      width: 100%;
+    }
+
+    .supporting-quote {
+      max-width: 720px;
+      margin: 0 0 0 clamp(28px, 3.4vw, 54px);
+      color: var(--muted);
+      font-size: clamp(16px, 1.18vw, 22px);
+      line-height: 1.4;
+    }
+
+    .supporting-quote strong {
+      color: var(--text);
+      font-weight: 580;
+    }
+
     .hero-statement {
       width: min(100%, 820px);
       margin: 0;
@@ -854,7 +877,10 @@
       <article class="slide" aria-labelledby="slide-4-title">
         <h2 id="slide-4-title" class="slide-title">More Productive. More Drained.</h2>
         <div class="slide-body">
-          <p class="feature-quote">Midjourney’s founder says new AI coding tools are making friends more productive — and “extremely drained.”</p>
+          <div class="drainage-insight">
+            <p class="feature-quote">Our assumption: the demand for babysitting, judgment, and taste is what makes developers extremely drained.</p>
+            <p class="supporting-quote">Midjourney’s founder says new AI coding tools are making friends more productive — and <strong>“extremely drained.”</strong></p>
+          </div>
         </div>
         <div class="agent-cite-stack">
           <a class="agent-cite" href="https://www.businessinsider.com/midjourney-founder-ai-coding-friends-drained-2026-7" target="_blank" rel="noopener noreferrer">Business Insider — July 2026 ↗</a>
