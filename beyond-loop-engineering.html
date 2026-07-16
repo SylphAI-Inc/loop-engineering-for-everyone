@@ -720,12 +720,21 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
     }
 
-    .illustration {
+    .illustration, .lifecycle-diagram {
       display: block;
       width: min(100%, 980px);
       height: 100%;
       max-height: 100%;
       font-family: var(--sans);
+    }
+    
+    svg text, svg tspan {
+      user-select: text;
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      cursor: text;
+      pointer-events: auto;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -818,7 +827,7 @@
           <h1 id="slide-1-title" class="slide-title">Beyond Loop Engineering</h1>
           <p class="title-credit"><strong>Li Yin</strong> · creator of AdalFlow and founder at AdaL</p>
         </div>
-        <p class="slide-foot"><span>01 / 11</span></p>
+        <p class="slide-foot"><span>01 / 13</span></p>
       </article>
 
       <article class="slide" aria-labelledby="slide-2-title">
@@ -831,7 +840,7 @@
           <a class="agent-cite" href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener noreferrer">ReAct — Yao et al., 2022 ↗</a>
           <a class="agent-cite" href="https://arxiv.org/abs/2501.16673" target="_blank" rel="noopener noreferrer">LLM-AutoDiff — Yin et al., 2025 ↗</a>
         </div>
-        <p class="slide-foot"><span>02 / 11</span></p>
+        <p class="slide-foot"><span>02 / 13</span></p>
       </article>
 
       <article class="slide" aria-labelledby="slide-3-title">
@@ -864,7 +873,7 @@
             <a class="agent-cite" href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer">Harness Engineering — OpenAI ↗</a>
           </div>
         </div>
-        <p class="slide-foot"><span>03 / 11</span></p>
+        <p class="slide-foot"><span>03 / 13</span></p>
       </article>
 
       <article class="slide" aria-labelledby="slide-4-title">
@@ -878,7 +887,7 @@
         <div class="agent-cite-stack">
           <a class="agent-cite" href="https://www.businessinsider.com/midjourney-founder-ai-coding-friends-drained-2026-7" target="_blank" rel="noopener noreferrer">Business Insider — July 2026 ↗</a>
         </div>
-        <p class="slide-foot"><span>04 / 11</span></p>
+        <p class="slide-foot"><span>04 / 13</span></p>
       </article>
 
       <article class="slide" aria-labelledby="slide-5-title">
@@ -929,7 +938,7 @@
           </div>
           <p class="react-note">Different stages need different agent capabilities across local, cloud, and GitHub environments, forcing developers to manually run the iterative dev loop.</p>
         </div>
-        <p class="slide-foot"><span>05 / 11</span></p>
+        <p class="slide-foot"><span>05 / 13</span></p>
       </article>
 
       <article class="slide" aria-labelledby="slide-6-title">
@@ -942,7 +951,7 @@
           <a class="agent-cite" href="https://x.com/akshay_pachaar/article/2069118430582866051" target="_blank" rel="noopener noreferrer">Akshay Pachaar — Loop Engineering article ↗</a>
           <a class="agent-cite" href="https://gist.github.com/sanchez314c/a767997b030d2904c0d0f08fabae2d42" target="_blank" rel="noopener noreferrer">LOOPS.md — community mirror; attribution unverified ↗</a>
         </div>
-        <p class="slide-foot"><span>06 / 11</span></p>
+        <p class="slide-foot"><span>06 / 13</span></p>
       </article>
 
       <article class="slide" aria-labelledby="slide-7-title">
@@ -961,7 +970,7 @@
         <div class="agent-cite-stack">
           <a class="agent-cite" href="https://x.com/ClaudeDevs/status/2074208949205881033?s=20" target="_blank" rel="noopener noreferrer">Claude Developers — loop engineering guide ↗</a>
         </div>
-        <p class="slide-foot"><span>07 / 11</span></p>
+        <p class="slide-foot"><span>07 / 13</span></p>
       </article>
 
       <article class="slide" aria-labelledby="slide-8-title">
@@ -973,7 +982,7 @@
             <li><strong style="color:var(--accent);">Multi-agent roles</strong><br><span style="color:var(--muted);font-size:0.9em;">Evaluator and builder — different context, same or different model, specialized prompts (code review).</span></li>
           </ul>
         </div>
-        <p class="slide-foot"><span>08 / 11</span></p>
+        <p class="slide-foot"><span>08 / 13</span></p>
       </article>
 
       <article class="slide" aria-labelledby="slide-8a-title">
@@ -990,7 +999,7 @@
             </div>
           </div>
         </div>
-        <p class="slide-foot"><span>09 / 12</span></p>
+        <p class="slide-foot"><span>09 / 13</span></p>
       </article>
 
       <article class="slide" aria-labelledby="slide-9-title">
@@ -1009,10 +1018,9 @@
             </defs>
             <circle cx="450" cy="122" r="103" fill="url(#engineerHalo)"/>
             <circle cx="450" cy="122" r="62" fill="rgba(255,88,152,0.08)" stroke="#ff5898" stroke-width="1.6"/>
-            <circle cx="450" cy="98" r="17" fill="#ff5898"/>
-            <path d="M440 106l10-17 10 17h-20z" fill="#050506"/>
-            <text x="450" y="148" fill="#ff5898" font-size="21" font-weight="650" text-anchor="middle">Engineer</text>
-            <text x="450" y="169" fill="#6c727a" font-size="11" letter-spacing="1.5" text-anchor="middle">HUMAN-ROLE LEVEL</text>
+            <text x="450" y="129" fill="#ff5898" font-size="24" font-weight="650" text-anchor="middle">Engineer</text>
+            <path d="M512 122h14" fill="none" stroke="#6c727a" stroke-width="1"/>
+            <text x="536" y="125" fill="#6c727a" font-size="11" letter-spacing="1.5" text-anchor="start">HUMAN-ROLE LEVEL</text>
             <path d="M450 184v55M150 239h600" fill="none" stroke="rgba(255,88,152,0.62)" stroke-width="1.5"/>
             <circle cx="450" cy="239" r="4" fill="#ff5898"/>
             <g fill="none" stroke="rgba(255,88,152,0.62)" stroke-width="1.5">
@@ -1037,11 +1045,51 @@
             <text x="450" y="470" fill="#ff5898" font-size="13" font-weight="650" letter-spacing="2" text-anchor="middle">WORKERS (AGENTS OF TODAY)</text>
           </svg>
         </div>
-        <p class="slide-foot"><span>09 / 11</span></p>
+        <p class="slide-foot"><span>09 / 13</span></p>
       </article>
 
-      <article class="slide" aria-labelledby="slide-10-title">
-        <h2 id="slide-10-title" class="slide-title">Measure Autonomy</h2>
+      <article class="slide" aria-labelledby="slide-demo-title">
+        <h2 id="slide-demo-title" class="slide-title">Demo Comparison</h2>
+        <div class="slide-body">
+          <p class="slide-lead" style="margin-bottom: 24px; text-align: center;">
+            Build a complicated web app end-to-end. All agents running on Sonnet 5. With browser use to auto-test.
+          </p>
+          <div style="width: 100%; max-width: 900px; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: rgba(255,255,255,0.02);">
+            <div style="display: grid; grid-template-columns: 2fr 1.5fr 2fr; border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.04); font-weight: 600; padding: 16px 24px;">
+              <div>Agent Loop</div>
+              <div>Running Time</div>
+              <div>Result</div>
+            </div>
+            <div style="display: grid; grid-template-columns: 2fr 1.5fr 2fr; border-bottom: 1px solid var(--line); padding: 16px 24px; align-items: center;">
+              <div style="color: var(--text);">Claude Code</div>
+              <div style="color: var(--muted); font-family: var(--mono);">[00:00:00]</div>
+              <div style="color: var(--muted);"><a href="#" style="color: inherit; text-decoration: underline;">[View Deployment ↗]</a></div>
+            </div>
+            <div style="display: grid; grid-template-columns: 2fr 1.5fr 2fr; border-bottom: 1px solid var(--line); padding: 16px 24px; align-items: center;">
+              <div style="color: var(--text);">Claude Code <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">/goal</code></div>
+              <div style="color: var(--muted); font-family: var(--mono);">[00:00:00]</div>
+              <div style="color: var(--muted);"><a href="#" style="color: inherit; text-decoration: underline;">[View Deployment ↗]</a></div>
+            </div>
+            <div style="display: grid; grid-template-columns: 2fr 1.5fr 2fr; border-bottom: 1px solid var(--line); padding: 16px 24px; align-items: center;">
+              <div style="color: var(--accent); font-weight: 600;">AdaL Engineer</div>
+              <div style="color: var(--muted); font-family: var(--mono);">[00:00:00]</div>
+              <div style="color: var(--muted);"><a href="#" style="color: inherit; text-decoration: underline;">[View Deployment ↗]</a></div>
+            </div>
+            <div style="display: grid; grid-template-columns: 2fr 1.5fr 2fr; padding: 16px 24px; align-items: center;">
+              <div style="color: var(--accent); font-weight: 600;">AdaL Engineer <span style="color: var(--muted); font-size: 0.85em; font-weight: 400; margin-left: 8px;">(MiniMax M3 — 10x cheaper)</span></div>
+              <div style="color: var(--muted); font-family: var(--mono);">[00:00:00]</div>
+              <div style="color: var(--muted);"><a href="#" style="color: inherit; text-decoration: underline;">[View Deployment ↗]</a></div>
+            </div>
+          </div>
+          <p style="margin-top: 32px; text-align: center;">
+            <a href="#" style="color: var(--accent); text-decoration: none; font-weight: 500; font-size: 16px; border-bottom: 1px solid var(--accent-soft); padding-bottom: 2px;">Watch the full comparison video ↗</a>
+          </p>
+        </div>
+        <p class="slide-foot"><span>10 / 13</span></p>
+      </article>
+
+      <article class="slide" aria-labelledby="slide-11-title">
+        <h2 id="slide-11-title" class="slide-title">Measure Autonomy</h2>
         <div class="slide-body">
           <svg class="illustration" viewBox="0 0 1180 700" aria-label="Autonomy levels chart: L1 heavy supervision through L4 team autonomy, with today at L1.5 high capability but still prompting, and loop engineering bridging to L4 the real future.">
             <line x1="100" y1="620" x2="100" y2="40" stroke="#FF5898" stroke-width="2"/>
@@ -1094,11 +1142,11 @@
             <text x="925" y="100" fill="#FF5898" font-size="14" font-weight="bold">Company Brain</text>
           </svg>
         </div>
-        <p class="slide-foot"><span>10 / 11</span></p>
+        <p class="slide-foot"><span>11 / 13</span></p>
       </article>
 
-      <article class="slide" aria-labelledby="slide-11-title">
-        <h2 id="slide-11-title" class="slide-title">References</h2>
+      <article class="slide" aria-labelledby="slide-12-title">
+        <h2 id="slide-12-title" class="slide-title">References</h2>
         <div class="slide-body">
           <div class="references-grid">
             <div class="reference-group">
@@ -1161,7 +1209,7 @@
             </div>
           </div>
         </div>
-        <p class="slide-foot"><span>11 / 11</span></p>
+        <p class="slide-foot"><span>11 / 13</span></p>
       </article>
     </section>
 
@@ -1169,7 +1217,7 @@
       <button class="control-button" type="button" data-action="prev" aria-label="Previous slide">‹</button>
       <button class="control-button" type="button" data-action="next" aria-label="Next slide">›</button>
       <div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
-      <div class="status" aria-live="polite">01 / 11</div>
+      <div class="status" aria-live="polite">01 / 13</div>
     </nav>
   </main>
 
