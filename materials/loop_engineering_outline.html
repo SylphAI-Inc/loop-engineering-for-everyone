@@ -401,105 +401,15 @@
     }
 
     .lifecycle {
-      width: min(100%, 1040px);
-      display: grid;
-      grid-template-columns: minmax(0, 5fr) minmax(150px, 1fr);
-      gap: clamp(28px, 3vw, 52px);
-      align-items: center;
+      width: min(100%, 1100px);
     }
 
-    .lifecycle-iteration {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: clamp(8px, 0.9vw, 14px);
-      padding-bottom: 38px;
-    }
-
-    .stage {
-      position: relative;
-      display: grid;
-      align-content: center;
-      gap: 6px;
-      padding: 14px;
-      min-height: 142px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.025);
-      text-align: center;
-    }
-
-    .stage strong {
+    .lifecycle-diagram {
       display: block;
-      color: var(--text);
-      font-size: clamp(13px, 0.95vw, 16px);
-      letter-spacing: -0.01em;
-    }
-
-    .stage small {
-      display: block;
-      color: var(--muted);
-      font-size: clamp(11px, 0.78vw, 13px);
-      line-height: 1.3;
-    }
-
-    .lifecycle-iteration .stage:not(:last-child)::after {
-      content: "→";
-      position: absolute;
-      top: 50%;
-      right: calc(clamp(8px, 0.9vw, 14px) / -2);
-      z-index: 2;
-      width: 18px;
-      height: 18px;
-      display: grid;
-      place-items: center;
-      transform: translate(50%, -50%);
-      color: var(--accent);
-      font: 600 16px/1 var(--mono);
-      background: #0a0b0d;
-    }
-
-    .lifecycle-return {
-      position: absolute;
-      left: 4%;
-      right: 4%;
-      bottom: 0;
-      height: 26px;
-      border-right: 1.5px solid var(--accent);
-      border-bottom: 1.5px solid var(--accent);
-      border-left: 1.5px solid var(--accent);
-      border-radius: 0 0 14px 14px;
-      pointer-events: none;
-    }
-
-    .lifecycle-return::before {
-      content: "↖";
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      color: var(--accent);
-      font: 700 20px/1 var(--mono);
-      background: #0a0b0d;
-    }
-
-    .stage-deliver {
-      min-height: 142px;
-      border-color: rgba(255, 88, 152, 0.58);
-      background: linear-gradient(145deg, rgba(255, 88, 152, 0.12), rgba(255, 255, 255, 0.025));
-    }
-
-
-
-    .lifecycle-loop {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      color: var(--accent);
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-align: center;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+      font-family: var(--sans);
     }
 
     .reference-list {
@@ -943,15 +853,47 @@
         <h2 id="slide-5-title" class="slide-title">The Manual Outer Loop</h2>
         <div class="slide-body">
           <div class="lifecycle" aria-label="Development lifecycle stages">
-            <div class="lifecycle-iteration" aria-label="Iterative manual loop">
-              <div class="stage"><strong>Understand</strong><small>Deep research / codebase understanding</small></div>
-              <div class="stage"><strong>Plan</strong><small>task decomposition / architecture</small></div>
-              <div class="stage"><strong>Build</strong><small>coding agent</small></div>
-              <div class="stage"><strong>Test</strong><small>browser use / test runner</small></div>
-              <div class="stage"><strong>Review</strong><small>code review / evaluator</small></div>
-              <div class="lifecycle-return" aria-label="Review feedback loops back to understanding"></div>
-            </div>
-            <div class="stage stage-deliver"><strong>Deliver</strong><small>verification / human approval</small></div>
+            <svg class="lifecycle-diagram" viewBox="0 0 1100 290" role="img" aria-label="Understand, Plan, Build, Test, and Review form the manual iterative outer loop. Deliver is a separate final outcome.">
+              <defs>
+                <marker id="lifecycle-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#FF5898"></path>
+                </marker>
+              </defs>
+              <g fill="none" stroke="#FF5898" stroke-width="2" stroke-linecap="round" marker-end="url(#lifecycle-arrow)">
+                <path d="M175 104H192"></path>
+                <path d="M357 104H374"></path>
+                <path d="M539 104H556"></path>
+                <path d="M721 104H738"></path>
+                <path d="M903 104H955"></path>
+                <path d="M820 190 C820 266 85 266 85 190 L85 176"></path>
+              </g>
+              <g fill="#101114" stroke="rgba(255,255,255,0.16)" stroke-width="1.2">
+                <rect x="0" y="34" width="175" height="142" rx="16"></rect>
+                <rect x="182" y="34" width="175" height="142" rx="16"></rect>
+                <rect x="364" y="34" width="175" height="142" rx="16"></rect>
+                <rect x="546" y="34" width="175" height="142" rx="16"></rect>
+                <rect x="728" y="34" width="175" height="142" rx="16"></rect>
+              </g>
+              <rect x="955" y="34" width="145" height="142" rx="16" fill="rgba(255,88,152,0.12)" stroke="#FF5898" stroke-opacity="0.7" stroke-width="1.2"></rect>
+              <g text-anchor="middle">
+                <g fill="#f4f4f5" font-size="16" font-weight="650">
+                  <text x="87" y="91">Understand</text>
+                  <text x="269" y="91">Plan</text>
+                  <text x="451" y="91">Build</text>
+                  <text x="633" y="91">Test</text>
+                  <text x="815" y="91">Review</text>
+                  <text x="1027" y="108">Deliver</text>
+                </g>
+                <g fill="#b9bdc4" font-size="12">
+                  <text x="87" y="116">Deep research /</text><text x="87" y="132">codebase understanding</text>
+                  <text x="269" y="116">task decomposition /</text><text x="269" y="132">architecture</text>
+                  <text x="451" y="124">coding agent</text>
+                  <text x="633" y="116">browser use / test</text><text x="633" y="132">runner</text>
+                  <text x="815" y="124">code review / evaluator</text>
+                  <text x="1027" y="133">verification / human</text><text x="1027" y="149">approval</text>
+                </g>
+              </g>
+            </svg>
           </div>
           <p class="react-note">Currently, different stages need different agent capabilities across local, cloud, and GitHub environments, forcing developers to manually run the iterative dev loop.</p>
         </div>
