@@ -31,6 +31,7 @@ jobs:
         run: |
           mkdir -p _site
           cp beyond-loop-engineering.html _site/index.html
+          cp -r materials _site/materials
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
