@@ -1041,25 +1041,7 @@
       </article>
 
       <article class="slide" aria-labelledby="slide-7-title">
-        <h2 id="slide-7-title" class="slide-title">Loops of Today</h2>
-        <div class="slide-body slide-body-agent">
-          <ul class="loops-today-list" aria-label="Loop primitives from the Claude Developers guide" style="margin-top: 40px;">
-            <li><code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">/goal</code>, <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">/loop</code> (Claude Code) or <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">/cron</code> (AdaL)</li>
-            <li>permission bypass — <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">--dangerously-skip-permissions</code> (Claude) or <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">--yolo</code> (AdaL)</li>
-            <li>repeated or scheduled work — local intervals and cloud routines</li>
-            <li>dynamic workflows — agents that adapt as they run</li>
-            <li>Parallel Multi-agent — typically with subagents driven by a main agent</li>
-          </ul>
-          <p class="loops-today-takeaway">The user still designs the system: how many workers to spawn, how they communicate, when they hand work off, how they evaluate one another, how they recover from failures, and when to stop the loop.</p>
-        </div>
-        <div class="agent-cite-stack">
-          <a class="agent-cite" href="https://x.com/ClaudeDevs/status/2074208949205881033?s=20" target="_blank" rel="noopener noreferrer">Claude Developers — loop engineering guide ↗</a>
-        </div>
-        <p class="slide-foot"><span>07 / 14</span></p>
-      </article>
-
-      <article class="slide" aria-labelledby="slide-8-title">
-        <h2 id="slide-8-title" class="slide-title">What Makes Loops Possible</h2>
+        <h2 id="slide-7-title" class="slide-title">What Makes Loops Possible</h2>
         <div class="slide-body">
           <ul style="list-style:none;padding:0;margin:0 auto;max-width:900px;display:grid;gap:42px; width: 100%;">
             <li style="border-left: 4px solid var(--accent); padding-left: 24px;">
@@ -1075,6 +1057,24 @@
               <span style="color:var(--muted);font-size: clamp(20px, 2.2vw, 28px); line-height: 1.4; display: block;">Separating Evaluator from Builder to prevent <em>"context rot"</em>—leveraging different models, isolated context windows, and specialized prompts.</span>
             </li>
           </ul>
+        </div>
+        <p class="slide-foot"><span>07 / 14</span></p>
+      </article>
+
+      <article class="slide" aria-labelledby="slide-8-title">
+        <h2 id="slide-8-title" class="slide-title">Loops of Today</h2>
+        <div class="slide-body slide-body-agent">
+          <ul class="loops-today-list" aria-label="Loop primitives from the Claude Developers guide" style="margin-top: 40px;">
+            <li><code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">/goal</code>, <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">/loop</code> (Claude Code) or <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">/cron</code> (AdaL)</li>
+            <li>permission bypass — <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">--dangerously-skip-permissions</code> (Claude) or <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">--yolo</code> (AdaL)</li>
+            <li>repeated or scheduled work — local intervals and cloud routines</li>
+            <li>dynamic workflows — agents that adapt as they run</li>
+            <li>Parallel Multi-agent — typically with subagents driven by a main agent</li>
+          </ul>
+          <p class="loops-today-takeaway">The user still designs the system: how many workers to spawn, how they communicate, when they hand work off, how they evaluate one another, how they recover from failures, and when to stop the loop.</p>
+        </div>
+        <div class="agent-cite-stack">
+          <a class="agent-cite" href="https://x.com/ClaudeDevs/status/2074208949205881033?s=20" target="_blank" rel="noopener noreferrer">Claude Developers — loop engineering guide ↗</a>
         </div>
         <p class="slide-foot"><span>08 / 14</span></p>
       </article>
