@@ -1150,17 +1150,21 @@
             <p class="hero-statement" style="font-size: clamp(24px, 2.5vw, 36px); line-height: 1.3; padding: 24px 0 24px 28px; width: 100%;">
               Instead of prompting once, AdaL Engineer <span style="color: var(--accent);">is a system that keeps prompting until the goal is met.</span>
             </p>
-            <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 24px;">
-              <li style="border-left: 3px solid var(--accent); padding-left: 20px;">
-                <strong style="color: var(--text); font-size: clamp(20px, 2vw, 28px); display: block; margin-bottom: 6px;">GAN-Style Quality Loop</strong>
+            <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 24px; counter-reset: adal-benefits;">
+              <li style="border-left: 3px solid var(--accent); padding-left: 20px; position: relative;">
+                <strong style="color: var(--text); font-size: clamp(20px, 2vw, 28px); display: block; margin-bottom: 6px;"><span style="color: var(--accent); margin-right: 8px;">1.</span>GAN-Style Quality Loop</strong>
                 <span style="color: var(--muted); font-size: clamp(16px, 1.5vw, 22px); line-height: 1.45; display: block;">Pits specialized builders against independent evaluators to autonomously maximize quality.</span>
               </li>
-              <li style="border-left: 3px solid var(--accent); padding-left: 20px;">
-                <strong style="color: var(--text); font-size: clamp(20px, 2vw, 28px); display: block; margin-bottom: 6px;">Persistent Long-Term Memory</strong>
+              <li style="border-left: 3px solid var(--accent); padding-left: 20px; position: relative;">
+                <strong style="color: var(--text); font-size: clamp(20px, 2vw, 28px); display: block; margin-bottom: 6px;"><span style="color: var(--accent); margin-right: 8px;">2.</span>Persistent Long-Term Memory</strong>
                 <span style="color: var(--muted); font-size: clamp(16px, 1.5vw, 22px); line-height: 1.45; display: block;">Uses local markdown (e.g. <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">contract.md</code>, <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">eval_iter.md</code>) to orchestrate state across workers, organized automatically by month and day.</span>
               </li>
-              <li style="border-left: 3px solid var(--accent); padding-left: 20px;">
-                <strong style="color: var(--text); font-size: clamp(20px, 2vw, 28px); display: block; margin-bottom: 6px;">Adaptive Autonomy</strong>
+              <li style="border-left: 3px solid var(--accent); padding-left: 20px; position: relative;">
+                <strong style="color: var(--text); font-size: clamp(20px, 2vw, 28px); display: block; margin-bottom: 6px;"><span style="color: var(--accent); margin-right: 8px;">3.</span>Abstracts Setup Complexity</strong>
+                <span style="color: var(--muted); font-size: clamp(16px, 1.5vw, 22px); line-height: 1.45; display: block;">Removes the complexity of manual worker setup—automatically choosing the right agent capability and model for each task.</span>
+              </li>
+              <li style="border-left: 3px solid var(--accent); padding-left: 20px; position: relative;">
+                <strong style="color: var(--text); font-size: clamp(20px, 2vw, 28px); display: block; margin-bottom: 6px;"><span style="color: var(--accent); margin-right: 8px;">4.</span>Adaptive Autonomy</strong>
                 <span style="color: var(--muted); font-size: clamp(16px, 1.5vw, 22px); line-height: 1.45; display: block;">Handles orchestration autonomously, but allows seamless "autopilot" manual override via chat.</span>
               </li>
             </ul>
