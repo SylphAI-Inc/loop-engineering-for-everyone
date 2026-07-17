@@ -77,7 +77,7 @@
     .slide-title {
       margin: 0;
       color: var(--text);
-      font-size: clamp(28px, 3.8vw, 54px);
+      font-size: clamp(28px, 3.5vw, 52px);
       line-height: 1.1;
       letter-spacing: -0.035em;
       font-weight: 650;
@@ -129,7 +129,7 @@
 
     .slide-title {
       position: relative;
-      max-width: 1120px;
+      max-width: 100%;
       padding-top: clamp(13px, 1.25vw, 18px);
     }
 
@@ -1217,10 +1217,13 @@
               <path d="M 450 295 C 500 295 500 360 500 390" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" marker-end="url(#arrowHeadNeutral)"></path>
 
               <!-- The GAN Iteration Loop (Pink) -->
-              <path d="M 160 450 L 440 450" fill="none" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8,6" marker-end="url(#arrowHead)" filter="url(#coreGlow)"></path>
-              <path d="M 440 480 C 400 560 200 560 160 480" fill="none" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8,6" marker-end="url(#arrowHead)" filter="url(#coreGlow)"></path>
-              <text x="300" y="435" fill="var(--text)" font-size="16" font-weight="600" font-style="italic" text-anchor="middle">Test &amp; Validate</text>
-              <text x="300" y="555" fill="var(--accent)" font-size="16" font-weight="600" font-style="italic" text-anchor="middle">Feedback &amp; Fix Loop</text>
+              <!-- Evaluator -> Engineer (Feedback) -->
+              <path d="M 460 400 C 420 300 380 200 340 120" fill="none" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8,6" marker-end="url(#arrowHead)" filter="url(#coreGlow)"></path>
+              <text x="440" y="240" fill="var(--text)" font-size="16" font-weight="600" font-style="italic" text-anchor="start" transform="rotate(-60 440 240)">Feedback</text>
+
+              <!-- Engineer -> Builder (Fix Loop) -->
+              <path d="M 260 120 C 220 200 180 300 140 400" fill="none" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8,6" marker-end="url(#arrowHead)" filter="url(#coreGlow)"></path>
+              <text x="140" y="240" fill="var(--accent)" font-size="16" font-weight="600" font-style="italic" text-anchor="end" transform="rotate(60 140 240)">Fix Loop</text>
               
               <!-- Send Prompt (AdaL to Workers) -->
               <path d="M 250 80 C 40 80 40 450 40 450 L 40 450" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrowHeadNeutral)"></path>
