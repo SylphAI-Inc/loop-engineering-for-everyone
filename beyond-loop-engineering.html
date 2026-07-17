@@ -1046,9 +1046,9 @@
           <p class="slide-lead">The Claude Code team has published a public guide — <em>Getting started with loops</em> — the closest thing to an official implementation of loop-oriented workflows. It introduces primitives like <code>/goal</code>, <code>/loop</code>, dynamic workflows, custom skills, and a growing collection of building blocks for orchestrating agents.</p>
           <ul class="loops-today-list" aria-label="Loop primitives from the Claude Developers guide">
             <li>goals and stop conditions — verifiable exit criteria</li>
+            <li>permission bypass — <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">--dangerously-skip-permissions</code> or <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">--yolo</code></li>
             <li>repeated or scheduled work — local intervals and cloud routines</li>
             <li>dynamic workflows — agents that adapt as they run</li>
-            <li>skills and reusable building blocks — composed across loops</li>
             <li>Parallel Multi-agent — typically with subagents driven by a main agent</li>
           </ul>
           <p class="loops-today-takeaway">The user still designs the system: how many workers to spawn, how they communicate, when they hand work off, how they evaluate one another, how they recover from failures, and when to stop the loop.</p>
@@ -1073,7 +1073,7 @@
             </li>
             <li style="border-left: 4px solid var(--accent); padding-left: 24px;">
               <strong style="color:var(--text);font-size: clamp(28px, 3.2vw, 42px); line-height: 1.2; display: block; margin-bottom: 8px;">Multi-agent roles</strong>
-              <span style="color:var(--muted);font-size: clamp(20px, 2.2vw, 28px); line-height: 1.4; display: block;">Separating Evaluator from Builder to prevent "context rot"—leveraging different models, isolated context windows, and specialized prompts.</span>
+              <span style="color:var(--muted);font-size: clamp(20px, 2.2vw, 28px); line-height: 1.4; display: block;">Separating Evaluator from Builder to prevent <em>"context rot"</em>—leveraging different models, isolated context windows, and specialized prompts.</span>
             </li>
           </ul>
         </div>
