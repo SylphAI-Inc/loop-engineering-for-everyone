@@ -15,15 +15,16 @@ Style: conversational, knowledge-sharing, not a product pitch.
 8. Why Loops Became Possible
 9. Loops of Today
 10. Yet It's Still Hard
-11. A Different Path to Autonomy
-12. AdaL Engineer — Our First Experiment
-13. What the Experiment Is Testing
-14. When to Use Loops — and When Not
-15. AdaL Builder / Evaluator Screenshot
-16. Demo Comparison
-17. Measure Autonomy
-18. What Will Humans Do Next?
-19. References
+11. When Understanding Falls Behind
+12. A Different Path to Autonomy
+13. AdaL Engineer — Our First Experiment
+14. What the Experiment Is Testing
+15. When to Use Loops — and When Not
+16. AdaL Builder / Evaluator Screenshot
+17. Demo Comparison
+18. Measure Autonomy
+19. What Will Humans Do Next?
+20. References
 
 ## Narrative spine
 
@@ -31,9 +32,10 @@ Style: conversational, knowledge-sharing, not a product pitch.
 2. Model capability ≠ autonomy
 3. Layers: Model → Agent+Harness → Loop Engineering (workflow)
 4. Building blocks exist; the system around them is still hard
-5. Different path: engineer-layer agent above workers, not a fatter coding agent
-6. AdaL Engineer = first experiment
-7. Close: agency stays human; engineers move to higher leverage
+5. Understanding falls behind: cognitive debt, surrender, orchestration tax
+6. Different path: engineer-layer agent above workers, not a fatter coding agent
+7. AdaL Engineer = first experiment — maintain docs, deliver structured output
+8. Close: agency stays human; engineers move to higher leverage
 
 ---
 
@@ -213,6 +215,24 @@ So the real challenge is not just having the building blocks. It’s building th
 
 ---
 
+/title: When Understanding Falls Behind
+
+And the human side is getting sharper too — not theoretical.
+
+Addy Osmani names three dangers that show up as soon as generation outruns comprehension.
+
+First: cognitive debt. The repository grows faster than anyone’s mental model. A build can pass and a PR can merge while the team quietly loses the ability to explain — and maintain — the system it ships.
+
+Second: cognitive surrender. That is not delegation. Delegation means: do the work, then show me enough evidence that I can still form a judgment. Surrender means accepting the agent’s answer before you form an opinion. Borrowed confidence. A Wharton study is the warning shot: when AI was wrong, 73% of people still chose the wrong answer and felt more confident.
+
+Third: orchestration tax. Agents parallelize. Human attention does not. Every extra loop creates more decisions to route, merge, verify, and integrate. More running agents do not create more human bandwidth.
+
+So the rule is simple, and hard: explain it or don’t ship it. Ownership without understanding is just deferred risk.
+
+That is why the next slide is not “make the coding agent fatter.” It is about who keeps the system understandable while work is running.
+
+---
+
 /title: A Different Path to Autonomy
 
 This is the key slide of the talk. So I want to take it from a slightly different angle.
@@ -231,14 +251,22 @@ So instead, we model loop engineering from what the engineer still does today.
 
 Go back to the third layer — the human outer loop. That is still mostly human: set the goal and quality bar, allocate and prompt the right workers, carry context and long-term memory, evaluate independently and recover, know when to stop or escalate.
 
+And this is where cognitive debt gets answered in the architecture, not just in a warning slide.
+
+A good engineer does not only push the work forward. They maintain the documentation. They leave decisions, constraints, and current state in a form the next person — or the next agent — can actually use. They deliver output that is structured and easy to understand: plans, diffs with rationale, test evidence, status notes, handoff summaries. Not a wall of tokens. Something a human can review without surrendering judgment.
+
+If the engineer layer forgets that, autonomy just manufactures unmaintainable code faster.
+
 Babysitting is what it feels like when a human is still running that runtime by hand.
 
 The move is: replace that engineer role with another agent — not instead of coding agents, but above them. Let this engineer-level agent model the behaviors of existing engineers, and work with the coding agents, browser agents, research agents, and review agents of today.
 
+That includes the maintainability job: keep docs current, keep delivery structured, keep the system explainable. That is how you avoid cognitive debt while the loop is running.
+
 Keep the workers as workers. Automate the engineer layer.
 
 We don’t need a better coding agent alone.
-We need an agent that can sit in the engineer seat and operate today’s agents toward a verified outcome.
+We need an agent that can sit in the engineer seat, operate today’s agents toward a verified outcome, and leave the work understandable.
 
 Autonomy rises when we automate the engineer layer — not when we overload a single worker.
 
@@ -262,7 +290,7 @@ We are not asking you to believe a pitch. We are asking you to inspect the diagr
 
 If AdaL Engineer is sitting in the engineer seat, what is the experiment actually testing?
 
-Five parts of the engineer runtime.
+Six parts of the engineer runtime.
 
 First: operate workers — allocate, prompt, and monitor the right agents.
 
@@ -273,6 +301,8 @@ Third: evaluate independently — a Builder implements; an Evaluator does not gr
 Fourth: bound the loop — know when to stop, escalate, or hand the work back to a human.
 
 Fifth: adaptive autonomy — orchestrate the workflow autonomously, but allow seamless manual takeover when you need to correct, redirect, or multi-task. Autopilot when it should run; human hands back on the controls when it shouldn’t.
+
+Sixth: avoid cognitive debt — keep the work in a clear structure, and leave a handover that is easy to walk through. Plans, decisions, evidence, and current state should be reviewable without forcing a human to surrender judgment or reverse-engineer the whole run.
 
 ---
 
