@@ -1,24 +1,24 @@
 <article class="slide" aria-labelledby="slide-v2-when-loops-title">
   <h2 id="slide-v2-when-loops-title" class="slide-title">When to Use Loops — and When Not</h2>
-  <div class="slide-body" style="width:min(100%,1580px);display:grid;gap:clamp(18px,2.2vw,32px);align-content:center;justify-items:stretch;">
+  <div class="slide-body" style="display:grid;">
     <p class="slide-lead" style="margin:0;max-width:none;font-size:clamp(18px,1.55vw,24px);color:var(--text);">
       One principle: loop engineering only makes sense when the outcome is <strong style="font-weight:600;">clear enough to delegate</strong>.
     </p>
-    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,32px);align-items:stretch;">
-      <section class="loop-engineering-panel loop-engineering-panel--outcome" style="min-height:0;">
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;">
+      <section class="loop-engineering-panel loop-engineering-panel--outcome">
         <p class="loop-engineering-panel-label">Use loops when</p>
         <strong style="font-size:clamp(22px,2.1vw,30px);line-height:1.2;">The goal can be verified</strong>
-        <ul class="lifecycle-reasons" style="margin-top:14px;font-size:clamp(16px,1.4vw,22px);">
+        <ul class="lifecycle-reasons" style="margin-top:clamp(14px,1.6vw,22px);font-size:clamp(16px,1.4vw,22px);">
           <li>Concrete outcome, not only an activity</li>
           <li>Success criteria you can check</li>
           <li>Scope, constraints, and stop conditions</li>
           <li>You’re ready to hand off execution</li>
         </ul>
       </section>
-      <section class="loop-engineering-panel" style="min-height:0;">
+      <section class="loop-engineering-panel">
         <p class="loop-engineering-panel-label">Don’t force loops when</p>
         <strong style="font-size:clamp(22px,2.1vw,30px);line-height:1.2;">You’re still discovering the goal</strong>
-        <ul class="lifecycle-reasons" style="margin-top:14px;font-size:clamp(16px,1.4vw,22px);">
+        <ul class="lifecycle-reasons" style="margin-top:clamp(14px,1.6vw,22px);font-size:clamp(16px,1.4vw,22px);">
           <li>The idea is unclear or still evolving</li>
           <li>You want to brainstorm and explore</li>
           <li>The human should stay deep in the creative loop</li>
@@ -26,7 +26,7 @@
         </ul>
       </section>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,1.8vw,24px);">
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.2vw,32px);">
       <p class="loops-today-takeaway" style="margin:0;text-align:left;max-width:none;">
         <strong>Good fit:</strong> ship a scoped PR to green with a known quality bar.
       </p>

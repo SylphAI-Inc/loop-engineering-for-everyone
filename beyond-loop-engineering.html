@@ -355,15 +355,23 @@
     }
 
     .barrier-card {
-      min-height: 114px;
+      min-height: 140px;
       display: grid;
       align-content: center;
-      gap: 24px;
-      padding: clamp(24px, 3vw, 40px);
+      gap: 12px;
+      padding: clamp(28px, 3.2vw, 44px);
       border: 1px solid var(--line);
       border-top: 4px solid var(--accent);
       border-radius: var(--radius);
       background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+    }
+
+    .barrier-card strong {
+      color: var(--text);
+      font-size: clamp(32px, 3.4vw, 52px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      font-weight: 700;
     }
 
     .codex-callout {
@@ -1064,12 +1072,16 @@
     /* Large-monitor layout for the layers / outer-loop diagram */
     .slide[aria-labelledby="slide-layers-workflow-title"] .slide-body,
     .layers-workflow-body {
-      width: min(100%, 1680px) !important;
+      width: min(100%, 1760px) !important;
       height: 100%;
-      grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
-      gap: clamp(20px, 2.5vw, 48px);
-      align-items: stretch;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.45fr);
+      gap: clamp(28px, 3.5vw, 56px);
+      align-items: center;
       justify-items: stretch;
+      padding-inline: clamp(8px, 1.5vw, 24px);
+      box-sizing: border-box;
     }
 
     .slide[aria-labelledby="slide-layers-workflow-title"] .layers-workflow-diagram,
@@ -1077,8 +1089,16 @@
       width: 100% !important;
       max-width: none !important;
       height: 100%;
-      min-height: clamp(360px, 52vh, 720px);
-      padding: clamp(10px, 1.2vw, 18px);
+      min-height: clamp(380px, 58vh, 760px);
+      min-width: 0;
+      padding: 0;
+      box-sizing: border-box;
+      display: grid;
+      place-items: center start;
+      overflow: visible;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
     }
 
     .slide[aria-labelledby="slide-layers-workflow-title"] .layers-workflow-svg,
@@ -1086,14 +1106,25 @@
       width: 100% !important;
       height: 100% !important;
       max-width: none !important;
-      max-height: none !important;
+      max-height: min(72vh, 100%) !important;
+      display: block;
     }
 
     .layers-workflow-copy {
       display: grid;
-      gap: clamp(18px, 2.2vw, 32px);
-      align-content: center;
+      gap: clamp(16px, 2vw, 28px);
+      align-content: end;
+      justify-items: end;
       min-width: 0;
+      height: 100%;
+      padding: 0 clamp(4px, 1vw, 12px) clamp(8px, 1.5vh, 24px) clamp(4px, 1vw, 16px);
+      box-sizing: border-box;
+    }
+
+    .layers-workflow-copy .layers-workflow-lead,
+    .layers-workflow-copy .layers-workflow-question {
+      text-align: right !important;
+      justify-self: end;
     }
 
     .layers-workflow-lead {
@@ -1108,6 +1139,7 @@
       text-align: left !important;
       font-size: clamp(24px, 2.3vw, 36px) !important;
       line-height: 1.3;
+      max-width: none;
     }
 
     .layers-workflow-question-label {
@@ -1118,6 +1150,37 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-bottom: 12px;
+    }
+
+    @media (max-width: 1200px) {
+      .slide[aria-labelledby="slide-layers-workflow-title"] .slide-body,
+      .layers-workflow-body {
+        grid-template-columns: 1fr !important;
+        gap: clamp(24px, 3vw, 36px) !important;
+        align-content: center;
+      }
+
+      .layers-workflow-copy {
+        padding-left: 0;
+        justify-items: start;
+        align-content: start;
+      }
+
+      .layers-workflow-copy .layers-workflow-lead,
+      .layers-workflow-copy .layers-workflow-question {
+        text-align: left !important;
+        justify-self: start;
+      }
+
+      .layers-workflow-lead,
+      .layers-workflow-question {
+        max-width: none !important;
+      }
+
+      .slide[aria-labelledby="slide-layers-workflow-title"] .layers-workflow-svg,
+      .layers-workflow-svg {
+        max-height: min(46vh, 420px) !important;
+      }
     }
 
 
@@ -1212,21 +1275,23 @@
     }
 
     .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-body {
-      width: min(100%, 1760px) !important;
+      width: min(100%, 1680px) !important;
       height: 100%;
       min-height: 0;
       display: grid;
-      grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
-      gap: clamp(20px, 2.6vw, 44px);
-      align-items: stretch;
+      grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+      gap: clamp(28px, 3.4vw, 56px);
+      align-items: center;
       justify-items: stretch;
+      padding-inline: clamp(4px, 1vw, 16px);
+      box-sizing: border-box;
     }
 
     .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-copy {
       min-width: 0;
-      height: 100%;
+      height: auto;
       display: grid;
-      gap: clamp(14px, 1.6vw, 22px);
+      gap: clamp(18px, 2.2vw, 28px);
       align-content: center;
     }
 
@@ -1238,43 +1303,169 @@
       display: grid;
       place-items: center;
       overflow: hidden;
+      padding-inline: clamp(8px, 1.4vw, 24px);
+      box-sizing: border-box;
     }
 
     .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-illustration {
       width: 100% !important;
-      max-width: none !important;
-      height: 100% !important;
-      max-height: min(70vh, 100%);
-      min-height: clamp(360px, 54vh, 760px);
+      max-width: 100% !important;
+      height: auto !important;
+      max-height: min(62vh, 100%);
+      min-height: 0;
       display: block;
     }
 
-    .slide[aria-labelledby="slide-layers-workflow-title"] .slide-body,
-    .layers-workflow-body {
+    /* Dense left/right slides — spacing + viewport fit */
+    .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-body,
+    .slide[aria-labelledby="slide-v2-when-loops-title"] .slide-body,
+    .slide[aria-labelledby="slide-v2-automate-title"] .slide-body,
+    .slide[aria-labelledby="slide-humans-next-title"] .slide-body,
+    .slide[aria-labelledby="slide-v2-risks-title"] .slide-body,
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .slide-body {
       width: min(100%, 1680px) !important;
       height: 100%;
-      grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
-      gap: clamp(20px, 2.5vw, 48px);
-      align-items: stretch;
-      justify-items: stretch;
+      min-height: 0;
+      box-sizing: border-box;
+      padding-inline: clamp(8px, 1.6vw, 28px);
+      gap: clamp(24px, 3vw, 48px) !important;
+      align-content: center;
+      justify-items: stretch !important;
     }
 
-    .slide[aria-labelledby="slide-layers-workflow-title"] .layers-workflow-diagram,
-    .layers-workflow-diagram {
-      width: 100% !important;
-      max-width: none !important;
-      height: 100%;
-      min-height: clamp(380px, 56vh, 760px);
-      padding: clamp(10px, 1.2vw, 18px);
+    .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-body {
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr) !important;
+      align-items: stretch !important;
     }
 
-    .slide[aria-labelledby="slide-layers-workflow-title"] .layers-workflow-svg,
-    .layers-workflow-svg {
-      width: 100% !important;
-      height: 100% !important;
-      max-width: none !important;
-      max-height: none !important;
+    .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-body > div:first-child {
+      min-width: 0;
+      min-height: 0;
+      display: grid;
+      gap: clamp(12px, 1.5vw, 18px);
+      align-content: center;
+      padding-right: clamp(4px, 1vw, 18px);
     }
+
+    .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-body > div:first-child > div {
+      display: grid;
+      gap: clamp(8px, 1vw, 12px) !important;
+    }
+
+    .slide[aria-labelledby="slide-v2-experiment-testing-title"] .loop-engineering-panel {
+      padding: clamp(12px, 1.4vw, 18px) !important;
+    }
+
+    .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-body > div:last-of-type {
+      min-width: 0;
+      min-height: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      padding-left: clamp(8px, 1.5vw, 28px);
+    }
+
+    .slide[aria-labelledby="slide-v2-experiment-testing-title"] .illustration {
+      width: 100% !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: min(64vh, 100%) !important;
+      min-height: 0 !important;
+    }
+
+    .slide[aria-labelledby="slide-v2-when-loops-title"] .slide-body > div,
+    .slide[aria-labelledby="slide-humans-next-title"] .slide-body > div,
+    .slide[aria-labelledby="slide-v2-automate-title"] .slide-body > div:first-child {
+      width: 100%;
+      gap: clamp(22px, 2.8vw, 40px) !important;
+    }
+
+    .slide[aria-labelledby="slide-v2-when-loops-title"] .loop-engineering-panel,
+    .slide[aria-labelledby="slide-humans-next-title"] .loop-engineering-panel,
+    .slide[aria-labelledby="slide-v2-automate-title"] .loop-engineering-panel,
+    .slide[aria-labelledby="slide-v2-adal-eng-title"] .loop-engineering-panel,
+    .slide[aria-labelledby="slide-v2-risks-title"] .loop-engineering-panel {
+      padding: clamp(22px, 2.4vw, 36px) !important;
+      min-height: 0 !important;
+    }
+
+    .slide[aria-labelledby="slide-v2-when-loops-title"] .lifecycle-reasons,
+    .slide[aria-labelledby="slide-v2-automate-title"] .lifecycle-reasons,
+    .slide[aria-labelledby="slide-humans-next-title"] .lifecycle-reasons {
+      gap: clamp(10px, 1.2vw, 16px);
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .slide-body {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) !important;
+      align-items: center !important;
+    }
+
+    .slide[aria-labelledby="slide-v2-hard-title"] .barrier-layout {
+      width: min(100%, 1500px);
+      gap: clamp(36px, 5vw, 72px);
+      padding-inline: clamp(8px, 1.5vw, 24px);
+      box-sizing: border-box;
+    }
+
+    .slide[aria-labelledby="slide-v2-risks-title"] .slide-body > div:first-child {
+      width: 100%;
+      gap: clamp(18px, 2.2vw, 32px) !important;
+    }
+
+    @media (max-width: 1200px) {
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-body,
+      .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-body,
+      .slide[aria-labelledby="slide-v2-loops-today-title"] .slide-body,
+      .slide[aria-labelledby="slide-v2-hard-title"] .barrier-layout {
+        grid-template-columns: 1fr !important;
+        gap: clamp(18px, 2.5vw, 28px) !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .illustration,
+      .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-illustration {
+        max-height: min(40vh, 340px) !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-when-loops-title"] .slide-body > div,
+      .slide[aria-labelledby="slide-humans-next-title"] .slide-body > div,
+      .slide[aria-labelledby="slide-v2-automate-title"] .slide-body > div:first-child,
+      .slide[aria-labelledby="slide-v2-risks-title"] .slide-body > div:first-child {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    @media (max-height: 820px) {
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .loop-engineering-panel,
+      .slide[aria-labelledby="slide-v2-when-loops-title"] .loop-engineering-panel,
+      .slide[aria-labelledby="slide-v2-automate-title"] .loop-engineering-panel,
+      .slide[aria-labelledby="slide-humans-next-title"] .loop-engineering-panel,
+      .slide[aria-labelledby="slide-v2-adal-eng-title"] .loop-engineering-panel {
+        padding: clamp(10px, 1.2vw, 16px) !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .illustration,
+      .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-illustration {
+        max-height: min(50vh, 100%) !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-lead,
+      .slide[aria-labelledby="slide-v2-when-loops-title"] .slide-lead,
+      .slide[aria-labelledby="slide-humans-next-title"] .slide-lead {
+        font-size: clamp(14px, 1.2vw, 18px) !important;
+      }
+    }
+
+    @media (max-height: 700px) {
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-body > div:first-child > div {
+        gap: 6px !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .loop-engineering-panel strong {
+        font-size: clamp(13px, 1.15vw, 17px) !important;
+      }
+    }
+
+
 
     svg text, svg tspan {
       user-select: text;
