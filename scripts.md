@@ -3,16 +3,38 @@
 Target: ~20–30 minutes core talk, plus demo and discussion.
 Style: conversational, knowledge-sharing, not a product pitch.
 
----
+## Deck order (enabled slides)
 
-Narrative thesis
+1. Beyond Loop Engineering
+2. Why We’re Here
+3. More Productive. More Drained.
+4. Where We Are
+5. Agents: From ReAct to Coding Agents
+6. Harness: What Makes an Agent Real
+7. Loop Engineering
+8. Why Loops Became Possible
+9. Loops of Today
+10. Yet It's Still Hard
+11. What the Engineer Still Does
+12. AdaL Engineer — Our First Experiment
+13. What the Experiment Is Testing
+14. When to Use Loops — and When Not
+15. AdaL Builder / Evaluator Screenshot
+16. Demo Comparison
+17. Measure Autonomy
+18. What Will Humans Do Next?
+19. References
+
+## Narrative spine
+
 1. More productive and more drained (trust–verification gap)
 2. Model capability ≠ autonomy
 3. Layers: Model → Agent+Harness → Loop Engineering (workflow)
-4. Building blocks exist; system around them is still hard
+4. Building blocks exist; the system around them is still hard
 5. AdaL Engineer = experiment in workflow infrastructure
 6. Close: agency stays human; engineers move to higher leverage
 
+---
 
 /title: Beyond Loop Engineering
 
@@ -60,6 +82,7 @@ If models are already so good at coding, why are we still babysitting our coding
 You say, “Please fix A,” and it fixes A—but also changes B. Or it solves the problem in a way that does not fit the rest of your codebase — alien code. Or it gets halfway through the task and needs you to take over again.
 
 So the experience is strange. These systems can feel extremely capable at generating code, and still surprisingly limited when we try to trust them with the full job. The hard question is no longer only whether an agent can produce code. It is whether we can trust it to deliver the right outcome.
+
 ---
 
 /title: Where We Are
@@ -109,8 +132,6 @@ But: can we automate more of this workflow layer — without removing human agen
 
 Before we answer that, let’s fix the terminology — as builders and as scientists — so loop engineering has a clear place in the stack.
 
----
-
 Before we define loop engineering, we need two pieces of builder vocabulary: agents, and the harness around them.
 
 ---
@@ -125,7 +146,7 @@ The most powerful everyday example is coding agents.
 
 And if we think about subagents, they are often just another tool in that loop — a specialized worker the main agent can call.
 
-**So let’s be clear: today’s agents are already useful. They already have meaningful task-level ability. The problem is not that agents can do nothing. The problem is that executing steps is not the same as owning the full engineering workflow.**
+So let’s be clear: today’s agents are already useful. They already have meaningful task-level ability. The problem is not that agents can do nothing. The problem is that executing steps is not the same as owning the full engineering workflow.
 
 ---
 
@@ -139,7 +160,7 @@ As context windows grew — from tens of thousands of tokens toward hundreds of 
 
 That is why people started talking about prompt engineering, then context engineering, then harness engineering. The model is the intelligence. The harness is the infrastructure that lets it act.
 
-**But even a strong harness does not automatically automate the human outer loop. That is the gap we are naming with loop engineering.**
+But even a strong harness does not automatically automate the human outer loop. That is the gap we are naming with loop engineering.
 
 ---
 
@@ -209,17 +230,28 @@ Those choices differ by company, by role, and even by codebase. Capable agents a
 
 ---
 
-/title: Our Thesis — Workflow Infrastructure for Autonomy
+/title: What the Engineer Still Does
 
-Here is our thesis.
+So what exactly is still hard?
 
-The next-generation autonomous agent is not simply a better coding agent.
+It’s not that workers can’t code. Coding agents, browser agents, research agents, review agents — they already execute steps.
 
-It is infrastructure for operating existing capable agents inside a role-specific workflow.
+What’s still mostly human is the engineer role: the runtime that turns those workers into a shipped outcome.
 
-That workflow carries expert context, memory, safeguards, evaluation, and quality standards. Each company or codebase may configure it differently. The unit of autonomy is not only the agent. It is the configured workflow around the agents.
+The engineer still sets the goal and the quality bar. Allocates and prompts the right workers. Carries codebase and product context, and long-term memory across the work. Evaluates independently and recovers when things fail. Decides when to stop — or when to escalate.
 
-In other words: we already have strong workers. What we still need is the engineer-level system that can allocate them, prompt them, monitor them, give them the right context at the right time, and drive the work toward a verified outcome.
+That is the outer job. Babysitting is what it feels like when a human is still doing that runtime by hand.
+
+So here is the belief, stated cleanly:
+
+We don’t need a better coding agent alone.
+We need to automate more of the engineer role around today’s agents.
+
+Autonomy rises when the workflow role is automated — not when one worker gets smarter.
+
+The next-generation system is not simply a smarter worker. It is infrastructure for operating existing capable agents inside a role-specific workflow. The unit of autonomy is not only the agent. It is the configured workflow around the agents.
+
+Near-term bar, kept honest: deliver one engineering task end-to-end at human-level quality.
 
 ---
 
@@ -227,35 +259,82 @@ In other words: we already have strong workers. What we still need is the engine
 
 This is where AdaL Engineer comes in—and I want to introduce it carefully.
 
-AdaL Engineer is SylphAI’s first experiment with this thesis. It is not the whole future. It is our attempt to make workflow-level autonomy real for engineering.
+It is our first experiment with the thesis on the previous slide. Not the whole future. Our first attempt to automate the engineer role — by operating today’s workers inside a higher-level workflow.
 
-It works with existing coding, browser, research, and review agents. It allocates, prompts, coordinates, safeguards, and monitors them. It carries codebase context, documentation, decisions, and persistent work state. Its near-term goal is practical and bounded: deliver one engineering task end-to-end at human-level quality.
+It works with existing coding, browser, research, and review agents. It allocates, prompts, coordinates, safeguards, and monitors them. It carries codebase context, documentation, decisions, and persistent work state.
 
-We built coding agents and harnesses for years. AdaL Engineer is our next step: not replacing those agents, but operating them inside a higher-level engineering workflow.
+Near-term goal, kept practical and bounded: deliver one engineering task end-to-end at human-level quality.
 
----
+We built coding agents and harnesses for years. AdaL Engineer is the next step: not replacing those agents, but sitting in the engineer seat above them.
 
-/title: An Experiment, Not a Finished Answer
+I want to be honest. It is not a finished answer. It will fail in places. It will expose gaps in context, memory, evaluation, safety, and judgment. That is part of the point.
 
-I want to be honest.
-
-AdaL Engineer is not a finished answer. It will fail in places. It will expose gaps in context, memory, evaluation, safety, and judgment. That is part of the point.
-
-We are proud of being a research lab that builds. We are also humble enough to say: this is the first place people can directly experience the potential of workflow-level autonomy, and also see the remaining gaps clearly enough that we can improve them together.
-
-If you take nothing else from the product part of this talk, take this: we are not asking you to believe a pitch. We are asking you to inspect an experiment.
+We are not asking you to believe a pitch. We are asking you to inspect an experiment.
 
 ---
 
-/title: Demo — A Visible, Verifiable Workflow
+/title: What the Experiment Is Testing
+
+If AdaL Engineer is sitting in the engineer seat, what is the experiment actually testing?
+
+Five parts of the engineer runtime.
+
+First: operate workers — allocate, prompt, and monitor the right agents.
+
+Second: retain state — carry progress, decisions, and context across iterations.
+
+Third: evaluate independently — a Builder implements; an Evaluator does not grade its own homework. That separation is the science beat. Same family of idea as adversarial training: one side produces, another side checks.
+
+Fourth: bound the loop — know when to stop, escalate, or hand the work back to a human.
+
+Fifth: adaptive autonomy — orchestrate the workflow autonomously, but allow seamless manual takeover when you need to correct, redirect, or multi-task. Autopilot when it should run; human hands back on the controls when it shouldn’t.
+
+---
+
+/title: When to Use Loops — and When Not
+
+Now that you’ve seen what the experiment is testing, one boundary matters.
+
+Loop engineering only makes sense when the outcome is clear enough to delegate.
+
+Use loops when the goal can be verified: a concrete outcome, success criteria you can check, scope and stop conditions, and you’re ready to hand off execution. A good fit is shipping a scoped PR to green with a known quality bar.
+
+Do not force loops when you’re still discovering the goal. If the idea is unclear or evolving, if you want to brainstorm, design, or stay deep in the creative process, today’s agents as collaborators are the right tool. That is not a failure of autonomy. That is the right interaction model for discovery work.
+
+The sharp anti-example: “Make a billion. Make no mistakes.” That is motion without a stop condition. Don’t put a loop on that.
+
+Use loop engineering when the outcome is clear enough to delegate.
+Use today’s agents when discovering the goal is part of the work.
+
+---
+
+/title: AdaL Builder / Evaluator Screenshot
+
+Here’s what that looks like in practice — not a polished product shot, just evidence of the loop.
+
+You’ll see Builder and Evaluator workers in the wild: work happening, review happening, state being carried. Hold the standard we set earlier: not whether the system claims success, but whether you can see the workflow.
+
+---
+
+/title: Demo Comparison
 
 In the demo, I do not want you to watch magic. I want you to watch a loop.
 
 We will start with a clear goal, a clear scope, and a clear quality bar. Then we will show AdaL Engineer selecting and coordinating workers. You should see building, evaluation, feedback, correction, and retained state.
 
-At the end, the question is not whether the agent claimed success. The question is whether we have evidence.
+If we show a comparison, treat it as one experimental run — not a leaderboard. Same class of task, browser use to check work, multiple iterations. The question is what the loop did with evidence, not who “won.”
 
-If something is unclear, challenge it. Ask what the goal was. Ask what was verified. Ask what would make us stop or escalate. That is the standard this system should be held to.
+At the end, challenge it. Ask what the goal was. Ask what was verified. Ask what would make us stop or escalate. That is the standard this system should be held to.
+
+---
+
+/title: Measure Autonomy
+
+If we take this seriously, we also need a way to talk about progress without collapsing everything into model benchmarks.
+
+Model capability can keep rising while engineering autonomy stays low — that’s the babysitting regime. Loop engineering is an attempt to climb the autonomy axis: from heavy supervision, toward single-task delivery, toward multi-task coordination, and eventually toward team-level workflow systems.
+
+AdaL Engineer sits on that curve as a near-term experiment: deliver a task end-to-end. The farther points — continuous learning memory, a company brain — are direction, not claims of arrival.
 
 ---
 
@@ -277,30 +356,16 @@ Agency is who remains answerable.
 
 Our builder belief is that workflow infrastructure can raise autonomy so human agency can stay high-leverage, instead of collapsing into twelve hours of supervision.
 
----
-
-/title: Beyond Engineering
-
-If this pattern is real, it will not stop at software engineering.
-
-The same infrastructure could support other professional workflows. An autonomous designer could coordinate research, UI generation, browser evaluation, and brand context. An autonomous video producer could coordinate scripts, assets, editing, review, and publishing.
-
-The underlying agents may look similar. What changes is the workflow, the context, the memory, and the quality bar of the expert role.
-
-That is the longer future: not one magical general agent for every profession, but role-level systems that operate capable agents inside expert workflows.
+If this pattern is real, it will not stop at software engineering. The same infrastructure could support other professional workflows — a designer, a video producer — each coordinating capable agents around that expert’s workflow and quality bar. Not one magical general agent for every profession, but role-level systems.
 
 ---
 
-/title: What Future Are We Building?
+/title: References
 
-The goal is not to remove experts.
+I’ll leave the references on screen. The goal is not to remove experts. The goal is to stop requiring experts to carry every intermediate step manually.
 
-The goal is to stop requiring experts to carry every intermediate step manually.
-
-The combined belief is simple. Humans keep agency—accountability and answerability. At the same time, most engineering attention moves upward, toward what to build, why it matters, and whether we can answer for it. That includes research, user conversations, product exploration, and team brainstorming, with clearer ownership of impact.
-
-Addy Osmani is a useful external reference for outer-loop ownership. Our contribution is different because we are builders: we are trying to create the workflow infrastructure that makes higher autonomy real without drowning people in orchestration tax.
+Humans keep agency — accountability and answerability. Engineering attention moves upward, toward what to build, why it matters, and whether we can answer for it.
 
 I am proud of what AdaL is trying to do as a research lab. I am also here with humility. This field is unfinished. The best thing we can do is make the experiment legible, tell the truth about the gaps, and build the next layer together.
 
-Thank you. Let’s look at the work.
+Thank you. Let’s keep the conversation going.

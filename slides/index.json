@@ -10,7 +10,7 @@
     {
       "id": "intro-title",
       "file": "intro-title.html",
-      "title": "Why We\u2019re Here",
+      "title": "Why We’re Here",
       "enabled": true,
       "number": 2
     },
@@ -37,7 +37,7 @@
     {
       "id": "builder-context-title",
       "file": "builder-context-title.html",
-      "title": "A Builder\u2019s Taxonomy",
+      "title": "A Builder’s Taxonomy",
       "enabled": false
     },
     {
@@ -78,16 +78,37 @@
     {
       "id": "v2-why-still-hard-title",
       "file": "v2-why-still-hard-title.html",
-      "title": "Why It\u2019s Still Hard",
+      "title": "Why It’s Still Hard",
       "enabled": true,
       "number": 10
     },
     {
       "id": "v2-what-to-automate-title",
       "file": "v2-what-to-automate-title.html",
-      "title": "What We Need to Automate",
+      "title": "What the Engineer Still Does",
       "enabled": true,
       "number": 11
+    },
+    {
+      "id": "v2-adal-engineer-title",
+      "file": "v2-adal-engineer-title.html",
+      "title": "AdaL Engineer — Our First Experiment",
+      "enabled": true,
+      "number": 12
+    },
+    {
+      "id": "v2-experiment-testing-title",
+      "file": "v2-experiment-testing-title.html",
+      "title": "What the Experiment Is Testing",
+      "enabled": true,
+      "number": 13
+    },
+    {
+      "id": "v2-when-to-use-loops-title",
+      "file": "v2-when-to-use-loops-title.html",
+      "title": "When to Use Loops — and When Not",
+      "enabled": true,
+      "number": 14
     },
     {
       "id": "6-title",
@@ -135,43 +156,42 @@
       "id": "adal-how-title",
       "file": "adal-how-title.html",
       "title": "How AdaL Engineer Works",
-      "enabled": true,
-      "number": 12
+      "enabled": false
     },
     {
       "id": "adal-pdf-screenshot",
       "file": "adal-pdf-screenshot.html",
       "title": "AdaL Builder / Evaluator Screenshot",
       "enabled": true,
-      "number": 13
+      "number": 15
     },
     {
       "id": "demo-title",
       "file": "demo-title.html",
       "title": "Demo Comparison",
       "enabled": true,
-      "number": 14
+      "number": 16
     },
     {
       "id": "11-title",
       "file": "11-title.html",
       "title": "Measure Autonomy",
       "enabled": true,
-      "number": 15
+      "number": 17
     },
     {
       "id": "humans-next-title",
       "file": "humans-next-title.html",
       "title": "What Will Humans Do Next?",
       "enabled": true,
-      "number": 16
+      "number": 18
     },
     {
       "id": "12-title",
       "file": "12-title.html",
       "title": "References",
       "enabled": true,
-      "number": 17
+      "number": 19
     }
   ]
 }

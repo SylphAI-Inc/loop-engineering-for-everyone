@@ -56,6 +56,7 @@ def main() -> None:
   <main class="deck-shell">
     <section class="deck" id="deck-root" aria-label="Loop Engineering For Everyone V1 deck">
 {chr(10).join(articles)}
+      <a class="deck-author" href="https://x.com/panda_liyin" target="_blank" rel="noopener noreferrer">@panda_liyin</a>
     </section>
 
     <nav class="deck-controls" aria-label="Slide navigation">
