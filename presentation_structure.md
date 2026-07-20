@@ -102,6 +102,29 @@ Over time, the same pattern could support role-level systems beyond engineering�
 
 > Deliver one task end-to-end at human-level quality.
 
+## Belief about what is next
+
+Two beliefs, one cohesive picture:
+
+1. **Agency stays with humans** (Osmani / industry reference):  
+   Developers still own accountability and answerability for the system—the outer-loop verdict on evidence, risk, and what ships.
+
+2. **Most engineers move to higher-leverage decisions** (our belief):  
+   As workflow autonomy improves, engineers are freer to spend time on:
+   - researching new opportunities
+   - talking with users
+   - exploring product needs and leads
+   - brainstorming with teammates  
+   and become more directly responsible for metrics and product impact.
+
+Split:
+- **Agency:** who remains answerable.
+- **Autonomy:** how much of the workflow the system can carry before that responsibility is invoked.
+
+We build the autonomy layer (workflow infrastructure over existing agents) so agency can stay high-leverage instead of becoming 12 hours of babysitting.
+
+Reference: Addy Osmani, [Own the Outer Loop](https://addyosmani.com/blog/own-the-outer-loop/) / AI Engineer 2026 talk.
+
 ## Presentation arc
 
 1. Agents are powerful; developers are more productive and more drained.
@@ -111,3 +134,4 @@ Over time, the same pattern could support role-level systems beyond engineering�
 5. Present the future thesis: workflow infrastructure for autonomy.
 6. Show AdaL Engineer as the first engineering expression of this model.
 7. Demo: goal → build → evaluate → fix → evidence.
+8. Close on human agency moving up—with Osmani as reference, our builder path as the contribution.

@@ -60,7 +60,9 @@
 - Developers are tired of manually gluing the workflow together.
 - “Loop engineering” is an emerging term for making the workflow itself more autonomous.
 - The definition is not settled; the industry is still experimenting.
+- Addy Osmani names it briefly as the step after harnesses: systems that keep prompting, checking, remembering, and deciding what happens next.
 - Our working definition: a system that coordinates work toward a goal, verifies progress, recovers from failure, and stops when the outcome is achieved.
+- Reference: Addy Osmani, AI Engineer 2026 / Own the Outer Loop.
 
 /title: What Is Starting to Emerge?
 
@@ -126,6 +128,20 @@
 - End with evidence—not only an agent claiming that the work is complete.
 - Ask the interviewer to challenge unclear requirements and request proof.
 
+/title: What Will Humans Do Next?
+
+- Loop engineering does not remove humans from the loop.
+- Left / Addy Osmani (we agree): humans keep the agency—accountability and answerability for what ships. Agents can run more of the inner loop; humans still own the outer-loop verdict.
+- Right / AdaL (our view): most engineers move to higher-leverage decision points, with more time freed for deciding what to build and why.
+- That higher-leverage work includes:
+  - researching new opportunities
+  - talking with users
+  - exploring product needs and leads
+  - brainstorming with teammates
+- Human attention moves closer to metrics, user outcomes, and product impact—not away from responsibility.
+- Autonomy and agency stay paired: autonomy is how much work the system can carry; agency is who remains answerable.
+- Our builder angle: workflow infrastructure raises autonomy so agency can stay high-leverage instead of becoming 12 hours of babysitting.
+
 /title: Beyond Engineering
 
 - The same infrastructure could support other professional workflows.
@@ -138,5 +154,7 @@
 
 - The goal is not to remove experts.
 - It is to stop requiring experts to carry every intermediate step manually.
-- Experts should spend more time with users, product teams, and decisions about what to build.
-- The invitation: experience the experiment, identify the gaps, and help build the next layer of autonomy.
+- Combined belief: humans keep agency—accountability and answerability—while most engineering time moves to higher-leverage decisions about what to build.
+- That includes research, user conversations, product exploration, and team brainstorming, with clearer ownership of metrics and impact.
+- Osmani is a useful external reference for outer-loop ownership. Our contribution is workflow infrastructure that makes higher autonomy real without drowning people in orchestration.
+- The invitation: experience the first experiment, identify the gaps, and help build this future together.
