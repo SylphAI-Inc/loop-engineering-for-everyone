@@ -1,0 +1,95 @@
+<article class="slide" aria-labelledby="slide-adal-how-title">
+        <h2 id="slide-adal-how-title" class="slide-title">How AdaL Engineer Works</h2>
+        <div class="slide-body" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: center; justify-items: start; max-width: 100%;">
+          <div class="text-column" style="display: grid; gap: 32px; height: 100%; align-content: center;">
+            <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; counter-reset: adal-benefits;">
+              <li style="border-left: 3px solid var(--accent); padding-left: 16px; position: relative;">
+                <strong style="color: var(--text); font-size: clamp(18px, 1.8vw, 24px); display: block; margin-bottom: 4px;"><span style="color: var(--accent); margin-right: 6px;">1.</span>Use coding agents for you</strong>
+                <span style="color: var(--muted); font-size: clamp(14px, 1.2vw, 18px); line-height: 1.45; display: block;">Allocates the right worker, prompts it with the task and context, and monitors worker progress.</span>
+              </li>
+              <li style="border-left: 3px solid var(--accent); padding-left: 16px; position: relative;">
+                <strong style="color: var(--text); font-size: clamp(18px, 1.8vw, 24px); display: block; margin-bottom: 4px;"><span style="color: var(--accent); margin-right: 6px;">2.</span>Persistent Long-Term Memory</strong>
+                <span style="color: var(--muted); font-size: clamp(14px, 1.2vw, 18px); line-height: 1.45; display: block;">Uses local markdown (e.g. <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">contract.md</code>) to orchestrate state across workers, organized automatically by month and day.</span>
+              </li>
+              <li style="border-left: 3px solid var(--accent); padding-left: 16px; position: relative;">
+                <strong style="color: var(--text); font-size: clamp(18px, 1.8vw, 24px); display: block; margin-bottom: 4px;"><span style="color: var(--accent); margin-right: 6px;">3.</span>Builder → Evaluator iteration</strong>
+                <span style="color: var(--muted); font-size: clamp(14px, 1.2vw, 18px); line-height: 1.45; display: block;">A Builder implements the work; an independent Evaluator reviews it and feeds the next iteration back through AdaL Engineer.</span>
+              </li>
+              <li style="border-left: 3px solid var(--accent); padding-left: 16px; position: relative;">
+                <strong style="color: var(--text); font-size: clamp(18px, 1.8vw, 24px); display: block; margin-bottom: 4px;"><span style="color: var(--accent); margin-right: 6px;">4.</span>Adaptive Autonomy</strong>
+                <span style="color: var(--muted); font-size: clamp(14px, 1.2vw, 18px); line-height: 1.45; display: block;">Handles orchestration autonomously, but allows seamless "autopilot" manual takeover, great for correction and multi-tasking.</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="svg-column" style="width: 100%; height: 100%; display: flex; align-items: center;">
+            <svg class="illustration" viewBox="0 0 800 650" aria-label="AdaL Engineer Orchestration Loop Diagram" style="width: 100%; max-width: 650px; justify-self: center;">
+              <defs>
+                <filter id="coreGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="8" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+                <marker id="arrowHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"></path>
+                </marker>
+                <marker id="arrowHeadNeutral" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(255,255,255,0.4)"></path>
+                </marker>
+              </defs>
+
+              <!-- Central Brain / Persistent Storage -->
+              <rect x="250" y="230" width="300" height="150" rx="16" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="6,4"></rect>
+              <text x="400" y="260" fill="var(--text)" font-size="18" font-weight="600" text-anchor="middle">Shared State</text>
+              
+
+              <!-- AdaL Engineer (Top) -->
+              <circle cx="400" cy="80" r="50" fill="rgba(255, 88, 152, 0.15)" stroke="var(--accent)" stroke-width="2.5" filter="url(#coreGlow)"></circle>
+              <text x="400" y="86" fill="var(--text)" font-size="20" font-weight="650" text-anchor="middle">AdaL</text>
+              <text x="400" y="145" fill="var(--accent)" font-size="16" font-weight="600" letter-spacing="1" text-anchor="middle">ENGINEER</text>
+
+              <!-- Builder Worker (Left) -->
+              <circle cx="100" cy="480" r="60" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.4)" stroke-width="2"></circle>
+              <text x="100" y="475" fill="var(--text)" font-size="18" font-weight="600" text-anchor="middle">Builder</text>
+              <text x="100" y="491" fill="var(--muted)" font-size="11" text-anchor="middle">Code &amp; Build</text>
+
+              <!-- Evaluator Worker (Center) -->
+              <circle cx="400" cy="480" r="60" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.4)" stroke-width="2"></circle>
+              <text x="400" y="475" fill="var(--text)" font-size="18" font-weight="600" text-anchor="middle">Evaluator</text>
+              <text x="400" y="491" fill="var(--muted)" font-size="11" text-anchor="middle">Review &amp; QA</text>
+
+              <!-- Code Reviewer (Right) -->
+              <circle cx="700" cy="480" r="60" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.4)" stroke-width="2"></circle>
+              <text x="700" y="475" fill="var(--text)" font-size="18" font-weight="600" text-anchor="middle">Reviewer</text>
+              <text x="700" y="491" fill="var(--muted)" font-size="11" text-anchor="middle">Code Review</text>
+
+              <!-- Flow Lines -->
+              <!-- Engineer to Shared State -->
+              <path d="M 400 130 L 400 230" fill="none" stroke="var(--accent)" stroke-width="2" marker-end="url(#arrowHead)"></path>
+              
+              <!-- Shared State to Workers -->
+              <path d="M 250 305 C 100 305 100 390 100 420" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" marker-end="url(#arrowHeadNeutral)"></path>
+              <path d="M 400 380 L 400 420" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" marker-end="url(#arrowHeadNeutral)"></path>
+              <path d="M 550 305 C 700 305 700 390 700 420" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" marker-end="url(#arrowHeadNeutral)"></path>
+
+              <!-- The GAN Iteration Loop (Pink) -->
+              <!-- Evaluator -> Engineer (Feedback) -->
+              <path d="M 450 430 C 580 330 580 230 450 120" fill="none" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8,6" marker-end="url(#arrowHead)" filter="url(#coreGlow)"></path>
+              <text x="540" y="290" fill="var(--text)" font-size="16" font-weight="600" font-style="italic" text-anchor="start" transform="rotate(-70 540 290)">Feedback</text>
+
+              <!-- Engineer -> Builder (Fix Loop) -->
+              <path d="M 350 120 C 200 200 120 320 120 420" fill="none" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8,6" marker-end="url(#arrowHead)" filter="url(#coreGlow)"></path>
+              <text x="180" y="270" fill="var(--accent)" font-size="16" font-weight="600" font-style="italic" text-anchor="end" transform="rotate(55 180 270)">Fix Loop</text>
+              
+              <!-- Send Prompt (AdaL to Workers) -->
+              <path d="M 340 80 C -10 80 -10 420 50 440" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrowHeadNeutral)"></path>
+              <text x="-5" y="260" fill="rgba(255,255,255,0.4)" font-size="14" font-family="var(--mono)" transform="rotate(-90 -5 260)">send prompt / handle permission</text>
+              
+              <!-- Reviewer -> Engineer (Send Prompt right) -->
+              <path d="M 460 80 C 860 80 860 420 750 440" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrowHeadNeutral)"></path>
+              <text x="845" y="260" fill="rgba(255,255,255,0.4)" font-size="14" font-family="var(--mono)" transform="rotate(90 845 260)">send prompt / handle permission</text>
+
+            </svg>
+          </div>
+        </div>
+        <p class="slide-foot"><span>10 / 15</span></p>
+      </article>

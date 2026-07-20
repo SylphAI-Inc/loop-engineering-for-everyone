@@ -1039,7 +1039,151 @@
       max-height: 100%;
       font-family: var(--sans);
     }
+
+    /* Large-monitor layout for the layers / outer-loop diagram */
+    .slide[aria-labelledby="slide-layers-workflow-title"] .slide-body,
+    .layers-workflow-body {
+      width: min(100%, 1680px) !important;
+      height: 100%;
+      grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
+      gap: clamp(20px, 2.5vw, 48px);
+      align-items: stretch;
+      justify-items: stretch;
+    }
+
+    .slide[aria-labelledby="slide-layers-workflow-title"] .layers-workflow-diagram,
+    .layers-workflow-diagram {
+      width: 100% !important;
+      max-width: none !important;
+      height: 100%;
+      min-height: clamp(360px, 52vh, 720px);
+      padding: clamp(10px, 1.2vw, 18px);
+    }
+
+    .slide[aria-labelledby="slide-layers-workflow-title"] .layers-workflow-svg,
+    .layers-workflow-svg {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      max-height: none !important;
+    }
+
+    .layers-workflow-copy {
+      display: grid;
+      gap: clamp(18px, 2.2vw, 32px);
+      align-content: center;
+      min-width: 0;
+    }
+
+    .layers-workflow-lead {
+      margin: 0 !important;
+      max-width: none !important;
+      font-size: clamp(22px, 2.1vw, 34px) !important;
+      color: var(--text);
+    }
+
+    .layers-workflow-question {
+      margin: 0 !important;
+      text-align: left !important;
+      font-size: clamp(24px, 2.3vw, 36px) !important;
+      line-height: 1.3;
+    }
+
+    .layers-workflow-question-label {
+      display: block;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.62em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+
     
+    /* Spacious large-screen layouts for story slides */
+    .slide[aria-labelledby="slide-2-title"] .slide-body {
+      width: min(100%, 1680px) !important;
+      height: 100%;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      gap: clamp(28px, 3.5vw, 64px);
+      align-items: stretch;
+      justify-items: stretch;
+    }
+
+    .slide[aria-labelledby="slide-2-title"] .agent-era-panel,
+    .slide[aria-labelledby="slide-2-title"] .agent-today-panel {
+      height: 100%;
+      min-height: 0;
+    }
+
+    .slide[aria-labelledby="slide-2-title"] .react-prompt-frame {
+      min-height: clamp(280px, 42vh, 560px);
+    }
+
+    .slide[aria-labelledby="slide-2-title"] .agent-iteration-diagram {
+      width: 100%;
+      height: auto;
+      max-height: clamp(280px, 40vh, 520px);
+    }
+
+    .slide[aria-labelledby="slide-2-title"] .agent-capabilities {
+      font-size: clamp(20px, 1.8vw, 30px);
+      gap: clamp(14px, 1.6vw, 24px);
+    }
+
+    .slide[aria-labelledby="slide-3-title"] .slide-body-expansion {
+      width: min(100%, 1680px) !important;
+      height: 100%;
+      grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1.25fr);
+      gap: clamp(28px, 3.5vw, 64px);
+      align-items: center;
+    }
+
+    .slide[aria-labelledby="slide-3-title"] .expansion-copy {
+      max-width: none !important;
+    }
+
+    .slide[aria-labelledby="slide-3-title"] .expansion-harness-note {
+      max-width: none;
+      font-size: clamp(18px, 1.55vw, 26px);
+      gap: clamp(14px, 1.5vw, 22px) clamp(18px, 2vw, 28px);
+    }
+
+    .slide[aria-labelledby="slide-3-title"] .illustration {
+      width: 100% !important;
+      max-width: none !important;
+      height: auto;
+      min-height: clamp(320px, 48vh, 640px);
+    }
+
+    .slide[aria-labelledby="slide-layers-workflow-title"] .slide-body,
+    .layers-workflow-body {
+      width: min(100%, 1680px) !important;
+      height: 100%;
+      grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
+      gap: clamp(20px, 2.5vw, 48px);
+      align-items: stretch;
+      justify-items: stretch;
+    }
+
+    .slide[aria-labelledby="slide-layers-workflow-title"] .layers-workflow-diagram,
+    .layers-workflow-diagram {
+      width: 100% !important;
+      max-width: none !important;
+      height: 100%;
+      min-height: clamp(380px, 56vh, 760px);
+      padding: clamp(10px, 1.2vw, 18px);
+    }
+
+    .slide[aria-labelledby="slide-layers-workflow-title"] .layers-workflow-svg,
+    .layers-workflow-svg {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      max-height: none !important;
+    }
+
     svg text, svg tspan {
       user-select: text;
       -webkit-user-select: text;
@@ -1372,713 +1516,32 @@
 </head>
 <body>
   <main class="deck-shell">
-    <section class="deck" aria-label="Loop Engineering For Everyone V1 deck">
-      <article class="slide title-slide active" aria-labelledby="slide-1-title">
-        <div style="position: absolute; top: clamp(32px, 4vw, 64px); left: clamp(48px, 5vw, 80px); display: flex; align-items: center; z-index: 10;">
-          <img src="materials/adal-icon-pink.svg" alt="AdaL A-Logo" style="height: clamp(32px, 3vw, 48px); width: auto;">
-        </div>
-        <div>
-          <h1 id="slide-1-title" class="slide-title">Beyond Loop Engineering</h1>
-          <p class="title-credit"><strong>Li Yin</strong> · co-founder and CEO at AdaL and creator of AdalFlow</p>
-        </div>
-        <div class="agent-cite-stack">
-          <a class="agent-cite" href="https://adalagent.ai" target="_blank" rel="noopener noreferrer">adalagent.ai ↗</a>
-        </div>
-        <p class="slide-foot"><span>01 / 15</span></p>
-      </article>
-
-      <article class="slide" aria-labelledby="slide-2-title">
-        <h2 id="slide-2-title" class="slide-title">Agents</h2>
-        <div class="slide-body">
-          <div class="agent-era-panel">
-            <div class="react-prompt-frame">
-              <img src="materials/react-zero-shot-prompt.png" alt="A zero-shot ReAct prompt that defines Search and Finish actions plus a Thought and Action response format.">
-            </div>
-            <p class="agent-era-caption">the first agent · 2022</p>
-          </div>
-          <div class="agent-today-panel">
-            <ul class="agent-capabilities">
-              <li>Parallel tool calls</li>
-              <li>Hundreds of steps at a time</li>
-              <li>Support subagents</li>
-            </ul>
-            <svg class="agent-iteration-diagram" viewBox="0 0 900 420" aria-label="Agent loop: Model, Decide, Tool call, and Observation iterate in a circle, then produce an Answer.">
-              <defs>
-                <marker id="agentLoopArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-                  <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"></path>
-                </marker>
-                <filter id="agentNodeGlow" x="-40%" y="-40%" width="180%" height="180%">
-                  <feGaussianBlur stdDeviation="5" result="blur"/>
-                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-              </defs>
-
-              <circle cx="330" cy="210" r="150" fill="rgba(255, 88, 152, 0.035)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5"/>
-              <path d="M 330 62 A 148 148 0 0 1 470 165" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" marker-end="url(#agentLoopArrow)"/>
-              <path d="M 478 210 A 148 148 0 0 1 375 354" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" marker-end="url(#agentLoopArrow)"/>
-              <path d="M 330 358 A 148 148 0 0 1 190 255" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" marker-end="url(#agentLoopArrow)"/>
-              <path d="M 182 210 A 148 148 0 0 1 285 66" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" marker-end="url(#agentLoopArrow)"/>
-
-              <g font-family="var(--sans)" font-size="19" font-weight="650" text-anchor="middle">
-                <g transform="translate(330 58)">
-                  <circle r="43" fill="#161116" stroke="var(--accent)" stroke-width="2" filter="url(#agentNodeGlow)"/>
-                  <text y="6" fill="var(--text)">Model</text>
-                </g>
-                <g transform="translate(482 210)">
-                  <circle r="43" fill="#131317" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5"/>
-                  <text y="6" fill="var(--text)">Decide</text>
-                </g>
-                <g transform="translate(330 362)">
-                  <circle r="43" fill="#131317" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5"/>
-                  <text y="6" fill="var(--text)">Tool calls</text>
-                </g>
-                <g transform="translate(178 210)">
-                  <circle r="43" fill="#131317" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5"/>
-                  <text y="6" fill="var(--text)">Observe</text>
-                </g>
-              </g>
-
-              <path d="M 535 210 H 650" fill="none" stroke="rgba(255, 255, 255, 0.42)" stroke-width="2" stroke-linecap="round" marker-end="url(#agentLoopArrow)"/>
-              <g transform="translate(735 210)">
-                <circle r="76" fill="rgba(255, 88, 152, 0.13)" stroke="var(--accent)" stroke-width="2.5" filter="url(#agentNodeGlow)"/>
-                <text y="8" fill="var(--text)" font-family="var(--sans)" font-size="25" font-weight="700" text-anchor="middle">Answer</text>
-              </g>
-            </svg>
-          </div>
-        </div>
-        <div class="agent-cite-stack">
-          <a class="agent-cite" href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener noreferrer">ReAct — Yao et al., 2022 ↗</a>
-          <a class="agent-cite agent-cite-accent" href="https://arxiv.org/abs/2405.17935" target="_blank" rel="noopener noreferrer">Tool Learning Survey — Qu et al., 2024 ↗</a>
-          <a class="agent-cite" href="https://arxiv.org/abs/2501.16673" target="_blank" rel="noopener noreferrer">LLM-AutoDiff — Yin et al., 2025 ↗</a>
-        </div>
-        <p class="slide-foot"><span>02 / 15</span></p>
-      </article>
-
-      <article class="slide" aria-labelledby="slide-3-title">
-        <h2 id="slide-3-title" class="slide-title">From Prompt to Harness</h2>
-        <div class="slide-body slide-body-expansion">
-          <div class="expansion-copy" style="max-width: 600px;">
-            <ul class="expansion-harness-note" aria-label="Harness components">
-              <li>Tools / MCP</li>
-              <li>Compaction</li>
-              <li>Prompt structure + caching</li>
-              <li>Skills</li>
-              <li>@ files + images</li>
-              <li>Runtime environment</li>
-            </ul>
-          </div>
-          <svg class="illustration" viewBox="0 0 900 500" aria-label="Context window expansion: Prompt inside Context inside Harness" style="width: 100%; max-width: 1200px; justify-self: center;">
-            <defs>
-              <filter id="harnessGlow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="6" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-            </defs>
-            
-            <!-- Context-growth axis -->
-            <path d="M 62 460 L 62 40" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="3" stroke-dasharray="6,6"/>
-            <text x="42" y="470" fill="var(--text)" font-family="var(--mono)" font-size="18" font-weight="bold" text-anchor="start" transform="rotate(-90 42 470)">LESS CONTEXT</text>
-            <text x="42" y="160" fill="var(--text)" font-family="var(--mono)" font-size="18" font-weight="bold" text-anchor="start" transform="rotate(-90 42 160)">MORE CONTEXT</text>
-            <polygon points="62,30 54,45 70,45" fill="rgba(255,255,255,0.5)"/>
-
-            <!-- Nested engineering layers -->
-            <rect x="110" y="20" width="520" height="460" rx="40" fill="rgba(255, 255, 255, 0.02)" stroke="rgba(255, 255, 255, 0.4)" stroke-width="2" stroke-dasharray="10,8"/>
-            <text x="370" y="84" fill="var(--text)" font-size="34" font-weight="600" text-anchor="middle">Harness Engineering</text>
-            <text x="370" y="112" fill="var(--muted)" font-family="var(--mono)" font-size="18" text-anchor="middle">code that changes the context</text>
-
-            <rect x="150" y="150" width="440" height="310" rx="30" fill="rgba(255, 88, 152, 0.04)" stroke="rgba(255, 255, 255, 0.4)" stroke-width="2"/>
-            <text x="370" y="215" fill="var(--text)" font-size="32" font-weight="600" text-anchor="middle">Context Engineering</text>
-            <text x="370" y="244" fill="var(--muted)" font-family="var(--mono)" font-size="19" text-anchor="middle">everything the model sees</text>
-
-            <rect x="190" y="290" width="360" height="150" rx="75" fill="rgba(255, 88, 152, 0.1)" stroke="var(--accent)" stroke-width="3" filter="url(#harnessGlow)"/>
-            <text x="370" y="352" fill="var(--text)" font-size="30" font-weight="600" text-anchor="middle">Prompt Engineering</text>
-            <text x="370" y="382" fill="var(--muted)" font-family="var(--mono)" font-size="19" text-anchor="middle">instructions</text>
-
-            <!-- Examples rail: deliberately outside the nested layers -->
-            <path d="M 618 42 V458" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
-
-            <path d="M 632 104 H 636" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
-            <circle cx="636" cy="104" r="5" fill="var(--accent)"/>
-            <text x="654" y="101" fill="var(--text)" font-family="var(--sans)" font-size="22" font-weight="600">Harness</text>
-            <text x="654" y="129" fill="var(--muted)" font-family="var(--mono)" font-size="16">Claude Code · Codex</text>
-            <text x="654" y="154" fill="var(--muted)" font-family="var(--mono)" font-size="16">AdaL</text>
-
-            <path d="M 552 364 H 636" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
-            <circle cx="636" cy="364" r="5" fill="var(--accent)"/>
-            <text x="654" y="360" fill="var(--text)" font-family="var(--sans)" font-size="22" font-weight="600">Prompt</text>
-            <text x="654" y="387" fill="var(--accent)" font-family="var(--mono)" font-size="17">React codebase</text>
-          </svg>
-          <div class="agent-cite-stack">
-            <a class="agent-cite" href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener noreferrer">Context Engineering — Anthropic ↗</a>
-            <a class="agent-cite" href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer">Harness Engineering — OpenAI ↗</a>
-          </div>
-        </div>
-        <p class="slide-foot"><span>03 / 15</span></p>
-      </article>
-
-      <article class="slide" aria-labelledby="slide-4-title">
-        <h2 id="slide-4-title" class="slide-title">More Productive. More Drained.</h2>
-        <div class="slide-body">
-          <div class="drainage-insight">
-            <p class="supporting-quote">Midjourney’s founder says new AI coding tools are making software engineers more productive — and <strong>“extremely drained.”</strong></p>
-          </div>
-        </div>
-        <div class="agent-cite-stack">
-          <a class="agent-cite" href="https://www.businessinsider.com/midjourney-founder-ai-coding-friends-drained-2026-7" target="_blank" rel="noopener noreferrer">Business Insider — July 2026 ↗</a>
-        </div>
-        <p class="slide-foot"><span>04 / 15</span></p>
-      </article>
-
-      <article class="slide" aria-labelledby="slide-5-title">
-        <h2 id="slide-5-title" class="slide-title">We are stuck babysitting agents</h2>
-        <div class="slide-body">
-          <div class="lifecycle-copy">
-            <ul class="lifecycle-reasons">
-              <li>Run multiple manual outer loops — the dev lifecycle — every day</li>
-              <li>Multi-tasking</li>
-              <li>Multiple environments, agents, and models</li>
-            </ul>
-          </div>
-          <div class="lifecycle" aria-label="Development lifecycle stages">
-            <svg class="lifecycle-diagram" viewBox="0 0 620 700" role="img" aria-label="Understand, Plan, Build, Test, and Review form the manual iterative outer loop. Deliver is a separate final outcome.">
-              <defs>
-                <marker id="lifecycle-arrow-neutral-tall" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-                  <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(255,255,255,0.42)"></path>
-                </marker>
-                <marker id="lifecycle-arrow-pink-tall" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-                  <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"></path>
-                </marker>
-                <filter id="lifecycleTallGlow" x="-30%" y="-30%" width="160%" height="160%">
-                  <feGaussianBlur stdDeviation="6" result="blur"/>
-                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-              </defs>
-
-              <path d="M 235 105 V 160 M 235 245 V 300 M 235 385 V 440 M 235 525 V 580" fill="none" stroke="rgba(255,255,255,0.42)" stroke-width="3" stroke-linecap="round" marker-end="url(#lifecycle-arrow-neutral-tall)"/>
-              <path d="M 365 510 C 545 510 545 80 365 80" fill="none" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8 8" stroke-linecap="round" marker-end="url(#lifecycle-arrow-pink-tall)" filter="url(#lifecycleTallGlow)"/>
-              <path d="M 365 620 H 480" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" marker-end="url(#lifecycle-arrow-pink-tall)"/>
-
-              <g font-family="var(--sans)" font-size="29" font-weight="650" text-anchor="middle">
-                <g transform="translate(235 70)">
-                  <rect x="-130" y="-36" width="260" height="72" rx="18" fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
-                  <text y="10" fill="var(--text)">Understand</text>
-                </g>
-                <g transform="translate(235 210)">
-                  <rect x="-130" y="-36" width="260" height="72" rx="18" fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
-                  <text y="10" fill="var(--text)">Plan</text>
-                </g>
-                <g transform="translate(235 350)">
-                  <rect x="-130" y="-36" width="260" height="72" rx="18" fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
-                  <text y="10" fill="var(--text)">Build</text>
-                </g>
-                <g transform="translate(235 490)">
-                  <rect x="-130" y="-36" width="260" height="72" rx="18" fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
-                  <text y="10" fill="var(--text)">Test</text>
-                </g>
-                <g transform="translate(235 630)">
-                  <rect x="-130" y="-36" width="260" height="72" rx="18" fill="rgba(255,88,152,0.08)" stroke="var(--accent)" stroke-width="2" stroke-dasharray="7 5"/>
-                  <text y="10" fill="var(--text)">Review</text>
-                </g>
-                <g transform="translate(545 620)">
-                  <rect x="-64" y="-36" width="128" height="72" rx="18" fill="rgba(255,88,152,0.16)" stroke="var(--accent)" stroke-width="2.5" filter="url(#lifecycleTallGlow)"/>
-                  <text y="10" fill="var(--text)" font-size="25">Deliver</text>
-                </g>
-              </g>
-
-              <text x="450" y="255" fill="var(--accent)" font-family="var(--mono)" font-size="15" font-weight="700" letter-spacing="1.5" text-anchor="middle" transform="rotate(90 450 255)">ITERATE</text>
-            </svg>
-          </div>
-        </div>
-        <p class="slide-foot"><span>05 / 15</span></p>
-      </article>
-
-      <article class="slide" aria-labelledby="slide-6-title">
-        <h2 id="slide-6-title" class="slide-title">Loop Engineering</h2>
-        <div class="slide-body">
-          <div class="loop-engineering-panel">
-            <p class="loop-engineering-panel-label">The shift</p>
-            <strong>Instead of prompting, let’s build loops that prompt it.</strong>
-          </div>
-          <div class="loop-engineering-transition" aria-hidden="true"></div>
-          <div class="loop-engineering-panel loop-engineering-panel--outcome">
-            <p class="loop-engineering-panel-label">A better definition</p>
-            <strong>Can we ship a PR to production autonomously?</strong>
-          </div>
-        </div>
-        <div class="agent-cite-stack">
-          <a class="agent-cite" href="https://addyosmani.com/blog/loop-engineering/" target="_blank" rel="noopener noreferrer">Addy Osmani — Loop Engineering ↗</a>
-          <a class="agent-cite" href="https://x.com/AndrewYNg/status/2071988145667928442?s=20" target="_blank" rel="noopener noreferrer">Andrew Ng — Loop Engineering ↗</a>
-          <a class="agent-cite" href="https://x.com/akshay_pachaar/article/2069118430582866051" target="_blank" rel="noopener noreferrer">Akshay Pachaar — Loop Engineering article ↗</a>
-          <a class="agent-cite" href="https://x.com/eng_khairallah1/status/2071964839916802354?s=20" target="_blank" rel="noopener noreferrer">Andrej Karpathy — LOOPS.md ↗</a>
-        </div>
-        <p class="slide-foot"><span>06 / 15</span></p>
-      </article>
-
-      <article class="slide" aria-labelledby="slide-7-title">
-        <h2 id="slide-7-title" class="slide-title">What Makes Loops Possible</h2>
-        <div class="slide-body">
-          <ul style="list-style:none;padding:0;margin:0 auto;max-width:1080px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,4vw,64px);width:100%;">
-            <li style="border-left:4px solid var(--accent);padding:clamp(12px,1.5vw,22px) 0 clamp(12px,1.5vw,22px) clamp(20px,2vw,30px);">
-              <strong style="color:var(--text);font-size:clamp(26px,2.8vw,40px);line-height:1.15;display:block;margin-bottom:14px;">Self-validation</strong>
-              <span style="color:var(--muted);font-size:clamp(19px,1.9vw,26px);line-height:1.45;display:block;">Browser use and computer use let agents verify their own work and close the testing loop.</span>
-            </li>
-            <li style="border-left:4px solid var(--accent);padding:clamp(12px,1.5vw,22px) 0 clamp(12px,1.5vw,22px) clamp(20px,2vw,30px);">
-              <strong style="color:var(--text);font-size:clamp(26px,2.8vw,40px);line-height:1.15;display:block;margin-bottom:14px;">Multi-agent to avoid context rot</strong>
-              <span style="color:var(--muted);font-size:clamp(19px,1.9vw,26px);line-height:1.45;display:block;">Separate Builder and Evaluator roles with isolated context windows, specialized prompts, and independent review.</span>
-            </li>
-          </ul>
-        </div>
-        <p class="slide-foot"><span>07 / 15</span></p>
-      </article>
-
-      <article class="slide" aria-labelledby="slide-8-title">
-        <h2 id="slide-8-title" class="slide-title">Loops of Today</h2>
-        <div class="slide-body slide-body-agent">
-          <div class="loops-today-thesis">
-            <strong>We have primitives and building blocks.</strong>
-          </div>
-          <ul class="loops-today-list" aria-label="Loop primitives from the Claude Developers guide">
-            <li><code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">/goal</code>, <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">/loop</code> (Claude Code) or <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">/cron</code> (AdaL) <span style="color: var(--muted); font-size: 0.85em; opacity: 0.85;">[repeated or scheduled work — local intervals and cloud routines]</span></li>
-            <li>permission bypass — <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">--dangerously-skip-permissions</code> (Claude) or <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">--yolo</code> (AdaL)</li>
-            <li>dynamic workflows — agents that adapt as they run</li>
-            <li>Agent Teams (Claude) — full agents focused purely on parallel work execution</li>
-          </ul>
-        </div>
-        <div class="agent-cite-stack">
-          <a class="agent-cite" href="https://x.com/ClaudeDevs/status/2074208949205881033?s=20" target="_blank" rel="noopener noreferrer">Claude Developers — loop engineering guide ↗</a>
-        </div>
-        <p class="slide-foot"><span>08 / 15</span></p>
-      </article>
-
-      <article class="slide" aria-labelledby="slide-8a-title">
-        <h2 id="slide-8a-title" class="slide-title">But It Is Still Complex and Expensive</h2>
-        <div class="slide-body">
-          <div class="barrier-layout">
-            <aside class="codex-callout" aria-label="OpenAI Codex Team harness engineering example">
-              <strong>It took a whole Codex team to achieve 0 manually written lines.</strong>
-              <p>The building blocks exist—but a full engineering team still maintains the harness: documentation, context, and review.</p>
-              <a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer">OpenAI — Harness engineering ↗</a>
-            </aside>
-            <div class="barrier-grid" aria-label="Conclusion">
-              <div class="barrier-card">
-                <strong>High complexity</strong>
-              </div>
-              <div class="barrier-card">
-                <strong>High cost</strong>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="slide-foot"><span>09 / 15</span></p>
-      </article>
-
-      <article class="slide is-hidden" aria-labelledby="slide-9-title">
-        <h2 id="slide-9-title" class="slide-title">AdaL Engineer</h2>
-        <div class="slide-body">
-          <p class="slide-lead" style="margin: 0 auto 40px; text-align: center; max-width: 1100px; font-size: clamp(22px, 2.5vw, 36px);">
-            Goes beyond loop engineering: completely models an engineer's scope. It <span style="color: var(--accent);">allocates, prompts, and monitors</span> coding agents for you to deliver secure, autonomous, and high-quality results.
-          </p>
-        <div class="agent-cite-stack">
-          <a class="agent-cite" href="https://github.com/SylphAI-Inc/AdalFlow" target="_blank" rel="noopener noreferrer">AdalFlow — GitHub ↗</a>
-          <a class="agent-cite" href="https://x.com/panda_liyin/status/2074933173318984174?s=20" target="_blank" rel="noopener noreferrer">Loop Engineer — AdaL ↗</a>
-        </div>
-          <svg class="illustration" style="max-width: 1400px;" viewBox="0 0 900 550" aria-label="AdaL Engineer orchestrating Coding, Browser Use, Deep Research, and Code Review workers">
-            <defs>
-              <radialGradient id="engineerHalo">
-                <stop offset="0" stop-color="#ff5898" stop-opacity=".18"/>
-                <stop offset="1" stop-color="#ff5898" stop-opacity="0"/>
-              </radialGradient>
-            </defs>
-            <circle cx="450" cy="122" r="103" fill="url(#engineerHalo)"/>
-            <circle cx="450" cy="122" r="74" fill="rgba(255,88,152,0.08)" stroke="#ff5898" stroke-width="2"/>
-            <text x="450" y="132" fill="#ff5898" font-size="34" font-weight="650" text-anchor="middle">Engineer</text>
-            <path d="M526 122h24" fill="none" stroke="#6c727a" stroke-width="2"/>
-            <text x="560" y="130" fill="#6c727a" font-size="22" font-weight="600" letter-spacing="1.5" text-anchor="start">HUMAN-ROLE LEVEL</text>
-            <path d="M450 196v35M150 231h600" fill="none" stroke="rgba(255,88,152,0.62)" stroke-width="3"/>
-            <circle cx="450" cy="231" r="6" fill="#ff5898"/>
-            <g fill="none" stroke="rgba(255,88,152,0.62)" stroke-width="3">
-              <path d="M150 231v42M350 231v42M550 231v42M750 231v42"/>
-            </g>
-            <g>
-              <circle cx="150" cy="345" r="72" fill="rgba(255,88,152,0.055)" stroke="rgba(255,88,152,0.38)" stroke-width="2"/>
-              <path d="M123 334h18m-18 13h12m13-13h12m-12 13h19" fill="none" stroke="#ff5898" stroke-width="3" stroke-linecap="round"/>
-              <text x="150" y="460" fill="#f4f4f5" font-size="28" text-anchor="middle">Coding</text>
-              
-              <circle cx="350" cy="345" r="72" fill="rgba(255,88,152,0.055)" stroke="rgba(255,88,152,0.38)" stroke-width="2"/>
-              <rect x="333" y="327" width="30" height="21" rx="3" fill="none" stroke="#ff5898" stroke-width="3"/>
-              <path d="M340 358h16M348 348v10" fill="none" stroke="#ff5898" stroke-width="3" stroke-linecap="round"/>
-              <text x="350" y="460" fill="#f4f4f5" font-size="28" text-anchor="middle">Browser Use</text>
-              
-              <circle cx="550" cy="345" r="72" fill="rgba(255,88,152,0.055)" stroke="rgba(255,88,152,0.38)" stroke-width="2"/>
-              <circle cx="543" cy="338" r="11" fill="none" stroke="#ff5898" stroke-width="3"/>
-              <path d="M551 346l9 9" fill="none" stroke="#ff5898" stroke-width="3" stroke-linecap="round"/>
-              <text x="550" y="460" fill="#f4f4f5" font-size="28" text-anchor="middle">Deep Research</text>
-              
-              <circle cx="750" cy="345" r="72" fill="rgba(255,88,152,0.055)" stroke="rgba(255,88,152,0.38)" stroke-width="2"/>
-              <path d="M727 343l14 14 28-31" fill="none" stroke="#ff5898" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              <text x="750" y="460" fill="#f4f4f5" font-size="28" text-anchor="middle">Code Review</text>
-            </g>
-            <text x="450" y="525" fill="#ff5898" font-size="24" font-weight="650" letter-spacing="2" text-anchor="middle">WORKERS (AGENTS OF TODAY)</text>
-          </svg>
-        </div>
-        <p class="slide-foot"><span>09 / 15</span></p>
-      </article>
-
-      <article class="slide" aria-labelledby="slide-accessible-title">
-        <h2 id="slide-accessible-title" class="slide-title">Make Loop Engineering Accessible</h2>
-        <div class="slide-body">
-          <div class="accessibility-bridge">
-            <section class="bridge-panel bridge-role-panel" aria-label="Human engineer role replaced by AdaL Engineer">
-              <div class="bridge-role-view bridge-human-view">
-                <p id="bridge-human-title" class="bridge-panel-label">What a human engineer does</p>
-                <div class="bridge-outer-loop">
-                  <span>Understand the goal</span>
-                  <span>Plan the work</span>
-                  <span>Delegate and guide</span>
-                  <span>Maintain documentation</span>
-                  <span>Review and validate</span>
-                  <span>Iterate until ready to ship</span>
-                </div>
-              </div>
-              <div class="bridge-role-view bridge-adal-view" aria-label="AdaL Engineer orchestrating AdaL Workers">
-                <div class="bridge-adal-node">AdaL<br>Engineer</div>
-                <div class="bridge-adal-arrow" aria-hidden="true">→</div>
-              </div>
-            </section>
-            <section class="bridge-panel" aria-labelledby="bridge-agents-title">
-              <p id="bridge-agents-title" class="bridge-panel-label">Today’s coding-agent capabilities (AdaL Workers)</p>
-              <div class="bridge-capabilities">
-                <span>Coding</span>
-                <span>Browser / computer use</span>
-                <span>Research</span>
-                <span>Code Review</span>
-              </div>
-            </section>
-          </div>
-        </div>
-        <p class="slide-foot"><span></span></p>
-      </article>
-
-      <article class="slide" aria-labelledby="slide-adal-how-title">
-        <h2 id="slide-adal-how-title" class="slide-title">How AdaL Engineer Works</h2>
-        <div class="slide-body" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: center; justify-items: start; max-width: 100%;">
-          <div class="text-column" style="display: grid; gap: 32px; height: 100%; align-content: center;">
-            <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; counter-reset: adal-benefits;">
-              <li style="border-left: 3px solid var(--accent); padding-left: 16px; position: relative;">
-                <strong style="color: var(--text); font-size: clamp(18px, 1.8vw, 24px); display: block; margin-bottom: 4px;"><span style="color: var(--accent); margin-right: 6px;">1.</span>Use coding agents for you</strong>
-                <span style="color: var(--muted); font-size: clamp(14px, 1.2vw, 18px); line-height: 1.45; display: block;">Allocates the right worker, prompts it with the task and context, and monitors worker progress.</span>
-              </li>
-              <li style="border-left: 3px solid var(--accent); padding-left: 16px; position: relative;">
-                <strong style="color: var(--text); font-size: clamp(18px, 1.8vw, 24px); display: block; margin-bottom: 4px;"><span style="color: var(--accent); margin-right: 6px;">2.</span>Persistent Long-Term Memory</strong>
-                <span style="color: var(--muted); font-size: clamp(14px, 1.2vw, 18px); line-height: 1.45; display: block;">Uses local markdown (e.g. <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">contract.md</code>) to orchestrate state across workers, organized automatically by month and day.</span>
-              </li>
-              <li style="border-left: 3px solid var(--accent); padding-left: 16px; position: relative;">
-                <strong style="color: var(--text); font-size: clamp(18px, 1.8vw, 24px); display: block; margin-bottom: 4px;"><span style="color: var(--accent); margin-right: 6px;">3.</span>Builder → Evaluator iteration</strong>
-                <span style="color: var(--muted); font-size: clamp(14px, 1.2vw, 18px); line-height: 1.45; display: block;">A Builder implements the work; an independent Evaluator reviews it and feeds the next iteration back through AdaL Engineer.</span>
-              </li>
-              <li style="border-left: 3px solid var(--accent); padding-left: 16px; position: relative;">
-                <strong style="color: var(--text); font-size: clamp(18px, 1.8vw, 24px); display: block; margin-bottom: 4px;"><span style="color: var(--accent); margin-right: 6px;">4.</span>Adaptive Autonomy</strong>
-                <span style="color: var(--muted); font-size: clamp(14px, 1.2vw, 18px); line-height: 1.45; display: block;">Handles orchestration autonomously, but allows seamless "autopilot" manual takeover, great for correction and multi-tasking.</span>
-              </li>
-            </ul>
-          </div>
-          
-          <div class="svg-column" style="width: 100%; height: 100%; display: flex; align-items: center;">
-            <svg class="illustration" viewBox="0 0 800 650" aria-label="AdaL Engineer Orchestration Loop Diagram" style="width: 100%; max-width: 650px; justify-self: center;">
-              <defs>
-                <filter id="coreGlow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="8" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-                <marker id="arrowHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                  <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"></path>
-                </marker>
-                <marker id="arrowHeadNeutral" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                  <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(255,255,255,0.4)"></path>
-                </marker>
-              </defs>
-
-              <!-- Central Brain / Persistent Storage -->
-              <rect x="250" y="230" width="300" height="150" rx="16" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="6,4"></rect>
-              <text x="400" y="260" fill="var(--text)" font-size="18" font-weight="600" text-anchor="middle">Shared State</text>
-              
-
-              <!-- AdaL Engineer (Top) -->
-              <circle cx="400" cy="80" r="50" fill="rgba(255, 88, 152, 0.15)" stroke="var(--accent)" stroke-width="2.5" filter="url(#coreGlow)"></circle>
-              <text x="400" y="86" fill="var(--text)" font-size="20" font-weight="650" text-anchor="middle">AdaL</text>
-              <text x="400" y="145" fill="var(--accent)" font-size="16" font-weight="600" letter-spacing="1" text-anchor="middle">ENGINEER</text>
-
-              <!-- Builder Worker (Left) -->
-              <circle cx="100" cy="480" r="60" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.4)" stroke-width="2"></circle>
-              <text x="100" y="475" fill="var(--text)" font-size="18" font-weight="600" text-anchor="middle">Builder</text>
-              <text x="100" y="491" fill="var(--muted)" font-size="11" text-anchor="middle">Code &amp; Build</text>
-
-              <!-- Evaluator Worker (Center) -->
-              <circle cx="400" cy="480" r="60" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.4)" stroke-width="2"></circle>
-              <text x="400" y="475" fill="var(--text)" font-size="18" font-weight="600" text-anchor="middle">Evaluator</text>
-              <text x="400" y="491" fill="var(--muted)" font-size="11" text-anchor="middle">Review &amp; QA</text>
-
-              <!-- Code Reviewer (Right) -->
-              <circle cx="700" cy="480" r="60" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.4)" stroke-width="2"></circle>
-              <text x="700" y="475" fill="var(--text)" font-size="18" font-weight="600" text-anchor="middle">Reviewer</text>
-              <text x="700" y="491" fill="var(--muted)" font-size="11" text-anchor="middle">Code Review</text>
-
-              <!-- Flow Lines -->
-              <!-- Engineer to Shared State -->
-              <path d="M 400 130 L 400 230" fill="none" stroke="var(--accent)" stroke-width="2" marker-end="url(#arrowHead)"></path>
-              
-              <!-- Shared State to Workers -->
-              <path d="M 250 305 C 100 305 100 390 100 420" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" marker-end="url(#arrowHeadNeutral)"></path>
-              <path d="M 400 380 L 400 420" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" marker-end="url(#arrowHeadNeutral)"></path>
-              <path d="M 550 305 C 700 305 700 390 700 420" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" marker-end="url(#arrowHeadNeutral)"></path>
-
-              <!-- The GAN Iteration Loop (Pink) -->
-              <!-- Evaluator -> Engineer (Feedback) -->
-              <path d="M 450 430 C 580 330 580 230 450 120" fill="none" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8,6" marker-end="url(#arrowHead)" filter="url(#coreGlow)"></path>
-              <text x="540" y="290" fill="var(--text)" font-size="16" font-weight="600" font-style="italic" text-anchor="start" transform="rotate(-70 540 290)">Feedback</text>
-
-              <!-- Engineer -> Builder (Fix Loop) -->
-              <path d="M 350 120 C 200 200 120 320 120 420" fill="none" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8,6" marker-end="url(#arrowHead)" filter="url(#coreGlow)"></path>
-              <text x="180" y="270" fill="var(--accent)" font-size="16" font-weight="600" font-style="italic" text-anchor="end" transform="rotate(55 180 270)">Fix Loop</text>
-              
-              <!-- Send Prompt (AdaL to Workers) -->
-              <path d="M 340 80 C -10 80 -10 420 50 440" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrowHeadNeutral)"></path>
-              <text x="-5" y="260" fill="rgba(255,255,255,0.4)" font-size="14" font-family="var(--mono)" transform="rotate(-90 -5 260)">send prompt / handle permission</text>
-              
-              <!-- Reviewer -> Engineer (Send Prompt right) -->
-              <path d="M 460 80 C 860 80 860 420 750 440" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrowHeadNeutral)"></path>
-              <text x="845" y="260" fill="rgba(255,255,255,0.4)" font-size="14" font-family="var(--mono)" transform="rotate(90 845 260)">send prompt / handle permission</text>
-
-            </svg>
-          </div>
-        </div>
-        <p class="slide-foot"><span>10 / 15</span></p>
-      </article>
-
-
-      <article class="slide" aria-labelledby="slide-adal-pdf-screenshot" style="padding: 0; grid-template-rows: 1fr; background: #000;">
-        <div style="width: 100%; height: 100%; min-height: 0; display: flex; align-items: center; justify-content: center;">
-          <img src="materials/adal_builder_evaluator_workers.jpg" alt="AdaL Engineer Builder and Evaluator workers screenshot" style="width: 100%; height: 100%; object-fit: contain; transform: scale(1.02);">
-        </div>
-      </article>
-
-      <article class="slide" aria-labelledby="slide-demo-title">
-        <h2 id="slide-demo-title" class="slide-title">Demo Comparison</h2>
-        <div class="slide-body" style="display: flex; flex-direction: column; width: 100%; max-width: 1400px; justify-content: center;">
-          <p class="slide-lead" style="margin-bottom: 40px; text-align: left; max-width: 100%;">
-            Build a complicated web app end-to-end. All agents running on Sonnet 5. With browser use to auto-test.
-          </p>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 100%; align-items: start;">
-            <!-- Left Table -->
-            <div style="width: 100%; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: rgba(255,255,255,0.02); font-size: clamp(18px, 1.4vw, 22px);">
-              <div style="display: grid; grid-template-columns: 1fr 1fr 1.8fr; border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.04); font-weight: 600; padding: 16px 24px; gap: 16px;">
-                <div>Agent Loop</div>
-                <div>Running Time</div>
-                <div>Result</div>
-              </div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr 1.8fr; border-bottom: 1px solid var(--line); padding: 16px 24px; align-items: center; gap: 16px;">
-                <div style="color: var(--text);">Claude Code</div>
-                <div style="color: var(--muted); font-family: var(--mono); font-size: 0.9em;">~30 mins</div>
-                <div style="color: var(--muted); line-height: 1.4;">copied UI</div>
-              </div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr 1.8fr; border-bottom: 1px solid var(--line); padding: 16px 24px; align-items: center; gap: 16px;">
-                <div style="color: var(--text);">Claude Code <code style="font-family: var(--mono); color: var(--accent); font-size: 0.85em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">/goal</code></div>
-                <div style="color: var(--muted); font-family: var(--mono); font-size: 0.9em;">~20 mins</div>
-                <div style="color: var(--muted); line-height: 1.4;">copied UI, didn't try hard</div>
-              </div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr 1.8fr; border-bottom: 1px solid var(--line); padding: 16px 24px; align-items: center; gap: 16px;">
-                <div style="color: var(--accent); font-weight: 600;">AdaL Engineer</div>
-                <div style="color: var(--muted); font-family: var(--mono); font-size: 0.9em; line-height: 1.3;">~2 hours<br><span style="font-size: 0.8em; opacity: 0.7;">6 iterations</span></div>
-                <div style="color: var(--text); font-weight: 500; line-height: 1.4;">advanced idea generation grounded by research papers, advanced UIs</div>
-              </div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr 1.8fr; padding: 16px 24px; align-items: center; gap: 16px;">
-                <div style="color: var(--accent); font-weight: 600;">AdaL Engineer<br><span style="color: var(--muted); font-size: 0.75em; font-weight: 400; display: block; margin-top: 4px;">MiniMax M3 — 10x cheaper</span></div>
-                <div style="color: var(--muted); font-family: var(--mono); font-size: 0.9em; line-height: 1.3;">~2 hours<br><span style="font-size: 0.8em; opacity: 0.7;">5 iterations</span></div>
-                <div style="color: var(--text); font-weight: 500; line-height: 1.4;">identical layout to Sonnet 5, fewer hover effects</div>
-              </div>
-            </div>
-
-            <!-- Right Video -->
-            <div style="width: 100%; border-radius: 20px; overflow: hidden; border: 2px solid rgba(255,255,255,0.1); background: #000; box-shadow: 0 24px 64px rgba(0,0,0,0.6); position: relative; padding-bottom: 56.25%;">
-              <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/EYidNchYXGw" title="AdaL Engineer vs Claude Code" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-          </div>
-          <div class="agent-cite-stack">
-            <a class="agent-cite" href="https://github.com/aruzhanspvv/research-atlas-experiments" target="_blank" rel="noopener noreferrer">Source Code: research-atlas-experiments ↗</a>
-          </div>
-        </div>
-        <p class="slide-foot"><span>10 / 15</span></p>
-      </article>
-
-      <article class="slide" aria-labelledby="slide-11-title">
-        <h2 id="slide-11-title" class="slide-title">Measure Autonomy</h2>
-        <div class="slide-body">
-          <svg class="illustration" viewBox="0 0 1180 700" aria-label="Autonomy levels chart: L1 heavy supervision through L4 team autonomy, with today at L1.5 high capability but still prompting, and loop engineering bridging to L4 the real future.">
-            <line x1="100" y1="620" x2="100" y2="40" stroke="#FF5898" stroke-width="2"/>
-            <polygon points="100,35 95,45 105,45" fill="#FF5898"/>
-            <line x1="100" y1="620" x2="920" y2="620" stroke="#FF5898" stroke-width="2"/>
-            <polygon points="925,620 915,615 915,625" fill="#FF5898"/>
-            <text x="50" y="340" fill="#FF5898" font-size="18" font-weight="bold" transform="rotate(-90 50 340)" text-anchor="middle">Engineering autonomy</text>
-            <text x="500" y="670" fill="#FF5898" font-size="18" font-weight="bold" text-anchor="middle">Model capability</text>
-            <text x="130" y="655" fill="#999" font-size="16">Low</text>
-            <text x="880" y="655" fill="#999" font-size="16">High</text>
-            <line x1="100" y1="560" x2="900" y2="560" stroke="#FF5898" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
-            <text x="110" y="555" fill="#f4f4f5" font-size="18" font-weight="bold">L1</text>
-            <text x="110" y="575" fill="#999" font-size="16" font-style="italic">Heavy supervision</text>
-            <text x="110" y="594" fill="#999" font-size="16" font-style="italic">Technician / Prompting</text>
-            <line x1="100" y1="460" x2="900" y2="460" stroke="#FF5898" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
-            <text x="110" y="455" fill="#f4f4f5" font-size="18" font-weight="bold">L1.5</text>
-            <text x="110" y="477" fill="#999" font-size="16" font-style="italic">Current state</text>
-            <line x1="100" y1="360" x2="900" y2="360" stroke="#FF5898" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
-            <text x="110" y="355" fill="#f4f4f5" font-size="18" font-weight="bold">L2</text>
-            <text x="110" y="375" fill="#999" font-size="16" font-style="italic">Single-task autonomy</text>
-            <text x="110" y="394" fill="#999" font-size="16" font-style="italic">Junior engineer</text>
-            <line x1="100" y1="240" x2="900" y2="240" stroke="#FF5898" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
-            <text x="110" y="235" fill="#f4f4f5" font-size="18" font-weight="bold">L3</text>
-            <text x="110" y="255" fill="#999" font-size="16" font-style="italic">Multi-task</text>
-            <text x="110" y="274" fill="#999" font-size="16" font-style="italic">Tech Lead</text>
-            <line x1="100" y1="100" x2="900" y2="100" stroke="#FF5898" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
-            <text x="110" y="95" fill="#f4f4f5" font-size="18" font-weight="bold">L4</text>
-            <text x="110" y="117" fill="#999" font-size="16" font-style="italic">Team</text>
-            <circle cx="780" cy="560" r="14" fill="#666" opacity="0.6"/>
-            <circle cx="780" cy="560" r="7" fill="#999"/>
-            <text x="820" y="550" fill="#f4f4f5" font-size="18" font-weight="bold">Claude Code</text>
-            <path d="M780 540 C790 505 794 478 800 460 C811 425 817 390 825 360 C837 316 846 273 855 240 C868 193 877 144 885 120" fill="none" stroke="#FF5898" stroke-width="2" stroke-dasharray="6,4"/>
-            <polygon points="885,115 880,125 890,125" fill="#FF5898"/>
-            <circle cx="800" cy="460" r="12" fill="none" stroke="#FF5898" stroke-width="2"/>
-            <circle cx="800" cy="460" r="5" fill="#FF5898"/>
-            <text x="840" y="450" fill="#FF5898" font-size="18" font-weight="bold">Loop Engineering</text>
-            <circle cx="825" cy="360" r="14" fill="none" stroke="#FF5898" stroke-width="2" opacity="0.8"/>
-            <circle cx="825" cy="360" r="6" fill="#FF5898"/>
-            <text x="865" y="350" fill="#FF5898" font-size="18" font-weight="bold">AdaL Engineer</text>
-            <text x="865" y="370" fill="#999" font-size="15">deliver a task end-to-end</text>
-            <circle cx="855" cy="240" r="10" fill="none" stroke="#FF5898" stroke-width="1.5" opacity="0.6"/>
-            <circle cx="855" cy="240" r="4" fill="#FF5898" opacity="0.6"/>
-            <text x="895" y="240" fill="#FF5898" font-size="18" font-weight="bold">Continuous Learning Memory Model</text>
-            <circle cx="885" cy="100" r="20" fill="none" stroke="#FF5898" stroke-width="2" opacity="0.6"/>
-            <circle cx="885" cy="100" r="8" fill="#FF5898"/>
-            <text x="925" y="100" fill="#FF5898" font-size="18" font-weight="bold">Company Brain</text>
-          </svg>
-        </div>
-        <p class="slide-foot"><span>11 / 15</span></p>
-      </article>
-
-      <article class="slide" aria-labelledby="slide-humans-next-title">
-        <h2 id="slide-humans-next-title" class="slide-title">What Will Humans Do Next?</h2>
-        <div class="slide-body">
-          <div style="width:min(100%,1280px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,3vw,48px);align-items:stretch;">
-            <section class="loop-engineering-panel">
-              <p class="loop-engineering-panel-label">Addy Osmani — we agree</p>
-              <strong style="font-size:clamp(24px,2.4vw,36px);line-height:1.2;">Humans keep the agency</strong>
-              <p class="slide-lead" style="margin:0;max-width:none;font-size:clamp(18px,1.6vw,24px);">Agents can run more of the inner loop. Humans still own accountability and answerability: evidence, risk, and the decision to ship.</p>
-            </section>
-            <section class="loop-engineering-panel loop-engineering-panel--outcome">
-              <p class="loop-engineering-panel-label">AdaL — our view</p>
-              <strong style="font-size:clamp(24px,2.4vw,36px);line-height:1.2;">Engineers move to higher leverage</strong>
-              <ul class="lifecycle-reasons" style="margin-top:8px;font-size:clamp(18px,1.55vw,24px);">
-                <li>Research new opportunities</li>
-                <li>Talk with users</li>
-                <li>Explore product needs</li>
-                <li>Brainstorm with teammates</li>
-                <li>Own metrics and product impact</li>
-              </ul>
-            </section>
-          </div>
-        </div>
-        <div class="agent-cite-stack">
-          <a class="agent-cite" href="https://addyosmani.com/blog/own-the-outer-loop/" target="_blank" rel="noopener noreferrer">Addy Osmani — Own the Outer Loop ↗</a>
-        </div>
-        <p class="slide-foot"><span></span></p>
-      </article>
-
-      <article class="slide" aria-labelledby="slide-12-title">
-        <h2 id="slide-12-title" class="slide-title">References</h2>
-<div class="slide-body">
-          <div class="references-grid">
-            <div class="reference-group">
-              <h2>Foundations &amp; agent patterns</h2>
-              <div class="reference-list">
-                <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer"><span>Attention Is All You Need</span><small>arXiv:1706.03762</small></a>
-                <a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener noreferrer"><span>Language Models are Few-Shot Learners</span><small>arXiv:2005.14165</small></a>
-                <a href="https://arxiv.org/abs/2201.11903" target="_blank" rel="noopener noreferrer"><span>Chain-of-Thought Prompting</span><small>arXiv:2201.11903</small></a>
-                <a href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener noreferrer"><span>ReAct: Reasoning + Acting</span><small>arXiv:2210.03629</small></a>
-                <a href="https://www.deeplearning.ai/courses/agentic-ai/" target="_blank" rel="noopener noreferrer"><span>Ng — Agentic Design Patterns</span><small>DeepLearning.AI</small></a>
-              </div>
-            </div>
-            <div class="reference-group">
-              <h2>Optimization &amp; AdalFlow</h2>
-              <div class="reference-list">
-                <a href="https://arxiv.org/abs/2310.03714" target="_blank" rel="noopener noreferrer"><span>DSPy: Self-Improving Pipelines</span><small>arXiv:2310.03714</small></a>
-                <a href="https://arxiv.org/abs/2406.07496" target="_blank" rel="noopener noreferrer"><span>TextGrad: Automatic Differentiation via Text</span><small>arXiv:2406.07496</small></a>
-                <a href="https://arxiv.org/abs/2501.16673" target="_blank" rel="noopener noreferrer"><span>LLM-AutoDiff: Auto-Differentiate Any LLM Workflow</span><small>arXiv:2501.16673</small></a>
-                <a href="https://github.com/SylphAI-Inc/AdalFlow" target="_blank" rel="noopener noreferrer"><span>AdalFlow — LLM application and optimization library</span><small>GitHub</small></a>
-              </div>
-            </div>
-            <div class="reference-group">
-              <h2>Context windows &amp; caching</h2>
-              <div class="reference-list">
-                <a href="https://openai.com/index/gpt-4/" target="_blank" rel="noopener noreferrer"><span>OpenAI GPT-4 announcement</span><small>OpenAI · 2023</small></a>
-                <a href="https://www.anthropic.com/news/100k-context-windows" target="_blank" rel="noopener noreferrer"><span>Anthropic 100K context windows</span><small>Anthropic · 2023</small></a>
-                <a href="https://www.anthropic.com/news/claude-2-1" target="_blank" rel="noopener noreferrer"><span>Claude 2.1 / 200K context</span><small>Anthropic · 2023</small></a>
-                <a href="https://blog.google/technology/ai/google-gemini-next-generation-model-february-2024/" target="_blank" rel="noopener noreferrer"><span>Gemini 1.5 Pro / 1M context</span><small>Google · 2024</small></a>
-                <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching" target="_blank" rel="noopener noreferrer"><span>Anthropic Prompt Caching</span><small>Docs</small></a>
-                <a href="https://developers.openai.com/api/docs/guides/prompt-caching" target="_blank" rel="noopener noreferrer"><span>OpenAI Prompt Caching</span><small>Docs</small></a>
-                <a href="https://ai.google.dev/gemini-api/docs/caching" target="_blank" rel="noopener noreferrer"><span>Gemini Context Caching</span><small>Docs</small></a>
-              </div>
-            </div>
-            <div class="reference-group">
-              <h2>Harnesses &amp; loop engineering</h2>
-              <div class="reference-list">
-                <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener noreferrer"><span>Effective Context Engineering for AI Agents</span><small>Anthropic · 2025</small></a>
-                <a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer"><span>Harness Engineering: Leveraging Codex</span><small>OpenAI · 2026</small></a>
-                <a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents" target="_blank" rel="noopener noreferrer"><span>Effective Harnesses for Long-Running Agents</span><small>Anthropic · 2026</small></a>
-                <a href="https://addyosmani.com/blog/loop-engineering/" target="_blank" rel="noopener noreferrer"><span>Loop Engineering</span><small>Addy Osmani · 2025</small></a>
-                <a href="https://addyosmani.com/blog/own-the-outer-loop/" target="_blank" rel="noopener noreferrer"><span>Own the Outer Loop</span><small>Addy Osmani · 2026</small></a>
-                <a href="https://x.com/akshay_pachaar/article/2069118430582866051" target="_blank" rel="noopener noreferrer"><span>Loop Engineering article</span><small>Akshay Pachaar · X</small></a>
-              </div>
-            </div>
-            <div class="reference-group">
-              <h2>Safety &amp; bounded autonomy</h2>
-              <div class="reference-list">
-                <a href="https://docs.anthropic.com/en/docs/claude-code/security" target="_blank" rel="noopener noreferrer"><span>Claude Code Security</span><small>Anthropic Docs</small></a>
-                <a href="https://openai.github.io/openai-agents-python/human_in_the_loop/" target="_blank" rel="noopener noreferrer"><span>Human in the Loop</span><small>OpenAI Agents SDK</small></a>
-                <a href="https://simonwillison.net/2025/Oct/22/living-dangerously-with-claude/" target="_blank" rel="noopener noreferrer"><span>Living Dangerously with Claude</span><small>Simon Willison · 2025</small></a>
-                <a href="https://github.com/karpathy/autoresearch" target="_blank" rel="noopener noreferrer"><span>autoresearch</span><small>Karpathy · GitHub</small></a>
-                <a href="https://github.com/SylphAI-Inc/autoresearch-adal" target="_blank" rel="noopener noreferrer"><span>autoresearch-adal</span><small>SylphAI · GitHub</small></a>
-              </div>
-            </div>
-            <div class="reference-group">
-              <h2>Scaffolding &amp; terminology</h2>
-              <div class="reference-list">
-                <a href="https://acamh.onlinelibrary.wiley.com/doi/10.1111/j.1469-7610.1976.tb00381.x" target="_blank" rel="noopener noreferrer"><span>The Role of Tutoring in Problem Solving</span><small>Wood, Bruner &amp; Ross · 1976</small></a>
-                <a href="https://huggingface.co/blog/agent-glossary" target="_blank" rel="noopener noreferrer"><span>Harness, Scaffold, and AI Agent Terms</span><small>Hugging Face · 2025</small></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="slide-foot"><span>11 / 15</span></p>
-      </article>
+    <section class="deck" id="deck-root" aria-label="Loop Engineering For Everyone V1 deck">
+      <div id="deck-loading" style="position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-family:var(--mono);">Loading slides…</div>
     </section>
 
     <nav class="deck-controls" aria-label="Slide navigation">
       <button class="control-button" type="button" data-action="prev" aria-label="Previous slide">‹</button>
       <button class="control-button" type="button" data-action="next" aria-label="Next slide">›</button>
       <div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
-      <div class="status" aria-live="polite">01 / 15</div>
+      <div class="status" aria-live="polite">00 / 00</div>
     </nav>
   </main>
 
   <script>
     (() => {
-      const slides = Array.from(document.querySelectorAll('.slide:not(.is-hidden)'));
+      const deckRoot = document.getElementById('deck-root');
+      const loading = document.getElementById('deck-loading');
       const fill = document.querySelector('.progress-fill');
       const status = document.querySelector('.status');
       const prevButton = document.querySelector('[data-action="prev"]');
       const nextButton = document.querySelector('[data-action="next"]');
-      const querySlide = Number(new URLSearchParams(window.location.search).get('slide'));
-      let current = Number.isFinite(querySlide) && querySlide >= 1 && querySlide <= slides.length ? querySlide - 1 : 0;
+
+      let slides = [];
+      let current = 0;
 
       function render() {
+        if (!slides.length) return;
         slides.forEach((slide, index) => {
           slide.classList.toggle('active', index === current);
           slide.setAttribute('aria-hidden', index === current ? 'false' : 'true');
@@ -2089,14 +1552,17 @@
         });
 
         const rolePanel = slides[current].querySelector('.bridge-role-panel');
-        if (rolePanel) {
-          rolePanel.classList.remove('is-swapped');
-        }
+        if (rolePanel) rolePanel.classList.remove('is-swapped');
+
         fill.style.width = `${((current + 1) / slides.length) * 100}%`;
         status.textContent = `${String(current + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
         prevButton.disabled = current === 0;
         nextButton.disabled = current === slides.length - 1;
         document.title = `(${current + 1}/${slides.length}) Loop Engineering For Everyone`;
+
+        const url = new URL(window.location.href);
+        url.searchParams.set('slide', String(current + 1));
+        window.history.replaceState({}, '', url);
       }
 
       function goTo(index) {
@@ -2105,7 +1571,7 @@
       }
 
       function next() {
-        const rolePanel = slides[current].querySelector('.bridge-role-panel');
+        const rolePanel = slides[current]?.querySelector('.bridge-role-panel');
         if (rolePanel && !rolePanel.classList.contains('is-swapped')) {
           rolePanel.classList.add('is-swapped');
           return;
@@ -2139,10 +1605,49 @@
         goToSlide: (slideNumber) => goTo(Number(slideNumber) - 1),
         next,
         prev,
-        getState: () => ({ current: current + 1, total: slides.length })
+        getState: () => ({ current: current + 1, total: slides.length, index: window.__deckIndex || null })
       };
 
-      render();
+      async function loadDeck() {
+        const indexRes = await fetch('slides/index.json', { cache: 'no-store' });
+        if (!indexRes.ok) throw new Error('Failed to load slides/index.json');
+        const index = await indexRes.json();
+        window.__deckIndex = index;
+
+        const enabled = (index.slides || []).filter((s) => s.enabled !== false);
+        const parts = await Promise.all(enabled.map(async (entry) => {
+          const res = await fetch('slides/' + entry.file, { cache: 'no-store' });
+          if (!res.ok) throw new Error('Failed to load ' + entry.file);
+          return { entry, html: await res.text() };
+        }));
+
+        loading.remove();
+        const frag = document.createDocumentFragment();
+        for (const part of parts) {
+          const wrap = document.createElement('div');
+          wrap.innerHTML = part.html.trim();
+          const slide = wrap.querySelector('article.slide') || wrap.firstElementChild;
+          if (!slide) continue;
+          slide.dataset.slideId = part.entry.id || '';
+          slide.dataset.slideFile = part.entry.file || '';
+          slide.classList.remove('active');
+          frag.appendChild(slide);
+        }
+        deckRoot.appendChild(frag);
+        slides = Array.from(deckRoot.querySelectorAll('.slide'));
+
+        const querySlide = Number(new URLSearchParams(window.location.search).get('slide'));
+        current = Number.isFinite(querySlide) && querySlide >= 1 && querySlide <= slides.length ? querySlide - 1 : 0;
+        render();
+      }
+
+      loadDeck().catch((err) => {
+        console.error(err);
+        if (loading) {
+          loading.textContent = 'Could not load slides. Serve this folder over HTTP and check slides/index.json.';
+          loading.style.color = '#ff8fb8';
+        }
+      });
     })();
   </script>
 </body>

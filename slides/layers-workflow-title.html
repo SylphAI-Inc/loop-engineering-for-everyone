@@ -1,0 +1,84 @@
+<article class="slide" aria-labelledby="slide-layers-workflow-title">
+  <h2 id="slide-layers-workflow-title" class="slide-title">Where We Are</h2>
+  <div class="slide-body layers-workflow-body">
+    <div class="diagram layers-workflow-diagram">
+      <svg class="illustration layers-workflow-svg" viewBox="0 0 1040 600" role="img" aria-label="Model Intelligence, Agent plus Harness, and Human Manual Workflow with outer loop. Question: is loop engineering the answer?">
+        <defs>
+          <marker id="layersUpArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#FF5898"></path>
+          </marker>
+          <marker id="lifeArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(255,255,255,0.45)"></path>
+          </marker>
+          <marker id="lifeArrowPink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#FF5898"></path>
+          </marker>
+        </defs>
+
+        <!-- Left stack -->
+        <rect x="36" y="480" width="260" height="80" rx="18" fill="#25252b" stroke="#8d8d99" stroke-width="2"/>
+        <text x="166" y="528" fill="#ffffff" font-size="22" font-weight="650" text-anchor="middle">Model Intelligence</text>
+
+        <rect x="36" y="360" width="260" height="80" rx="18" fill="#3b2431" stroke="#FF5898" stroke-width="2"/>
+        <text x="166" y="408" fill="#ffffff" font-size="22" font-weight="650" text-anchor="middle">Agent + Harness</text>
+
+        <rect x="36" y="56" width="260" height="150" rx="18" fill="#5c1f3d" stroke="#FF5898" stroke-width="3"/>
+        <text x="166" y="116" fill="#ffffff" font-size="22" font-weight="650" text-anchor="middle">Human Manual</text>
+        <text x="166" y="148" fill="#ffffff" font-size="22" font-weight="650" text-anchor="middle">Workflow</text>
+        <text x="166" y="180" fill="#ffc1da" font-size="15" text-anchor="middle">outer loop · still manual</text>
+
+        <path d="M 166 480 V 448" fill="none" stroke="#FF5898" stroke-width="3" marker-end="url(#layersUpArrow)"/>
+        <path d="M 166 360 V 214" fill="none" stroke="#FF5898" stroke-width="3" marker-end="url(#layersUpArrow)"/>
+
+        <!-- Middle explanations -->
+        <line x1="296" y1="520" x2="340" y2="520" stroke="#5b5b66" stroke-width="2"/>
+        <rect x="340" y="486" width="210" height="68" rx="12" fill="#151519" stroke="#5b5b66" stroke-width="1.5"/>
+        <text x="445" y="526" fill="#ffffff" font-size="17" font-weight="500" text-anchor="middle">Reason &amp; generate</text>
+
+        <line x1="296" y1="400" x2="340" y2="400" stroke="#5b5b66" stroke-width="2"/>
+        <rect x="340" y="362" width="210" height="76" rx="12" fill="#151519" stroke="#5b5b66" stroke-width="1.5"/>
+        <text x="445" y="392" fill="#ffffff" font-size="16" font-weight="500" text-anchor="middle">Infrastructure that acts</text>
+        <text x="445" y="418" fill="#b9bdc4" font-size="13" text-anchor="middle">tools · files · browser · runtime</text>
+
+        <!-- Connector to outer loop -->
+        <line x1="296" y1="131" x2="590" y2="131" stroke="#FF5898" stroke-width="2.5"/>
+        <circle cx="590" cy="131" r="5" fill="#FF5898"/>
+
+        <!-- Outer loop -->
+        <rect x="600" y="40" width="400" height="300" rx="18" fill="rgba(255,255,255,0.025)" stroke="rgba(255,88,152,0.45)" stroke-width="2"/>
+        <text x="800" y="74" fill="#FF5898" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="700" letter-spacing="1.5" text-anchor="middle">OUTER LOOP</text>
+
+        <g font-size="17" font-weight="650" text-anchor="middle">
+          <rect x="680" y="100" width="140" height="32" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.28)"/>
+          <text x="750" y="122" fill="#f4f4f5">Understand</text>
+          <rect x="680" y="146" width="140" height="32" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.28)"/>
+          <text x="750" y="168" fill="#f4f4f5">Plan</text>
+          <rect x="680" y="192" width="140" height="32" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.28)"/>
+          <text x="750" y="214" fill="#f4f4f5">Build</text>
+          <rect x="680" y="238" width="140" height="32" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.28)"/>
+          <text x="750" y="260" fill="#f4f4f5">Test</text>
+          <rect x="680" y="284" width="140" height="32" rx="10" fill="rgba(255,88,152,0.10)" stroke="#FF5898" stroke-dasharray="5 4"/>
+          <text x="750" y="306" fill="#f4f4f5">Review</text>
+        </g>
+
+        <path d="M 750 132 V 146 M 750 178 V 192 M 750 224 V 238 M 750 270 V 284" fill="none" stroke="rgba(255,255,255,0.42)" stroke-width="2" marker-end="url(#lifeArrow)"/>
+        <path d="M 830 300 C 930 300 930 108 830 108" fill="none" stroke="#FF5898" stroke-width="2.5" stroke-dasharray="7 6" marker-end="url(#lifeArrowPink)"/>
+        <text x="952" y="210" fill="#FF5898" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" text-anchor="middle" transform="rotate(90 952 210)">ITERATE</text>
+        <path d="M 820 300 H 870" fill="none" stroke="#FF5898" stroke-width="2.5" marker-end="url(#lifeArrowPink)"/>
+        <rect x="880" y="284" width="90" height="32" rx="10" fill="rgba(255,88,152,0.16)" stroke="#FF5898" stroke-width="2"/>
+        <text x="925" y="306" fill="#f4f4f5" font-size="15" font-weight="650" text-anchor="middle">Deliver</text>
+      </svg>
+    </div>
+
+    <div class="layers-workflow-copy">
+      <p class="slide-lead layers-workflow-lead">
+        Generate → act → still babysit the outer loop.
+      </p>
+      <div class="loops-today-takeaway layers-workflow-question">
+        <strong class="layers-workflow-question-label">One question</strong>
+        Is loop engineering the answer?
+      </div>
+    </div>
+  </div>
+  <p class="slide-foot"><span></span></p>
+</article>

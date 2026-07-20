@@ -1,0 +1,177 @@
+{
+  "slides": [
+    {
+      "id": "1-title",
+      "file": "1-title.html",
+      "title": "Beyond Loop Engineering",
+      "enabled": true,
+      "number": 1
+    },
+    {
+      "id": "intro-title",
+      "file": "intro-title.html",
+      "title": "Why We\u2019re Here",
+      "enabled": true,
+      "number": 2
+    },
+    {
+      "id": "4-title",
+      "file": "4-title.html",
+      "title": "More Productive. More Drained.",
+      "enabled": true,
+      "number": 3
+    },
+    {
+      "id": "5-title",
+      "file": "5-title.html",
+      "title": "We are stuck babysitting agents",
+      "enabled": false
+    },
+    {
+      "id": "layers-workflow-title",
+      "file": "layers-workflow-title.html",
+      "title": "Where We Are",
+      "enabled": true,
+      "number": 4
+    },
+    {
+      "id": "builder-context-title",
+      "file": "builder-context-title.html",
+      "title": "A Builder\u2019s Taxonomy",
+      "enabled": false
+    },
+    {
+      "id": "2-title",
+      "file": "2-title.html",
+      "title": "Agents: From ReAct to Coding Agents",
+      "enabled": true,
+      "number": 5
+    },
+    {
+      "id": "3-title",
+      "file": "3-title.html",
+      "title": "Harness: What Makes an Agent Real",
+      "enabled": true,
+      "number": 6
+    },
+    {
+      "id": "v2-loop-engineering-title",
+      "file": "v2-loop-engineering-title.html",
+      "title": "Loop Engineering",
+      "enabled": true,
+      "number": 7
+    },
+    {
+      "id": "v2-why-loops-possible-title",
+      "file": "v2-why-loops-possible-title.html",
+      "title": "Why Loops Became Possible",
+      "enabled": true,
+      "number": 8
+    },
+    {
+      "id": "v2-loops-of-today-title",
+      "file": "v2-loops-of-today-title.html",
+      "title": "Loops of Today",
+      "enabled": true,
+      "number": 9
+    },
+    {
+      "id": "v2-why-still-hard-title",
+      "file": "v2-why-still-hard-title.html",
+      "title": "Why It\u2019s Still Hard",
+      "enabled": true,
+      "number": 10
+    },
+    {
+      "id": "v2-what-to-automate-title",
+      "file": "v2-what-to-automate-title.html",
+      "title": "What We Need to Automate",
+      "enabled": true,
+      "number": 11
+    },
+    {
+      "id": "6-title",
+      "file": "6-title.html",
+      "title": "Loop Engineering",
+      "enabled": false
+    },
+    {
+      "id": "7-title",
+      "file": "7-title.html",
+      "title": "What Makes Loops Possible",
+      "enabled": false
+    },
+    {
+      "id": "8-title",
+      "file": "8-title.html",
+      "title": "Loops of Today",
+      "enabled": false
+    },
+    {
+      "id": "v2-real-loop-needs-title",
+      "file": "v2-real-loop-needs-title.html",
+      "title": "What a Real Loop Needs",
+      "enabled": false
+    },
+    {
+      "id": "8a-title",
+      "file": "8a-title.html",
+      "title": "But It Is Still Complex and Expensive",
+      "enabled": false
+    },
+    {
+      "id": "accessible-title",
+      "file": "accessible-title.html",
+      "title": "Make Loop Engineering Accessible",
+      "enabled": false
+    },
+    {
+      "id": "9-title",
+      "file": "9-title.html",
+      "title": "AdaL Engineer",
+      "enabled": false
+    },
+    {
+      "id": "adal-how-title",
+      "file": "adal-how-title.html",
+      "title": "How AdaL Engineer Works",
+      "enabled": true,
+      "number": 12
+    },
+    {
+      "id": "adal-pdf-screenshot",
+      "file": "adal-pdf-screenshot.html",
+      "title": "AdaL Builder / Evaluator Screenshot",
+      "enabled": true,
+      "number": 13
+    },
+    {
+      "id": "demo-title",
+      "file": "demo-title.html",
+      "title": "Demo Comparison",
+      "enabled": true,
+      "number": 14
+    },
+    {
+      "id": "11-title",
+      "file": "11-title.html",
+      "title": "Measure Autonomy",
+      "enabled": true,
+      "number": 15
+    },
+    {
+      "id": "humans-next-title",
+      "file": "humans-next-title.html",
+      "title": "What Will Humans Do Next?",
+      "enabled": true,
+      "number": 16
+    },
+    {
+      "id": "12-title",
+      "file": "12-title.html",
+      "title": "References",
+      "enabled": true,
+      "number": 17
+    }
+  ]
+}

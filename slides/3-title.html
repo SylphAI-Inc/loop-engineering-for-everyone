@@ -1,0 +1,61 @@
+<article class="slide" aria-labelledby="slide-3-title">
+        <h2 id="slide-3-title" class="slide-title">Harness: What Makes an Agent Real</h2>
+        <div class="slide-body slide-body-expansion">
+          <div class="expansion-copy" style="max-width: 600px;">
+            <ul class="expansion-harness-note" aria-label="Harness components">
+              <li>Tools / MCP</li>
+              <li>Compaction</li>
+              <li>Prompt structure + caching</li>
+              <li>Skills</li>
+              <li>@ files + images</li>
+              <li>Runtime environment</li>
+            </ul>
+          </div>
+          <svg class="illustration" viewBox="0 0 900 500" aria-label="Context window expansion: Prompt inside Context inside Harness" style="width: 100%; max-width: 1200px; justify-self: center;">
+            <defs>
+              <filter id="harnessGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="6" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+            
+            <!-- Context-growth axis -->
+            <path d="M 62 460 L 62 40" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="3" stroke-dasharray="6,6"/>
+            <text x="42" y="470" fill="var(--text)" font-family="var(--mono)" font-size="18" font-weight="bold" text-anchor="start" transform="rotate(-90 42 470)">LESS CONTEXT</text>
+            <text x="42" y="160" fill="var(--text)" font-family="var(--mono)" font-size="18" font-weight="bold" text-anchor="start" transform="rotate(-90 42 160)">MORE CONTEXT</text>
+            <polygon points="62,30 54,45 70,45" fill="rgba(255,255,255,0.5)"/>
+
+            <!-- Nested engineering layers -->
+            <rect x="110" y="20" width="520" height="460" rx="40" fill="rgba(255, 255, 255, 0.02)" stroke="rgba(255, 255, 255, 0.4)" stroke-width="2" stroke-dasharray="10,8"/>
+            <text x="370" y="84" fill="var(--text)" font-size="34" font-weight="600" text-anchor="middle">Harness Engineering</text>
+            <text x="370" y="112" fill="var(--muted)" font-family="var(--mono)" font-size="18" text-anchor="middle">code that changes the context</text>
+
+            <rect x="150" y="150" width="440" height="310" rx="30" fill="rgba(255, 88, 152, 0.04)" stroke="rgba(255, 255, 255, 0.4)" stroke-width="2"/>
+            <text x="370" y="215" fill="var(--text)" font-size="32" font-weight="600" text-anchor="middle">Context Engineering</text>
+            <text x="370" y="244" fill="var(--muted)" font-family="var(--mono)" font-size="19" text-anchor="middle">everything the model sees</text>
+
+            <rect x="190" y="290" width="360" height="150" rx="75" fill="rgba(255, 88, 152, 0.1)" stroke="var(--accent)" stroke-width="3" filter="url(#harnessGlow)"/>
+            <text x="370" y="352" fill="var(--text)" font-size="30" font-weight="600" text-anchor="middle">Prompt Engineering</text>
+            <text x="370" y="382" fill="var(--muted)" font-family="var(--mono)" font-size="19" text-anchor="middle">instructions</text>
+
+            <!-- Examples rail: deliberately outside the nested layers -->
+            <path d="M 618 42 V458" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+
+            <path d="M 632 104 H 636" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+            <circle cx="636" cy="104" r="5" fill="var(--accent)"/>
+            <text x="654" y="101" fill="var(--text)" font-family="var(--sans)" font-size="22" font-weight="600">Harness</text>
+            <text x="654" y="129" fill="var(--muted)" font-family="var(--mono)" font-size="16">Claude Code · Codex</text>
+            <text x="654" y="154" fill="var(--muted)" font-family="var(--mono)" font-size="16">AdaL</text>
+
+            <path d="M 552 364 H 636" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+            <circle cx="636" cy="364" r="5" fill="var(--accent)"/>
+            <text x="654" y="360" fill="var(--text)" font-family="var(--sans)" font-size="22" font-weight="600">Prompt</text>
+            <text x="654" y="387" fill="var(--accent)" font-family="var(--mono)" font-size="17">React codebase</text>
+          </svg>
+          <div class="agent-cite-stack">
+            <a class="agent-cite" href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener noreferrer">Context Engineering — Anthropic ↗</a>
+            <a class="agent-cite" href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer">Harness Engineering — OpenAI ↗</a>
+          </div>
+        </div>
+        <p class="slide-foot"><span>03 / 15</span></p>
+      </article>
