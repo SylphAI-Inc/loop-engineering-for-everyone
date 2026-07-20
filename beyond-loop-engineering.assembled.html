@@ -1153,16 +1153,36 @@
       gap: clamp(14px, 1.6vw, 24px);
     }
 
-    .slide[aria-labelledby="slide-3-title"] .slide-body-expansion {
-      width: min(100%, 1680px) !important;
+    .slide[aria-labelledby="slide-3-title"] .slide-body-expansion,
+    .slide[aria-labelledby="slide-3-title"] .harness-slide-body {
+      width: min(100%, 1760px) !important;
       height: 100%;
-      grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1.25fr);
-      gap: clamp(28px, 3.5vw, 64px);
-      align-items: center;
+      min-height: 0;
+      grid-template-columns: minmax(260px, 0.58fr) minmax(0, 1.42fr);
+      gap: clamp(20px, 2.8vw, 48px);
+      align-items: stretch;
+      justify-items: stretch;
     }
 
-    .slide[aria-labelledby="slide-3-title"] .expansion-copy {
+    .slide[aria-labelledby="slide-3-title"] .expansion-copy,
+    .slide[aria-labelledby="slide-3-title"] .harness-def-copy {
       max-width: none !important;
+      height: 100%;
+      align-content: center;
+      min-width: 0;
+    }
+
+    .slide[aria-labelledby="slide-3-title"] .harness-def-panel {
+      min-height: 0;
+      height: auto;
+      padding: clamp(22px, 2.6vw, 40px);
+    }
+
+    .slide[aria-labelledby="slide-3-title"] .harness-def-text {
+      display: block;
+      font-size: clamp(22px, 2.15vw, 34px);
+      line-height: 1.28;
+      font-weight: 600;
     }
 
     .slide[aria-labelledby="slide-3-title"] .expansion-harness-note {
@@ -1171,11 +1191,62 @@
       gap: clamp(14px, 1.5vw, 22px) clamp(18px, 2vw, 28px);
     }
 
-    .slide[aria-labelledby="slide-3-title"] .illustration {
+    .slide[aria-labelledby="slide-3-title"] .harness-diagram-wrap {
+      min-width: 0;
+      min-height: 0;
+      height: 100%;
+      width: 100%;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .slide[aria-labelledby="slide-3-title"] .illustration,
+    .slide[aria-labelledby="slide-3-title"] .harness-illustration {
       width: 100% !important;
       max-width: none !important;
-      height: auto;
-      min-height: clamp(320px, 48vh, 640px);
+      height: 100% !important;
+      max-height: min(68vh, 100%);
+      min-height: clamp(340px, 52vh, 720px);
+      display: block;
+    }
+
+    .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-body {
+      width: min(100%, 1760px) !important;
+      height: 100%;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+      gap: clamp(20px, 2.6vw, 44px);
+      align-items: stretch;
+      justify-items: stretch;
+    }
+
+    .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-copy {
+      min-width: 0;
+      height: 100%;
+      display: grid;
+      gap: clamp(14px, 1.6vw, 22px);
+      align-content: center;
+    }
+
+    .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-diagram-wrap {
+      min-width: 0;
+      min-height: 0;
+      height: 100%;
+      width: 100%;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-illustration {
+      width: 100% !important;
+      max-width: none !important;
+      height: 100% !important;
+      max-height: min(70vh, 100%);
+      min-height: clamp(360px, 54vh, 760px);
+      display: block;
     }
 
     .slide[aria-labelledby="slide-layers-workflow-title"] .slide-body,
@@ -1773,81 +1844,81 @@
         <p class="slide-foot"><span>02 / 15</span></p>
       </article>
 <article class="slide" aria-labelledby="slide-3-title">
-        <h2 id="slide-3-title" class="slide-title">Harness: What Makes an Agent Real</h2>
-        <div class="slide-body slide-body-expansion">
-          <div class="expansion-copy" style="max-width: 600px;">
-            <ul class="expansion-harness-note" aria-label="Harness components">
-              <li>Tools / MCP</li>
-              <li>Compaction</li>
-              <li>Prompt structure + caching</li>
-              <li>Skills</li>
-              <li>@ files + images</li>
-              <li>Runtime environment</li>
-            </ul>
-          </div>
-          <svg class="illustration" viewBox="0 0 900 500" aria-label="Context window expansion: Prompt inside Context inside Harness" style="width: 100%; max-width: 1200px; justify-self: center;">
-            <defs>
-              <filter id="harnessGlow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="6" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-            </defs>
-            
-            <!-- Context-growth axis -->
-            <path d="M 62 460 L 62 40" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="3" stroke-dasharray="6,6"/>
-            <text x="42" y="470" fill="var(--text)" font-family="var(--mono)" font-size="18" font-weight="bold" text-anchor="start" transform="rotate(-90 42 470)">LESS CONTEXT</text>
-            <text x="42" y="160" fill="var(--text)" font-family="var(--mono)" font-size="18" font-weight="bold" text-anchor="start" transform="rotate(-90 42 160)">MORE CONTEXT</text>
-            <polygon points="62,30 54,45 70,45" fill="rgba(255,255,255,0.5)"/>
-
-            <!-- Nested engineering layers -->
-            <rect x="110" y="20" width="520" height="460" rx="40" fill="rgba(255, 255, 255, 0.02)" stroke="rgba(255, 255, 255, 0.4)" stroke-width="2" stroke-dasharray="10,8"/>
-            <text x="370" y="84" fill="var(--text)" font-size="34" font-weight="600" text-anchor="middle">Harness Engineering</text>
-            <text x="370" y="112" fill="var(--muted)" font-family="var(--mono)" font-size="18" text-anchor="middle">code that changes the context</text>
-
-            <rect x="150" y="150" width="440" height="310" rx="30" fill="rgba(255, 88, 152, 0.04)" stroke="rgba(255, 255, 255, 0.4)" stroke-width="2"/>
-            <text x="370" y="215" fill="var(--text)" font-size="32" font-weight="600" text-anchor="middle">Context Engineering</text>
-            <text x="370" y="244" fill="var(--muted)" font-family="var(--mono)" font-size="19" text-anchor="middle">everything the model sees</text>
-
-            <rect x="190" y="290" width="360" height="150" rx="75" fill="rgba(255, 88, 152, 0.1)" stroke="var(--accent)" stroke-width="3" filter="url(#harnessGlow)"/>
-            <text x="370" y="352" fill="var(--text)" font-size="30" font-weight="600" text-anchor="middle">Prompt Engineering</text>
-            <text x="370" y="382" fill="var(--muted)" font-family="var(--mono)" font-size="19" text-anchor="middle">instructions</text>
-
-            <!-- Examples rail: deliberately outside the nested layers -->
-            <path d="M 618 42 V458" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
-
-            <path d="M 632 104 H 636" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
-            <circle cx="636" cy="104" r="5" fill="var(--accent)"/>
-            <text x="654" y="101" fill="var(--text)" font-family="var(--sans)" font-size="22" font-weight="600">Harness</text>
-            <text x="654" y="129" fill="var(--muted)" font-family="var(--mono)" font-size="16">Claude Code · Codex</text>
-            <text x="654" y="154" fill="var(--muted)" font-family="var(--mono)" font-size="16">AdaL</text>
-
-            <path d="M 552 364 H 636" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
-            <circle cx="636" cy="364" r="5" fill="var(--accent)"/>
-            <text x="654" y="360" fill="var(--text)" font-family="var(--sans)" font-size="22" font-weight="600">Prompt</text>
-            <text x="654" y="387" fill="var(--accent)" font-family="var(--mono)" font-size="17">React codebase</text>
-          </svg>
-          <div class="agent-cite-stack">
-            <a class="agent-cite" href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener noreferrer">Context Engineering — Anthropic ↗</a>
-            <a class="agent-cite" href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer">Harness Engineering — OpenAI ↗</a>
-          </div>
-        </div>
-        <p class="slide-foot"><span>03 / 15</span></p>
-      </article>
-<article class="slide" aria-labelledby="slide-v2-loop-eng-title">
-  <h2 id="slide-v2-loop-eng-title" class="slide-title">Loop Engineering</h2>
-  <div class="slide-body" style="width:min(100%,1500px);display:grid;gap:clamp(22px,2.8vw,40px);align-content:center;justify-items:stretch;">
-    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.4vw,36px);">
-      <section class="loop-engineering-panel">
-        <p class="loop-engineering-panel-label">The shift</p>
-        <strong style="font-size:clamp(28px,2.8vw,42px);line-height:1.15;">Instead of prompting, build loops that prompt the system.</strong>
-      </section>
-      <section class="loop-engineering-panel loop-engineering-panel--outcome">
-        <p class="loop-engineering-panel-label">AdaL’s opinion</p>
-        <strong style="font-size:clamp(24px,2.4vw,36px);line-height:1.2;">A goal-driven system that coordinates multiple agents to a verified outcome — autonomously, without humans in the loop.</strong>
+  <h2 id="slide-3-title" class="slide-title">Harness: What Makes an Agent Real</h2>
+  <div class="slide-body slide-body-expansion harness-slide-body">
+    <div class="expansion-copy harness-def-copy">
+      <section class="loop-engineering-panel loop-engineering-panel--outcome harness-def-panel">
+        <p class="loop-engineering-panel-label">Definition</p>
+        <strong class="harness-def-text">
+          A harness is the code that takes a model and turns it into an agent system in a real environment.
+        </strong>
       </section>
     </div>
-    <p class="loops-today-takeaway" style="margin:0;text-align:left;max-width:none;">
-      The industry shift is shared. The exact definition is still emerging — this is <strong>AdaL’s opinion</strong> of how loop engineering should be judged.
+    <div class="harness-diagram-wrap">
+      <svg class="illustration harness-illustration" viewBox="0 0 1080 540" preserveAspectRatio="xMidYMid meet" aria-label="Harness contains context engineering and prompt engineering, with components listed on the right">
+        <path d="M 52 500 L 52 36" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="3" stroke-dasharray="6,6"/>
+        <text x="34" y="510" fill="var(--text)" font-family="var(--mono)" font-size="16" font-weight="bold" text-anchor="start" transform="rotate(-90 34 510)">LESS CONTEXT</text>
+        <text x="34" y="180" fill="var(--text)" font-family="var(--mono)" font-size="16" font-weight="bold" text-anchor="start" transform="rotate(-90 34 180)">MORE CONTEXT</text>
+        <polygon points="52,26 44,41 60,41" fill="rgba(255,255,255,0.5)"/>
+
+        <rect x="90" y="24" width="500" height="492" rx="36" fill="rgba(255, 255, 255, 0.02)" stroke="rgba(255, 255, 255, 0.4)" stroke-width="2" stroke-dasharray="10,8"/>
+        <text x="340" y="72" fill="var(--text)" font-size="30" font-weight="600" text-anchor="middle">Harness Engineering</text>
+        <text x="340" y="100" fill="var(--muted)" font-family="var(--mono)" font-size="16" text-anchor="middle">code that changes the context</text>
+
+        <rect x="128" y="156" width="424" height="332" rx="26" fill="rgba(255,255,255,0.03)" stroke="rgba(255, 255, 255, 0.4)" stroke-width="2"/>
+        <text x="340" y="200" fill="var(--text)" font-size="28" font-weight="600" text-anchor="middle">Context Engineering</text>
+        <text x="340" y="230" fill="var(--muted)" font-family="var(--mono)" font-size="16" text-anchor="middle">everything the model sees</text>
+
+        <rect x="176" y="348" width="328" height="118" rx="59" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.45)" stroke-width="2"/>
+        <text x="340" y="398" fill="var(--text)" font-size="24" font-weight="600" text-anchor="middle">Prompt Engineering</text>
+        <text x="340" y="426" fill="var(--muted)" font-family="var(--mono)" font-size="16" text-anchor="middle">instructions</text>
+
+        <path d="M 680 40 V500" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+
+        <path d="M 590 80 H 698" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+        <circle cx="698" cy="80" r="5" fill="var(--accent)"/>
+        <text x="720" y="76" fill="var(--text)" font-family="var(--sans)" font-size="20" font-weight="600">Harness</text>
+        <text x="720" y="102" fill="var(--muted)" font-family="var(--mono)" font-size="15">Claude Code · Codex</text>
+        <text x="720" y="126" fill="var(--muted)" font-family="var(--mono)" font-size="15">AdaL</text>
+
+        <path d="M 552 215 H 698" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+        <circle cx="698" cy="215" r="5" fill="var(--accent)"/>
+        <text x="720" y="211" fill="var(--text)" font-family="var(--sans)" font-size="20" font-weight="600">Context</text>
+        <text x="720" y="244" fill="var(--muted)" font-family="var(--mono)" font-size="15">· Tools / MCP</text>
+        <text x="720" y="270" fill="var(--muted)" font-family="var(--mono)" font-size="15">· Skills</text>
+        <text x="720" y="296" fill="var(--muted)" font-family="var(--mono)" font-size="15">· Compaction</text>
+        <text x="720" y="322" fill="var(--muted)" font-family="var(--mono)" font-size="15">· Prompt structure + caching</text>
+        <text x="720" y="348" fill="var(--muted)" font-family="var(--mono)" font-size="15">· @ files + images</text>
+        <text x="720" y="374" fill="var(--muted)" font-family="var(--mono)" font-size="15">· Runtime environment</text>
+
+        <path d="M 504 407 H 698" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+        <circle cx="698" cy="407" r="5" fill="rgba(255,255,255,0.55)"/>
+        <text x="720" y="403" fill="var(--text)" font-family="var(--sans)" font-size="20" font-weight="600">Prompt</text>
+        <text x="720" y="429" fill="var(--muted)" font-family="var(--mono)" font-size="15">React codebase</text>
+      </svg>
+    </div>
+    <div class="agent-cite-stack">
+      <a class="agent-cite" href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener noreferrer">Context Engineering — Anthropic ↗</a>
+      <a class="agent-cite" href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer">Harness Engineering — OpenAI ↗</a>
+    </div>
+  </div>
+  <p class="slide-foot"><span></span></p>
+</article>
+<article class="slide" aria-labelledby="slide-v2-loop-eng-title">
+  <h2 id="slide-v2-loop-eng-title" class="slide-title">Loop Engineering</h2>
+  <div class="slide-body" style="width:min(100%,1680px);height:100%;min-height:0;display:grid;gap:clamp(36px,4.2vw,72px);align-content:center;justify-items:stretch;padding-block:clamp(8px,1.2vw,20px);">
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,3.2vw,56px);align-items:stretch;">
+      <section class="loop-engineering-panel" style="min-height:0;padding:clamp(28px,3vw,48px);">
+        <p class="loop-engineering-panel-label">The shift</p>
+        <strong style="font-size:clamp(28px,2.8vw,42px);line-height:1.2;display:block;margin-top:clamp(10px,1.2vw,18px);">Instead of prompting, build loops that prompt the system.</strong>
+      </section>
+      <section class="loop-engineering-panel loop-engineering-panel--outcome" style="min-height:0;padding:clamp(28px,3vw,48px);">
+        <p class="loop-engineering-panel-label">AdaL’s working definition</p>
+        <strong style="font-size:clamp(24px,2.4vw,36px);line-height:1.28;display:block;margin-top:clamp(10px,1.2vw,18px);">A goal-driven system that coordinates multiple agents to a verified outcome — autonomously, without humans in the loop.</strong>
+      </section>
+    </div>
+    <p class="loops-today-takeaway" style="margin:0;text-align:left;max-width:none;padding-top:clamp(4px,0.8vw,12px);">
+      Aligned with the industry direction. The exact definition is still emerging — this is <strong>how we make the outer-loop claim precise enough to build against</strong>.
     </p>
   </div>
   <div class="agent-cite-stack">
@@ -1861,10 +1932,7 @@
 </article>
 <article class="slide" aria-labelledby="slide-v2-why-possible-title">
   <h2 id="slide-v2-why-possible-title" class="slide-title">Why Loops Became Possible</h2>
-  <div class="slide-body" style="width:min(100%,1580px);display:grid;gap:clamp(20px,2.4vw,36px);align-content:center;justify-items:stretch;">
-    <p class="slide-lead" style="margin:0;max-width:none;font-size:clamp(20px,1.8vw,28px);color:var(--text);">
-      Two capability shifts made the outer loop automatable in principle.
-    </p>
+  <div class="slide-body" style="width:min(100%,1580px);display:grid;gap:clamp(28px,3.2vw,48px);align-content:center;justify-items:stretch;">
     <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.4vw,36px);">
       <section class="loop-engineering-panel" style="min-height:0;">
         <p class="loop-engineering-panel-label">01 · Self-validation</p>
@@ -1940,112 +2008,104 @@
       </aside>
       <div class="barrier-grid" aria-label="The hard part">
         <div class="barrier-card"><strong>High complexity</strong></div>
-        <div class="barrier-card"><strong>High cost</strong></div>
+        <div class="barrier-card"><strong>High cost</strong><span style="display:block;margin-top:8px;font-size:0.72em;font-weight:500;color:var(--muted);">tokenmaxxing</span></div>
       </div>
     </div>
   </div>
   <p class="slide-foot"><span></span></p>
 </article>
 <article class="slide" aria-labelledby="slide-v2-automate-title">
-  <h2 id="slide-v2-automate-title" class="slide-title">What the Engineer Still Does</h2>
-  <div class="slide-body" style="width:min(100%,1580px);display:grid;gap:clamp(20px,2.5vw,36px);align-content:center;justify-items:stretch;">
-    <p class="slide-lead" style="margin:0;max-width:none;font-size:clamp(20px,1.8vw,28px);color:var(--text);">
-      We don’t need a better coding agent alone. We need to automate the <strong style="color:var(--text);font-weight:600;">engineer role</strong> around today’s agents.
-    </p>
-    <div style="display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:clamp(18px,2.4vw,36px);align-items:stretch;">
-      <section class="loop-engineering-panel" style="min-height:0;">
-        <p class="loop-engineering-panel-label">Workers · today</p>
-        <strong style="font-size:clamp(26px,2.5vw,38px);line-height:1.15;">Capable agents already execute steps</strong>
-        <ul class="lifecycle-reasons" style="margin-top:16px;font-size:clamp(18px,1.55vw,24px);">
-          <li>Coding</li>
-          <li>Browser use</li>
-          <li>Deep research</li>
-          <li>Code review</li>
+  <h2 id="slide-v2-automate-title" class="slide-title">A Different Path to Autonomy</h2>
+  <div class="slide-body" style="width:min(100%,1680px);height:100%;min-height:0;display:grid;gap:clamp(28px,3.2vw,48px);align-content:center;justify-items:stretch;">
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(18px,2.4vw,36px);align-items:stretch;">
+      <section class="loop-engineering-panel" style="min-height:0;padding:clamp(22px,2.4vw,36px);">
+        <p class="loop-engineering-panel-label">Not this path</p>
+        <strong style="font-size:clamp(24px,2.3vw,34px);line-height:1.2;">A better single agent</strong>
+        <ul class="lifecycle-reasons" style="margin-top:16px;font-size:clamp(17px,1.5vw,24px);">
+          <li>Still mostly one agent, one trajectory</li>
+          <li>Product dev is multi-stage — plan, build, test, review, iterate</li>
+          <li>Stuffing the outer loop into the worker complicates a well-defined infra scope</li>
+          <li>Coding agents stay great for manual collab — keep them simple</li>
         </ul>
-        <p class="slide-lead" style="margin:18px 0 0;max-width:none;font-size:clamp(16px,1.35vw,21px);">
-          They can act. They still don’t own the full job.
-        </p>
       </section>
-      <section class="loop-engineering-panel loop-engineering-panel--outcome" style="min-height:0;">
-        <p class="loop-engineering-panel-label">Engineer role · still mostly human</p>
-        <strong style="font-size:clamp(26px,2.5vw,38px);line-height:1.15;">The runtime that turns workers into an outcome</strong>
-        <ul class="lifecycle-reasons" style="margin-top:16px;font-size:clamp(18px,1.55vw,24px);">
-          <li>Set the goal and quality bar</li>
-          <li>Allocate and prompt the right workers</li>
-          <li>Carry context and long-term memory</li>
-          <li>Evaluate independently and recover</li>
-          <li>Know when to stop — or escalate</li>
+      <section class="loop-engineering-panel loop-engineering-panel--outcome" style="min-height:0;padding:clamp(22px,2.4vw,36px);">
+        <p class="loop-engineering-panel-label">This path · loop engineering</p>
+        <strong style="font-size:clamp(24px,2.3vw,34px);line-height:1.2;">Model what the engineer still does</strong>
+        <ul class="lifecycle-reasons" style="margin-top:16px;font-size:clamp(17px,1.5vw,24px);">
+          <li>Start from the 3rd layer: the human outer loop</li>
+          <li>Replace that role with another agent — the engineer runtime</li>
+          <li>It models engineer behaviors across the lifecycle</li>
+          <li>It works with coding agents of today — does not replace them</li>
         </ul>
       </section>
     </div>
     <p class="loops-today-takeaway" style="margin:0;text-align:left;max-width:none;">
-      Autonomy rises when the <strong>workflow role</strong> is automated — not when one worker gets smarter.
+      Autonomy rises when we automate the <strong>engineer layer</strong> — not when we overload a single worker.
     </p>
   </div>
   <p class="slide-foot"><span></span></p>
 </article>
 <article class="slide" aria-labelledby="slide-v2-adal-eng-title">
   <h2 id="slide-v2-adal-eng-title" class="slide-title">AdaL Engineer — Our First Experiment</h2>
-  <div class="slide-body" style="width:min(100%,1580px);display:grid;grid-template-columns:minmax(0,0.95fr) minmax(0,1.05fr);gap:clamp(20px,2.5vw,40px);align-items:center;justify-items:stretch;">
-    <div style="display:grid;gap:clamp(14px,1.8vw,22px);align-content:center;">
-      <p class="slide-lead" style="margin:0;max-width:none;font-size:clamp(18px,1.55vw,24px);color:var(--text);">
-        Our first attempt to automate the <strong style="font-weight:600;">engineer role</strong> — by operating today’s workers inside a higher-level workflow.
-      </p>
-      <section class="loop-engineering-panel" style="min-height:0;padding:clamp(18px,2vw,28px);">
+  <div class="slide-body adal-eng-body">
+    <div class="adal-eng-copy">
+      <section class="loop-engineering-panel" style="min-height:0;padding:clamp(22px,2.4vw,36px);">
         <p class="loop-engineering-panel-label">What it is</p>
-        <ul class="lifecycle-reasons" style="margin:0;font-size:clamp(17px,1.45vw,22px);">
-          <li>Works with existing coding, browser, research, and review agents</li>
-          <li>Allocates, prompts, coordinates, safeguards, and monitors them</li>
-          <li>Carries context, documentation, decisions, and work state</li>
-        </ul>
+        <strong style="font-size:clamp(22px,2.1vw,32px);line-height:1.3;display:block;margin-top:clamp(8px,1vw,14px);">
+          An engineer-level agent that operates today’s workers toward a verified outcome.
+        </strong>
       </section>
-      <section class="loop-engineering-panel loop-engineering-panel--outcome" style="min-height:0;padding:clamp(18px,2vw,28px);">
+      <section class="loop-engineering-panel loop-engineering-panel--outcome" style="min-height:0;padding:clamp(22px,2.4vw,36px);">
         <p class="loop-engineering-panel-label">Near-term goal</p>
-        <strong style="font-size:clamp(20px,1.9vw,28px);line-height:1.25;">Deliver one engineering task end-to-end at human-level quality.</strong>
+        <strong style="font-size:clamp(22px,2.1vw,32px);line-height:1.3;display:block;margin-top:clamp(8px,1vw,14px);">
+          Deliver one engineering task end-to-end at human-level quality.
+        </strong>
       </section>
       <p class="loops-today-takeaway" style="margin:0;text-align:left;max-width:none;">
         Not a finished answer. <strong>An experiment you can inspect.</strong>
       </p>
     </div>
-    <div style="width:100%;min-width:0;display:flex;align-items:center;justify-content:center;">
-      <svg class="illustration" style="width:100%;max-width:720px;" viewBox="0 0 900 560" aria-label="AdaL Engineer orchestrating Coding, Browser Use, Deep Research, and Code Review workers">
+    <div class="adal-eng-diagram-wrap">
+      <svg class="illustration adal-eng-illustration" viewBox="0 0 900 520" preserveAspectRatio="xMidYMid meet" aria-label="AdaL Engineer orchestrating Coding, Browser Use, Deep Research, and Code Review workers">
         <defs>
           <radialGradient id="v2EngineerHalo">
-            <stop offset="0" stop-color="#ff5898" stop-opacity=".18"/>
+            <stop offset="0" stop-color="#ff5898" stop-opacity=".20"/>
             <stop offset="1" stop-color="#ff5898" stop-opacity="0"/>
           </radialGradient>
         </defs>
-        <circle cx="450" cy="122" r="103" fill="url(#v2EngineerHalo)"/>
-        <circle cx="450" cy="122" r="74" fill="rgba(255,88,152,0.08)" stroke="#ff5898" stroke-width="2"/>
-        <text x="450" y="118" fill="#ff5898" font-size="28" font-weight="650" text-anchor="middle">AdaL</text>
-        <text x="450" y="148" fill="#ff5898" font-size="22" font-weight="650" text-anchor="middle">Engineer</text>
-        <path d="M526 122h20" fill="none" stroke="#6c727a" stroke-width="2"/>
-        <text x="554" y="128" fill="#6c727a" font-size="18" font-weight="600" letter-spacing="1.2" text-anchor="start">ROLE-LEVEL WORKFLOW</text>
-        <path d="M450 196v35M150 231h600" fill="none" stroke="rgba(255,88,152,0.62)" stroke-width="3"/>
-        <circle cx="450" cy="231" r="6" fill="#ff5898"/>
-        <g fill="none" stroke="rgba(255,88,152,0.62)" stroke-width="3">
-          <path d="M150 231v42M350 231v42M550 231v42M750 231v42"/>
-        </g>
-        <g>
-          <circle cx="150" cy="345" r="72" fill="rgba(255,88,152,0.055)" stroke="rgba(255,88,152,0.38)" stroke-width="2"/>
-          <path d="M123 334h18m-18 13h12m13-13h12m-12 13h19" fill="none" stroke="#ff5898" stroke-width="3" stroke-linecap="round"/>
-          <text x="150" y="460" fill="#f4f4f5" font-size="26" text-anchor="middle">Coding</text>
 
-          <circle cx="350" cy="345" r="72" fill="rgba(255,88,152,0.055)" stroke="rgba(255,88,152,0.38)" stroke-width="2"/>
-          <rect x="333" y="327" width="30" height="21" rx="3" fill="none" stroke="#ff5898" stroke-width="3"/>
-          <path d="M340 358h16M348 348v10" fill="none" stroke="#ff5898" stroke-width="3" stroke-linecap="round"/>
-          <text x="350" y="460" fill="#f4f4f5" font-size="26" text-anchor="middle">Browser Use</text>
+        <!-- Engineer hub -->
+        <circle cx="450" cy="105" r="96" fill="url(#v2EngineerHalo)"/>
+        <circle cx="450" cy="105" r="70" fill="rgba(255,88,152,0.10)" stroke="#ff5898" stroke-width="2.5"/>
+        <text x="450" y="98" fill="#ff5898" font-size="28" font-weight="650" text-anchor="middle">AdaL</text>
+        <text x="450" y="128" fill="#ff5898" font-size="22" font-weight="650" text-anchor="middle">Engineer</text>
+        <text x="450" y="198" fill="#6c727a" font-size="15" font-weight="600" letter-spacing="1.4" text-anchor="middle">ROLE-LEVEL WORKFLOW</text>
 
-          <circle cx="550" cy="345" r="72" fill="rgba(255,88,152,0.055)" stroke="rgba(255,88,152,0.38)" stroke-width="2"/>
-          <circle cx="543" cy="338" r="11" fill="none" stroke="#ff5898" stroke-width="3"/>
-          <path d="M551 346l9 9" fill="none" stroke="#ff5898" stroke-width="3" stroke-linecap="round"/>
-          <text x="550" y="460" fill="#f4f4f5" font-size="26" text-anchor="middle">Deep Research</text>
+        <!-- Spine -->
+        <path d="M450 175 V230" fill="none" stroke="rgba(255,88,152,0.65)" stroke-width="3"/>
+        <path d="M150 230 H750" fill="none" stroke="rgba(255,88,152,0.65)" stroke-width="3"/>
+        <circle cx="450" cy="230" r="6" fill="#ff5898"/>
 
-          <circle cx="750" cy="345" r="72" fill="rgba(255,88,152,0.055)" stroke="rgba(255,88,152,0.38)" stroke-width="2"/>
-          <path d="M727 343l14 14 28-31" fill="none" stroke="#ff5898" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <text x="750" y="460" fill="#f4f4f5" font-size="26" text-anchor="middle">Code Review</text>
-        </g>
-        <text x="450" y="530" fill="#ff5898" font-size="22" font-weight="650" letter-spacing="2" text-anchor="middle">WORKERS (AGENTS OF TODAY)</text>
+        <!-- Drops to workers -->
+        <path d="M150 230 V280 M350 230 V280 M550 230 V280 M750 230 V280" fill="none" stroke="rgba(255,88,152,0.65)" stroke-width="3"/>
+
+        <!-- Workers -->
+        <circle cx="150" cy="350" r="68" fill="rgba(255,88,152,0.05)" stroke="rgba(255,88,152,0.40)" stroke-width="2"/>
+        <text x="150" y="356" fill="#f4f4f5" font-size="22" font-weight="600" text-anchor="middle">Coding</text>
+
+        <circle cx="350" cy="350" r="68" fill="rgba(255,88,152,0.05)" stroke="rgba(255,88,152,0.40)" stroke-width="2"/>
+        <text x="350" y="348" fill="#f4f4f5" font-size="20" font-weight="600" text-anchor="middle">Browser</text>
+        <text x="350" y="372" fill="#f4f4f5" font-size="20" font-weight="600" text-anchor="middle">Use</text>
+
+        <circle cx="550" cy="350" r="68" fill="rgba(255,88,152,0.05)" stroke="rgba(255,88,152,0.40)" stroke-width="2"/>
+        <text x="550" y="348" fill="#f4f4f5" font-size="20" font-weight="600" text-anchor="middle">Deep</text>
+        <text x="550" y="372" fill="#f4f4f5" font-size="20" font-weight="600" text-anchor="middle">Research</text>
+
+        <circle cx="750" cy="350" r="68" fill="rgba(255,88,152,0.05)" stroke="rgba(255,88,152,0.40)" stroke-width="2"/>
+        <text x="750" y="348" fill="#f4f4f5" font-size="20" font-weight="600" text-anchor="middle">Code</text>
+        <text x="750" y="372" fill="#f4f4f5" font-size="20" font-weight="600" text-anchor="middle">Review</text>
+
+        <text x="450" y="470" fill="#ff5898" font-size="20" font-weight="650" letter-spacing="2" text-anchor="middle">WORKERS (AGENTS OF TODAY)</text>
       </svg>
     </div>
   </div>
@@ -2404,7 +2464,7 @@
       const nextButton = document.querySelector('[data-action="next"]');
       const querySlide = Number(new URLSearchParams(window.location.search).get('slide'));
       let current = Number.isFinite(querySlide) && querySlide >= 1 && querySlide <= slides.length ? querySlide - 1 : 0;
-      window.__deckIndex = { slides: [{"id": "1-title", "file": "1-title.html", "title": "Beyond Loop Engineering"}, {"id": "intro-title", "file": "intro-title.html", "title": "Why We\u2019re Here"}, {"id": "4-title", "file": "4-title.html", "title": "More Productive. More Drained."}, {"id": "layers-workflow-title", "file": "layers-workflow-title.html", "title": "Where We Are"}, {"id": "2-title", "file": "2-title.html", "title": "Agents: From ReAct to Coding Agents"}, {"id": "3-title", "file": "3-title.html", "title": "Harness: What Makes an Agent Real"}, {"id": "v2-loop-engineering-title", "file": "v2-loop-engineering-title.html", "title": "Loop Engineering"}, {"id": "v2-why-loops-possible-title", "file": "v2-why-loops-possible-title.html", "title": "Why Loops Became Possible"}, {"id": "v2-loops-of-today-title", "file": "v2-loops-of-today-title.html", "title": "Loops of Today"}, {"id": "v2-why-still-hard-title", "file": "v2-why-still-hard-title.html", "title": "Why It\u2019s Still Hard"}, {"id": "v2-what-to-automate-title", "file": "v2-what-to-automate-title.html", "title": "What the Engineer Still Does"}, {"id": "v2-adal-engineer-title", "file": "v2-adal-engineer-title.html", "title": "AdaL Engineer \u2014 Our First Experiment"}, {"id": "v2-experiment-testing-title", "file": "v2-experiment-testing-title.html", "title": "What the Experiment Is Testing"}, {"id": "v2-when-to-use-loops-title", "file": "v2-when-to-use-loops-title.html", "title": "When to Use Loops \u2014 and When Not"}, {"id": "adal-pdf-screenshot", "file": "adal-pdf-screenshot.html", "title": "AdaL Builder / Evaluator Screenshot"}, {"id": "demo-title", "file": "demo-title.html", "title": "Demo Comparison"}, {"id": "11-title", "file": "11-title.html", "title": "Measure Autonomy"}, {"id": "humans-next-title", "file": "humans-next-title.html", "title": "What Will Humans Do Next?"}, {"id": "12-title", "file": "12-title.html", "title": "References"}] };
+      window.__deckIndex = { slides: [{"id": "1-title", "file": "1-title.html", "title": "Beyond Loop Engineering"}, {"id": "intro-title", "file": "intro-title.html", "title": "Why We\u2019re Here"}, {"id": "4-title", "file": "4-title.html", "title": "More Productive. More Drained."}, {"id": "layers-workflow-title", "file": "layers-workflow-title.html", "title": "Where We Are"}, {"id": "2-title", "file": "2-title.html", "title": "Agents: From ReAct to Coding Agents"}, {"id": "3-title", "file": "3-title.html", "title": "Harness: What Makes an Agent Real"}, {"id": "v2-loop-engineering-title", "file": "v2-loop-engineering-title.html", "title": "Loop Engineering"}, {"id": "v2-why-loops-possible-title", "file": "v2-why-loops-possible-title.html", "title": "Why Loops Became Possible"}, {"id": "v2-loops-of-today-title", "file": "v2-loops-of-today-title.html", "title": "Loops of Today"}, {"id": "v2-why-still-hard-title", "file": "v2-why-still-hard-title.html", "title": "Why It\u2019s Still Hard"}, {"id": "v2-what-to-automate-title", "file": "v2-what-to-automate-title.html", "title": "A Different Path to Autonomy"}, {"id": "v2-adal-engineer-title", "file": "v2-adal-engineer-title.html", "title": "AdaL Engineer \u2014 Our First Experiment"}, {"id": "v2-experiment-testing-title", "file": "v2-experiment-testing-title.html", "title": "What the Experiment Is Testing"}, {"id": "v2-when-to-use-loops-title", "file": "v2-when-to-use-loops-title.html", "title": "When to Use Loops \u2014 and When Not"}, {"id": "adal-pdf-screenshot", "file": "adal-pdf-screenshot.html", "title": "AdaL Builder / Evaluator Screenshot"}, {"id": "demo-title", "file": "demo-title.html", "title": "Demo Comparison"}, {"id": "11-title", "file": "11-title.html", "title": "Measure Autonomy"}, {"id": "humans-next-title", "file": "humans-next-title.html", "title": "What Will Humans Do Next?"}, {"id": "12-title", "file": "12-title.html", "title": "References"}] };
 
       function render() {
         slides.forEach((slide, index) => {

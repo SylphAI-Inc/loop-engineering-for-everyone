@@ -15,7 +15,7 @@ Style: conversational, knowledge-sharing, not a product pitch.
 8. Why Loops Became Possible
 9. Loops of Today
 10. Yet It's Still Hard
-11. What the Engineer Still Does
+11. A Different Path to Autonomy
 12. AdaL Engineer — Our First Experiment
 13. What the Experiment Is Testing
 14. When to Use Loops — and When Not
@@ -31,8 +31,9 @@ Style: conversational, knowledge-sharing, not a product pitch.
 2. Model capability ≠ autonomy
 3. Layers: Model → Agent+Harness → Loop Engineering (workflow)
 4. Building blocks exist; the system around them is still hard
-5. AdaL Engineer = experiment in workflow infrastructure
-6. Close: agency stays human; engineers move to higher leverage
+5. Different path: engineer-layer agent above workers, not a fatter coding agent
+6. AdaL Engineer = first experiment
+7. Close: agency stays human; engineers move to higher leverage
 
 ---
 
@@ -52,9 +53,9 @@ About a year ago, we started building AdaL from the internal lessons behind Adal
 
 We care deeply about this problem. This field is still young. Nobody has all the answers yet. The teams shipping coding agents, the people writing about loop engineering, and the engineers babysitting agents every day are all discovering the shape of this problem in real time.
 
-That is why I am here today with Akshay — another well-known educator and builder — to sit down and discuss. Not to claim that we have finished the future, but to share what we have learned as builders, put language around the problems we keep running into, and think with you about where autonomy goes next.
+That is why I am here today with Akshay — another well-known educator and builder — to sit down and discuss. I want to share what we have learned as builders, put language around the problems we keep running into, and think with you about where autonomy goes next.
 
-Along the way, I want us to hold a few questions together — in the same order we’ll explore them tonight:
+Along the way, I want us to hold a few questions together:
 
 First: why isn’t model capability the same as autonomy?
 Second: what is the next stage of autonomy after today’s coding agents?
@@ -73,7 +74,7 @@ Coding agents have made developers more productive. That part is real. We plan f
 
 But many of us also feel more drained. Midjourney’s founder put it bluntly: these tools make engineers more productive — and “extremely drained.”
 
-This is no longer a niche habit. Sonar’s 2026 State of Code report found that about 42% of committed code is AI-generated or significantly AI-assisted. Creation got cheaper. The scarce resources became review, validation, understanding, and ownership.
+This is no longer a niche habit. Sonar’s 2026 State of Code report found that about 42% of committed code is AI-generated or significantly AI-assisted. Creation got cheaper. The scarce resources became human review, validation, understanding, and ownership.
 
 Addy Osmani’s framing is useful here: generation moved faster than control. That is the trust-verification gap. We can produce more, but we still have to watch, correct, and answer for the result.
 
@@ -87,7 +88,7 @@ So the experience is strange. These systems can feel extremely capable at genera
 
 /title: Where We Are
 
-After the drained feeling, the next question is structural: where are we stuck?
+The next question is structural: where are we stuck?
 
 Think about what it takes to deliver one pull request from start to finish. You have to understand the problem, plan the change, write the code, test it, review it, fix what broke, and iterate until it is actually ready.
 
@@ -97,28 +98,24 @@ But humans are still connecting the workflow.
 
 There are three reasons this becomes babysitting.
 
-First, humans are still the glue. We carry context between agents, tabs, environments, and stages. We approve the risky actions. We decide when to continue, correct, escalate, or stop.
+First, we still drive the outer loop of the dev lifecycle. It is still manual: understand, plan, build, test, review, iterate, deliver — across local, cloud, and GitHub environments — allocating and monitoring agents across stages.
 
-Second, the outer loop is still manual: understand, plan, build, test, review, iterate, deliver.
+Second, humans are still the glue of long-term context. We carry context between agents. We approve the risky actions. We decide when to continue, correct, escalate, or stop.
 
 Third, faster generation creates more judgment work. More output. More alien code. More micro-decisions.
 
 That is the deeper exhaustion. For one feature, there may be a hundred plausible implementations. Only a few truly fit this codebase, this architecture, these product constraints, and the decisions your team has already made. An agent can generate options quickly. The developer still has to choose what fits, review more, and correct what does not. Faster generation can multiply the decision burden and the review burden at the same time.
 
-So this is the first counterintuitive point of the talk: model capability is not autonomy.
+**So this is the first counterintuitive point of the talk: model capability is not autonomy.**
 
-Model capability asks: can it reason and produce strong work?
+Model asks: can it reason and produce strong work?
 Autonomy asks: can the system carry responsibility from a goal to a verified outcome?
 
-Those are not the same question. You can have a brilliant model inside a fragile workflow and still babysit it all day.
+We can visualize it in three layers. Existing agent + harness is L1 autonomy — generate and act in an environment. If we can achieve a well-defined goal with a desired outcome that fits the codebase and the developer’s requirements, fully autonomously, we move toward L2 autonomy.
 
-I find it useful to separate three layers.
+The agent and harness are infrastructure that acts in a real environment — tools, files, browser, runtime. Agents are the arms.
 
-First, model intelligence: it can reason and generate.
-
-Second, the agent and harness: infrastructure that acts in a real environment — tools, files, browser, runtime. Agents are the arms.
-
-Third, today, is still mostly a human manual workflow. That is the outer loop on the slide: understand, plan, build, test, review, iterate, deliver. Humans still own context, handoffs, judgment, and when to stop.
+The third layer is still mostly the human manual workflow: the outer loop on the slide — understand, plan, build, test, review, iterate, deliver. Humans still own context, handoffs, judgment, and when to stop.
 
 Generate. Act. Still babysit the outer loop.
 
@@ -126,41 +123,35 @@ Which leads to one question:
 
 Is loop engineering the answer?
 
-Not “do we need better models?”
-Not “can agents write code?”
-But: can we automate more of this workflow layer — without removing human agency?
-
-Before we answer that, let’s fix the terminology — as builders and as scientists — so loop engineering has a clear place in the stack.
-
 Before we define loop engineering, we need two pieces of builder vocabulary: agents, and the harness around them.
 
 ---
 
 /title: Agents: From ReAct to Coding Agents
 
-Agents are not brand new. In 2022, ReAct showed a simple pattern: reason, act, observe, and repeat. At first, agents could only take a few steps.
+Agents started even before ChatGPT — in 2022. The original ReAct paper showed a simple pattern: reason, act, observe, and repeat. At first, agents could only take a few steps.
 
-Today, with better models, tool calling, longer context, and stronger systems around them, agents can run for many steps, call tools in parallel, search codebases, use browsers, and complete substantial parts of a task.
+Today, with better models, tool calling, longer context, and stronger systems around them such as constrained decoding, agents can run for many steps, call tools in parallel, support hundreds of tools, search codebases, use browsers, and complete substantial parts of a task.
 
 The most powerful everyday example is coding agents.
 
 And if we think about subagents, they are often just another tool in that loop — a specialized worker the main agent can call.
 
-So let’s be clear: today’s agents are already useful. They already have meaningful task-level ability. The problem is not that agents can do nothing. The problem is that executing steps is not the same as owning the full engineering workflow.
+**So let’s be clear: today’s agents are already useful. They already have meaningful task-level ability. They can be designed to be secure and robust — and still require constant human input to complete a full task. The problem is that executing steps is not the same as owning the full engineering workflow.**
 
 ---
 
 /title: Harness: What Makes an Agent Real
 
-A harness is the code that takes a model and turns it into an agent system in a real environment.
+A harness is the code that takes a model and turns it into an agent system in a real environment. Claude Code is a harness. Codex, OpenCode, AdalFlow, and AdaL are all harnesses. The harness is the infrastructure that lets the model act.
 
-The original ReAct paper’s source code was an early harness. Claude Code is a harness. Open-source coding agents are harnesses. AdalFlow was our early work in this layer. AdaL continues that work.
+So how do prompt engineering and context engineering fit in?
 
-As context windows grew — from tens of thousands of tokens toward hundreds of thousands and a million — the harness had to grow too. It is no longer only a prompt. It includes tools and MCP, skills, file and image inputs, compaction, prompt structure and caching, and the runtime environment.
+The original ReAct paper’s source code was an early harness, where prompt engineering played the biggest role: simple tool calls, and the prompt largely decided the system’s output — especially in 2023 and 2024.
 
-That is why people started talking about prompt engineering, then context engineering, then harness engineering. The model is the intelligence. The harness is the infrastructure that lets it act.
+As context windows grew — from tens of thousands of tokens toward hundreds of thousands and a million — the harness had to grow too. It is no longer only a simple prompt. It includes tools and MCP, skills, file and image inputs, compaction, prompt structure and caching, and the runtime environment. “Context engineering” as a term really emerged in 2025.
 
-But even a strong harness does not automatically automate the human outer loop. That is the gap we are naming with loop engineering.
+**But even a strong harness does not automatically automate the human outer loop. That is the gap we are naming with loop engineering.**
 
 ---
 
@@ -170,13 +161,15 @@ This is where loop engineering enters the conversation.
 
 Developers are tired of manually gluing the workflow together. The industry shift is simple to say out loud: instead of prompting, build loops that prompt the system.
 
-“Loop engineering” is still an emerging term. The definition is not settled. Addy Osmani, Andrew Ng, Akshay, Karpathy’s LOOPS.md — people are naming the same direction from different angles. We think that direction is right, and still incomplete.
+“Loop engineering” is still an emerging term. People we respect — Addy Osmani, Andrew Ng, Akshay, Karpathy’s LOOPS.md — have been naming this direction from different angles. We are very much aligned with that direction.
 
-So this is AdaL’s opinion of how loop engineering should be judged:
+As builders, we use a working definition that makes the outer-loop claim cleaner and precise enough to build against:
 
 A goal-driven system that coordinates multiple agents to a verified outcome — autonomously, without humans in the loop.
 
-Not a better one-shot prompt. Not a longer chat. A system that can carry work toward a verified result.
+That last part matters. Not “helps you prompt faster.” Not “stays useful while you babysit.” Autonomous means the outer loop can run toward a verified outcome without a human glued inside every step.
+
+Humans may still set the goal, the quality bar, and the stop conditions — and keep agency over what ships. But the loop itself should not require constant human orchestration to keep moving.
 
 ---
 
@@ -196,80 +189,72 @@ They do not yet make the full human outer loop reliable.
 
 /title: Loops of Today
 
-And the field is already shipping pieces. We’re still trying.
+What’s exciting is that a lot of the building blocks for loops already exist today.
 
-Claude Code, AdaL, agent teams — real attempts at goals, schedules, permissions, and parallel work.
+We have recurring workflows and scheduled goals — `/goal`, `/loop` in Claude Code, `/cron` in AdaL — systems that can keep going until a task is complete. We have dynamic workflows that adapt as they run, and agent teams that can parallelize work. We also have more autonomous permission modes — things like `/yolo`, or the very funny but very real `dangerously-skip-permissions` mode — where you can let the agent operate with much less interruption.
 
-You can already see the building blocks:
-
-Repeat and schedule — `/goal`, `/loop` in Claude Code; `/cron` in AdaL.
-
-Permission modes — `--dangerously-skip-permissions`, `--yolo` — more autonomy, more risk.
-
-Dynamic workflows — agents that adapt the plan as they run.
-
-Agent teams — parallel full agents for execution at scale.
-
-So the problem is no longer that models cannot write code or use tools. The primitives exist. People are putting loops in production today.
+So the primitives for loops are starting to become real. The field is already shipping pieces. We’re still trying.
 
 ---
 
 /title: Yet It's Still Hard
 
-Yet it’s still hard.
+But the key point is: the surrounding system is still hard.
 
-Building blocks exist. The system around them is still hard.
+Just because you can turn on `/yolo` or `dangerously-skip-permissions` doesn’t mean you automatically get production-quality autonomy.
 
-OpenAI’s Codex example is the clean proof point. It took a whole Codex team to reach zero manually written lines — and a full engineering team still maintains documentation, context, review, and the harness.
+High complexity. Which agents should participate? What context does each one need, and when? How do they hand work off? How is quality evaluated independently — testing, review, recovery — without the same agent grading its own homework? How do you keep documentation and long-term state coherent as the work changes? Those choices differ by company, by role, and even by codebase.
 
-High complexity. High cost.
+High cost — tokenmaxxing. More agents, more context, more validation, and repeated iterations all compound runtime cost. Autonomy is not free just because permissions are loose.
 
-Which agents should participate? What context does each one need, and when? How do they hand work off? How is quality evaluated independently? How does the system recover, update documentation, and know when to stop?
+The Codex team is a really good example. They’ve shown that a lot is possible — even toward zero manually written lines — but it still takes a whole team and a carefully designed system around the agents: documentation, context, review, and the harness.
 
-Those choices differ by company, by role, and even by codebase. Capable agents alone are not enough.
+So the real challenge is not just having the building blocks. It’s building the system around them.
 
 ---
 
-/title: What the Engineer Still Does
+/title: A Different Path to Autonomy
 
-So what exactly is still hard?
+This is the key slide of the talk. So I want to take it from a slightly different angle.
 
-It’s not that workers can’t code. Coding agents, browser agents, research agents, review agents — they already execute steps.
+One path is: keep building on coding agents of today. Make the single agent smarter, longer-running, more autonomous. Stuff more of the product lifecycle into that one trajectory.
 
-What’s still mostly human is the engineer role: the runtime that turns those workers into a shipped outcome.
+I don’t think that’s the right primary path.
 
-The engineer still sets the goal and the quality bar. Allocates and prompts the right workers. Carries codebase and product context, and long-term memory across the work. Evaluates independently and recovers when things fail. Decides when to stop — or when to escalate.
+Today’s coding agents are still mainly single-agent systems. Yes — Claude agent teams are multi-agent, but they are aiming at parallel work: more workers side by side. That is not the same as what the engineer is doing today with coding agents — owning the outer loop, allocating work, carrying context, evaluating, and driving the lifecycle across stages.
 
-That is the outer job. Babysitting is what it feels like when a human is still doing that runtime by hand.
+Real product development is multi-stage — understand, plan, build, test, review, iterate, deliver. If you push that whole outer loop into the worker stack, you complicate an already well-defined infra scope: tools, context, permissions, the harness that makes the agent real.
 
-So here is the belief, stated cleanly:
+And coding agents are already excellent workers when humans want to work with them manually. That collaboration mode should stay clean and simple. Don’t ruin the worker by forcing it to also be the engineer.
+
+So instead, we model loop engineering from what the engineer still does today.
+
+Go back to the third layer — the human outer loop. That is still mostly human: set the goal and quality bar, allocate and prompt the right workers, carry context and long-term memory, evaluate independently and recover, know when to stop or escalate.
+
+Babysitting is what it feels like when a human is still running that runtime by hand.
+
+The move is: replace that engineer role with another agent — not instead of coding agents, but above them. Let this engineer-level agent model the behaviors of existing engineers, and work with the coding agents, browser agents, research agents, and review agents of today.
+
+Keep the workers as workers. Automate the engineer layer.
 
 We don’t need a better coding agent alone.
-We need to automate more of the engineer role around today’s agents.
+We need an agent that can sit in the engineer seat and operate today’s agents toward a verified outcome.
 
-Autonomy rises when the workflow role is automated — not when one worker gets smarter.
-
-The next-generation system is not simply a smarter worker. It is infrastructure for operating existing capable agents inside a role-specific workflow. The unit of autonomy is not only the agent. It is the configured workflow around the agents.
-
-Near-term bar, kept honest: deliver one engineering task end-to-end at human-level quality.
+Autonomy rises when we automate the engineer layer — not when we overload a single worker.
 
 ---
 
 /title: AdaL Engineer — Our First Experiment
 
-This is where AdaL Engineer comes in—and I want to introduce it carefully.
+This is the visualization of that path.
 
-It is our first experiment with the thesis on the previous slide. Not the whole future. Our first attempt to automate the engineer role — by operating today’s workers inside a higher-level workflow.
+AdaL Engineer is our first experiment with the previous slide’s thesis. Look at the diagram: one engineer-level agent above today’s workers — coding, browser use, deep research, code review. Not a bigger coding agent. A separate layer that operates the workers.
 
-It works with existing coding, browser, research, and review agents. It allocates, prompts, coordinates, safeguards, and monitors them. It carries codebase context, documentation, decisions, and persistent work state.
+Our near-term goal is practical and bounded: deliver one engineering task end-to-end at human-level quality.
 
-Near-term goal, kept practical and bounded: deliver one engineering task end-to-end at human-level quality.
+And I want to be honest about where we are. This is not a finished answer. It will fail in places. It will expose gaps in context, memory, evaluation, safety, and judgment. That is part of the point of an experiment.
 
-We built coding agents and harnesses for years. AdaL Engineer is the next step: not replacing those agents, but sitting in the engineer seat above them.
-
-I want to be honest. It is not a finished answer. It will fail in places. It will expose gaps in context, memory, evaluation, safety, and judgment. That is part of the point.
-
-We are not asking you to believe a pitch. We are asking you to inspect an experiment.
+We are not asking you to believe a pitch. We are asking you to inspect the diagram, inspect the goal, and later inspect the loop.
 
 ---
 

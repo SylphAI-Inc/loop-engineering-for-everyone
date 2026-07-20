@@ -1,65 +1,64 @@
 <article class="slide" aria-labelledby="slide-v2-adal-eng-title">
   <h2 id="slide-v2-adal-eng-title" class="slide-title">AdaL Engineer — Our First Experiment</h2>
-  <div class="slide-body" style="width:min(100%,1580px);display:grid;grid-template-columns:minmax(0,0.95fr) minmax(0,1.05fr);gap:clamp(20px,2.5vw,40px);align-items:center;justify-items:stretch;">
-    <div style="display:grid;gap:clamp(14px,1.8vw,22px);align-content:center;">
-      <p class="slide-lead" style="margin:0;max-width:none;font-size:clamp(18px,1.55vw,24px);color:var(--text);">
-        Our first attempt to automate the <strong style="font-weight:600;">engineer role</strong> — by operating today’s workers inside a higher-level workflow.
-      </p>
-      <section class="loop-engineering-panel" style="min-height:0;padding:clamp(18px,2vw,28px);">
+  <div class="slide-body adal-eng-body">
+    <div class="adal-eng-copy">
+      <section class="loop-engineering-panel" style="min-height:0;padding:clamp(22px,2.4vw,36px);">
         <p class="loop-engineering-panel-label">What it is</p>
-        <ul class="lifecycle-reasons" style="margin:0;font-size:clamp(17px,1.45vw,22px);">
-          <li>Works with existing coding, browser, research, and review agents</li>
-          <li>Allocates, prompts, coordinates, safeguards, and monitors them</li>
-          <li>Carries context, documentation, decisions, and work state</li>
-        </ul>
+        <strong style="font-size:clamp(22px,2.1vw,32px);line-height:1.3;display:block;margin-top:clamp(8px,1vw,14px);">
+          An engineer-level agent that operates today’s workers toward a verified outcome.
+        </strong>
       </section>
-      <section class="loop-engineering-panel loop-engineering-panel--outcome" style="min-height:0;padding:clamp(18px,2vw,28px);">
+      <section class="loop-engineering-panel loop-engineering-panel--outcome" style="min-height:0;padding:clamp(22px,2.4vw,36px);">
         <p class="loop-engineering-panel-label">Near-term goal</p>
-        <strong style="font-size:clamp(20px,1.9vw,28px);line-height:1.25;">Deliver one engineering task end-to-end at human-level quality.</strong>
+        <strong style="font-size:clamp(22px,2.1vw,32px);line-height:1.3;display:block;margin-top:clamp(8px,1vw,14px);">
+          Deliver one engineering task end-to-end at human-level quality.
+        </strong>
       </section>
       <p class="loops-today-takeaway" style="margin:0;text-align:left;max-width:none;">
         Not a finished answer. <strong>An experiment you can inspect.</strong>
       </p>
     </div>
-    <div style="width:100%;min-width:0;display:flex;align-items:center;justify-content:center;">
-      <svg class="illustration" style="width:100%;max-width:720px;" viewBox="0 0 900 560" aria-label="AdaL Engineer orchestrating Coding, Browser Use, Deep Research, and Code Review workers">
+    <div class="adal-eng-diagram-wrap">
+      <svg class="illustration adal-eng-illustration" viewBox="0 0 900 520" preserveAspectRatio="xMidYMid meet" aria-label="AdaL Engineer orchestrating Coding, Browser Use, Deep Research, and Code Review workers">
         <defs>
           <radialGradient id="v2EngineerHalo">
-            <stop offset="0" stop-color="#ff5898" stop-opacity=".18"/>
+            <stop offset="0" stop-color="#ff5898" stop-opacity=".20"/>
             <stop offset="1" stop-color="#ff5898" stop-opacity="0"/>
           </radialGradient>
         </defs>
-        <circle cx="450" cy="122" r="103" fill="url(#v2EngineerHalo)"/>
-        <circle cx="450" cy="122" r="74" fill="rgba(255,88,152,0.08)" stroke="#ff5898" stroke-width="2"/>
-        <text x="450" y="118" fill="#ff5898" font-size="28" font-weight="650" text-anchor="middle">AdaL</text>
-        <text x="450" y="148" fill="#ff5898" font-size="22" font-weight="650" text-anchor="middle">Engineer</text>
-        <path d="M526 122h20" fill="none" stroke="#6c727a" stroke-width="2"/>
-        <text x="554" y="128" fill="#6c727a" font-size="18" font-weight="600" letter-spacing="1.2" text-anchor="start">ROLE-LEVEL WORKFLOW</text>
-        <path d="M450 196v35M150 231h600" fill="none" stroke="rgba(255,88,152,0.62)" stroke-width="3"/>
-        <circle cx="450" cy="231" r="6" fill="#ff5898"/>
-        <g fill="none" stroke="rgba(255,88,152,0.62)" stroke-width="3">
-          <path d="M150 231v42M350 231v42M550 231v42M750 231v42"/>
-        </g>
-        <g>
-          <circle cx="150" cy="345" r="72" fill="rgba(255,88,152,0.055)" stroke="rgba(255,88,152,0.38)" stroke-width="2"/>
-          <path d="M123 334h18m-18 13h12m13-13h12m-12 13h19" fill="none" stroke="#ff5898" stroke-width="3" stroke-linecap="round"/>
-          <text x="150" y="460" fill="#f4f4f5" font-size="26" text-anchor="middle">Coding</text>
 
-          <circle cx="350" cy="345" r="72" fill="rgba(255,88,152,0.055)" stroke="rgba(255,88,152,0.38)" stroke-width="2"/>
-          <rect x="333" y="327" width="30" height="21" rx="3" fill="none" stroke="#ff5898" stroke-width="3"/>
-          <path d="M340 358h16M348 348v10" fill="none" stroke="#ff5898" stroke-width="3" stroke-linecap="round"/>
-          <text x="350" y="460" fill="#f4f4f5" font-size="26" text-anchor="middle">Browser Use</text>
+        <!-- Engineer hub -->
+        <circle cx="450" cy="105" r="96" fill="url(#v2EngineerHalo)"/>
+        <circle cx="450" cy="105" r="70" fill="rgba(255,88,152,0.10)" stroke="#ff5898" stroke-width="2.5"/>
+        <text x="450" y="98" fill="#ff5898" font-size="28" font-weight="650" text-anchor="middle">AdaL</text>
+        <text x="450" y="128" fill="#ff5898" font-size="22" font-weight="650" text-anchor="middle">Engineer</text>
+        <text x="450" y="198" fill="#6c727a" font-size="15" font-weight="600" letter-spacing="1.4" text-anchor="middle">ROLE-LEVEL WORKFLOW</text>
 
-          <circle cx="550" cy="345" r="72" fill="rgba(255,88,152,0.055)" stroke="rgba(255,88,152,0.38)" stroke-width="2"/>
-          <circle cx="543" cy="338" r="11" fill="none" stroke="#ff5898" stroke-width="3"/>
-          <path d="M551 346l9 9" fill="none" stroke="#ff5898" stroke-width="3" stroke-linecap="round"/>
-          <text x="550" y="460" fill="#f4f4f5" font-size="26" text-anchor="middle">Deep Research</text>
+        <!-- Spine -->
+        <path d="M450 175 V230" fill="none" stroke="rgba(255,88,152,0.65)" stroke-width="3"/>
+        <path d="M150 230 H750" fill="none" stroke="rgba(255,88,152,0.65)" stroke-width="3"/>
+        <circle cx="450" cy="230" r="6" fill="#ff5898"/>
 
-          <circle cx="750" cy="345" r="72" fill="rgba(255,88,152,0.055)" stroke="rgba(255,88,152,0.38)" stroke-width="2"/>
-          <path d="M727 343l14 14 28-31" fill="none" stroke="#ff5898" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <text x="750" y="460" fill="#f4f4f5" font-size="26" text-anchor="middle">Code Review</text>
-        </g>
-        <text x="450" y="530" fill="#ff5898" font-size="22" font-weight="650" letter-spacing="2" text-anchor="middle">WORKERS (AGENTS OF TODAY)</text>
+        <!-- Drops to workers -->
+        <path d="M150 230 V280 M350 230 V280 M550 230 V280 M750 230 V280" fill="none" stroke="rgba(255,88,152,0.65)" stroke-width="3"/>
+
+        <!-- Workers -->
+        <circle cx="150" cy="350" r="68" fill="rgba(255,88,152,0.05)" stroke="rgba(255,88,152,0.40)" stroke-width="2"/>
+        <text x="150" y="356" fill="#f4f4f5" font-size="22" font-weight="600" text-anchor="middle">Coding</text>
+
+        <circle cx="350" cy="350" r="68" fill="rgba(255,88,152,0.05)" stroke="rgba(255,88,152,0.40)" stroke-width="2"/>
+        <text x="350" y="348" fill="#f4f4f5" font-size="20" font-weight="600" text-anchor="middle">Browser</text>
+        <text x="350" y="372" fill="#f4f4f5" font-size="20" font-weight="600" text-anchor="middle">Use</text>
+
+        <circle cx="550" cy="350" r="68" fill="rgba(255,88,152,0.05)" stroke="rgba(255,88,152,0.40)" stroke-width="2"/>
+        <text x="550" y="348" fill="#f4f4f5" font-size="20" font-weight="600" text-anchor="middle">Deep</text>
+        <text x="550" y="372" fill="#f4f4f5" font-size="20" font-weight="600" text-anchor="middle">Research</text>
+
+        <circle cx="750" cy="350" r="68" fill="rgba(255,88,152,0.05)" stroke="rgba(255,88,152,0.40)" stroke-width="2"/>
+        <text x="750" y="348" fill="#f4f4f5" font-size="20" font-weight="600" text-anchor="middle">Code</text>
+        <text x="750" y="372" fill="#f4f4f5" font-size="20" font-weight="600" text-anchor="middle">Review</text>
+
+        <text x="450" y="470" fill="#ff5898" font-size="20" font-weight="650" letter-spacing="2" text-anchor="middle">WORKERS (AGENTS OF TODAY)</text>
       </svg>
     </div>
   </div>
