@@ -62,60 +62,67 @@
       "number": 7
     },
     {
-      "id": "v2-why-loops-possible-title",
-      "file": "v2-why-loops-possible-title.html",
-      "title": "Why Loops Became Possible",
+      "id": "v2-loops-of-today-title",
+      "file": "v2-loops-of-today-title.html",
+      "title": "Patterns of Today",
       "enabled": true,
       "number": 8
     },
     {
-      "id": "v2-loops-of-today-title",
-      "file": "v2-loops-of-today-title.html",
-      "title": "Loops of Today",
+      "id": "claude-code-multiagent-screenshot",
+      "file": "claude-code-multiagent-screenshot.html",
+      "title": "Claude Code: Multi-Agent as One Agent\u2019s Tools",
       "enabled": true,
       "number": 9
     },
     {
-      "id": "v2-why-still-hard-title",
-      "file": "v2-why-still-hard-title.html",
-      "title": "Why It\u2019s Still Hard",
+      "id": "v2-why-loops-possible-title",
+      "file": "v2-why-loops-possible-title.html",
+      "title": "What Makes Outer-Loop Automation Possible",
       "enabled": true,
       "number": 10
+    },
+    {
+      "id": "v2-why-still-hard-title",
+      "file": "v2-why-still-hard-title.html",
+      "title": "Yet It\u2019s Still Hard",
+      "enabled": true,
+      "number": 11
     },
     {
       "id": "v2-risks-getting-real-title",
       "file": "v2-risks-getting-real-title.html",
       "title": "When Understanding Falls Behind",
       "enabled": true,
-      "number": 11
+      "number": 12
     },
     {
       "id": "v2-what-to-automate-title",
       "file": "v2-what-to-automate-title.html",
       "title": "A Different Path to Autonomy",
       "enabled": true,
-      "number": 12
+      "number": 13
     },
     {
       "id": "v2-adal-engineer-title",
       "file": "v2-adal-engineer-title.html",
       "title": "AdaL Engineer \u2014 Our First Experiment",
       "enabled": true,
-      "number": 13
+      "number": 14
     },
     {
       "id": "v2-experiment-testing-title",
       "file": "v2-experiment-testing-title.html",
       "title": "What the Experiment Is Testing",
       "enabled": true,
-      "number": 14
+      "number": 15
     },
     {
       "id": "v2-when-to-use-loops-title",
       "file": "v2-when-to-use-loops-title.html",
       "title": "When to Use Loops \u2014 and When Not",
       "enabled": true,
-      "number": 15
+      "number": 16
     },
     {
       "id": "6-title",
@@ -170,35 +177,35 @@
       "file": "adal-pdf-screenshot.html",
       "title": "AdaL Builder / Evaluator Screenshot",
       "enabled": true,
-      "number": 16
+      "number": 17
     },
     {
       "id": "demo-title",
       "file": "demo-title.html",
       "title": "Demo Comparison",
       "enabled": true,
-      "number": 17
+      "number": 18
     },
     {
       "id": "11-title",
       "file": "11-title.html",
       "title": "Measure Autonomy",
       "enabled": true,
-      "number": 18
+      "number": 19
     },
     {
       "id": "humans-next-title",
       "file": "humans-next-title.html",
       "title": "What Will Humans Do Next?",
       "enabled": true,
-      "number": 19
+      "number": 20
     },
     {
       "id": "12-title",
       "file": "12-title.html",
       "title": "References",
       "enabled": true,
-      "number": 20
+      "number": 21
     }
   ]
 }

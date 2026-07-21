@@ -1,39 +1,76 @@
 <article class="slide" aria-labelledby="slide-v2-loops-today-title">
-  <h2 id="slide-v2-loops-today-title" class="slide-title">Loops of Today</h2>
-  <div class="slide-body" style="display:grid;">
-    <div class="loops-today-thesis" style="padding:clamp(8px,1.2vw,18px) clamp(8px,1.5vw,24px) clamp(8px,1.2vw,18px) 0;">
-      <p class="loops-today-thesis-label">What has been tried</p>
-      <strong style="font-size:clamp(28px,2.8vw,42px);line-height:1.12;">The field is already shipping pieces.</strong>
-      <p class="slide-lead" style="margin:18px 0 0;max-width:30ch;font-size:clamp(17px,1.45vw,23px);">
-        Claude Code, AdaL, agent teams — real attempts at goals, schedules, permissions, and parallel work.
-      </p>
+  <h2 id="slide-v2-loops-today-title" class="slide-title">Patterns of Today</h2>
+  <div class="slide-body loops-today-body">
+    <div class="loops-today-thesis">
+      <strong class="density-strong">Neither pattern is the outer loop.</strong>
     </div>
-    <ul class="loops-today-list" aria-label="Loop primitives in the field today" style="margin:0;width:100%;max-width:none;">
-      <li>
-        <strong style="display:block;margin-bottom:6px;font-size:0.95em;">Repeat &amp; schedule</strong>
-        <code style="font-family:var(--mono);color:var(--accent);font-size:0.9em;padding:2px 6px;background:var(--accent-soft);border-radius:4px;">/goal</code>
-        <code style="font-family:var(--mono);color:var(--accent);font-size:0.9em;padding:2px 6px;background:var(--accent-soft);border-radius:4px;">/loop</code>
-        <span style="color:var(--muted);"> (Claude Code)</span>
-        ·
-        <code style="font-family:var(--mono);color:var(--accent);font-size:0.9em;padding:2px 6px;background:var(--accent-soft);border-radius:4px;">/cron</code>
-        <span style="color:var(--muted);"> (AdaL)</span>
-      </li>
-      <li>
-        <strong style="display:block;margin-bottom:6px;font-size:0.95em;">Permission modes</strong>
-        <code style="font-family:var(--mono);color:var(--accent);font-size:0.85em;padding:2px 6px;background:var(--accent-soft);border-radius:4px;">--dangerously-skip-permissions</code>
-        <span style="color:var(--muted);"> / </span>
-        <code style="font-family:var(--mono);color:var(--accent);font-size:0.85em;padding:2px 6px;background:var(--accent-soft);border-radius:4px;">--yolo</code>
-        <span style="color:var(--muted);"> — more autonomy, more risk</span>
-      </li>
-      <li>
-        <strong style="display:block;margin-bottom:6px;font-size:0.95em;">Dynamic workflows</strong>
-        <span style="color:var(--text);">Agents that adapt the plan as they run</span>
-      </li>
-      <li>
-        <strong style="display:block;margin-bottom:6px;font-size:0.95em;">Agent teams</strong>
-        <span style="color:var(--text);">Parallel full agents for execution at scale (Claude)</span>
-      </li>
-    </ul>
+
+    <div class="loops-today-diagram" aria-label="Single-agent and multi-agent patterns with critiques">
+      <div class="loops-today-row">
+        <section class="loop-engineering-panel loops-today-mode">
+          <p class="loop-engineering-panel-label">Single-agent · early autonomy</p>
+          <ul class="loops-today-mode-list">
+            <li>
+              <strong class="loops-today-item-title">Repeat &amp; schedule</strong>
+              <div class="loops-today-chips">
+                <code>/goal</code>
+                <code>/loop</code>
+                <span class="loops-today-meta">Claude Code</span>
+                <code>/cron</code>
+                <span class="loops-today-meta">AdaL</span>
+              </div>
+            </li>
+            <li>
+              <strong class="loops-today-item-title">Permission modes</strong>
+              <div class="loops-today-chips">
+                <code>--dangerously-skip-permissions</code>
+                <code>--yolo</code>
+              </div>
+            </li>
+          </ul>
+        </section>
+        <div class="loops-today-pointer" aria-hidden="true">
+          <svg viewBox="0 0 72 24" preserveAspectRatio="xMidYMid meet">
+            <path d="M4 12 H54" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2"/>
+            <path d="M50 6 L62 12 L50 18" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <aside class="loops-today-callout">
+          <strong>Too simple</strong>
+          <p>One trajectory. One context.</p>
+        </aside>
+      </div>
+
+      <div class="loops-today-row">
+        <section class="loop-engineering-panel loops-today-mode loops-today-mode--multi">
+          <p class="loop-engineering-panel-label">Multi-agent · parallel jobs</p>
+          <ul class="loops-today-mode-list">
+            <li>
+              <strong class="loops-today-item-title">
+                <a class="loops-today-inline-link" href="https://claudefa.st/blog/guide/development/dynamic-workflows" target="_blank" rel="noopener noreferrer">Dynamic workflows</a>
+              </strong>
+              <p class="loops-today-item-copy">Isolated agents · coverage &amp; verification</p>
+            </li>
+            <li>
+              <strong class="loops-today-item-title">
+                <a class="loops-today-inline-link" href="https://code.claude.com/docs/en/agent-teams" target="_blank" rel="noopener noreferrer">Agent teams</a>
+              </strong>
+              <p class="loops-today-item-copy">Peers can message each other</p>
+            </li>
+          </ul>
+        </section>
+        <div class="loops-today-pointer" aria-hidden="true">
+          <svg viewBox="0 0 72 24" preserveAspectRatio="xMidYMid meet">
+            <path d="M4 12 H54" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2"/>
+            <path d="M50 6 L62 12 L50 18" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <aside class="loops-today-callout">
+          <strong>Too opaque</strong>
+          <p>Hard to see. Hard to steer. Hard to trust.</p>
+        </aside>
+      </div>
+    </div>
   </div>
   <div class="agent-cite-stack">
     <a class="agent-cite" href="https://x.com/ClaudeDevs/status/2074208949205881033?s=20" target="_blank" rel="noopener noreferrer">Claude Developers — loop engineering guide ↗</a>

@@ -12,19 +12,20 @@ Style: conversational, knowledge-sharing, not a product pitch.
 5. Agents: From ReAct to Coding Agents
 6. Harness: What Makes an Agent Real
 7. Loop Engineering
-8. Why Loops Became Possible
-9. Loops of Today
-10. Yet It's Still Hard
-11. When Understanding Falls Behind
-12. A Different Path to Autonomy
-13. AdaL Engineer — Our First Experiment
-14. What the Experiment Is Testing
-15. When to Use Loops — and When Not
-16. AdaL Builder / Evaluator Screenshot
-17. Demo Comparison
-18. Measure Autonomy
-19. What Will Humans Do Next?
-20. References
+8. Patterns of Today
+9. Claude Code: Multi-Agent as One Agent’s Tools (screenshot)
+10. What Makes Outer-Loop Automation Possible
+11. Yet It's Still Hard
+12. When Understanding Falls Behind
+13. A Different Path to Autonomy
+14. AdaL Engineer — Our First Experiment
+15. What the Experiment Is Testing
+16. When to Use Loops — and When Not
+17. AdaL Builder / Evaluator Screenshot
+18. Demo Comparison
+19. Measure Autonomy
+20. What Will Humans Do Next?
+21. References
 
 ## Narrative spine
 
@@ -49,7 +50,7 @@ Today is about what happens beyond prompting, and beyond the first generation of
 
 /title: Why We’re Here
 
-I am an ex-AI researcher at Meta AI. For about three years I worked on building LLM harnesses—the systems that turn a raw model into something that can actually do work. That work became AdalFlow, an open-source library for building and auto-optimizing LLM applications. I’m proud of that lineage, because it taught me something early: model intelligence alone is never enough. You need the system around the model.
+I’m an ex-AI researcher at Meta AI. My research background is in computer vision. For the last three years, I’ve been working on LLM harnesses, including AdalFlow — the open-source library for building and auto-optimizing LLM applications. AdalFlow taught me something early: model intelligence alone is never enough.
 
 About a year ago, we started building AdaL from the internal lessons behind AdalFlow. AdaL is an AI research lab. Our focus is autonomy—especially agents and memory.
 
@@ -175,27 +176,59 @@ Humans may still set the goal, the quality bar, and the stop conditions — and 
 
 ---
 
-/title: Why Loops Became Possible
+/title: Patterns of Today
 
-Two capability shifts made the outer loop automatable in principle.
+What’s exciting is that a lot of the building blocks already exist today. The field is shipping patterns.
 
-First: self-validation. Browser use and computer use let agents close the test loop. They can check their own work with evidence — not only claim success.
+But I want to be honest about what they are. None of them is really designed for the next stage of autonomy — automating the outer loop of real product work.
 
-Second: multi-agent roles. We understand context rot better now — performance degrades, format slips, the agent forgets state, gets too optimistic about its own work. So we separate roles: Builder and Evaluator, isolated context, specialized prompts, independent review.
+On the single-agent side, we already have recurring workflows and scheduled goals — `/goal`, `/loop` in Claude Code, `/cron` in AdaL. We also have more autonomous permission modes — things like `--yolo`, or the very funny but very real `dangerously-skip-permissions` mode — where you can let the agent operate with much less interruption. The point is simple: one agent, more freedom to keep going.
 
-Those two shifts matter. They make autonomous loops possible.
+That helps. It is also too simple. You still have one trajectory and one context. A longer run is not the same thing as a multi-stage outer loop with independent evaluation and handover.
 
-They do not yet make the full human outer loop reliable.
+Then multi-agent showed up — and there are really two different ideas here.
+
+Dynamic workflows are not “agents chatting.” Claude writes a harness on the fly and runs many *isolated* agents, each with a clean window and one job. Why? Because a single long context fails in three ways: agentic laziness — it reviews thirty-five of fifty files and stops; self-preferential bias — it grades its own work too kindly; and goal drift — compaction quietly changes the mission. Isolation fixes those by splitting the work and separating the producer from the judge.
+
+That is powerful for parallel coverage and verification. It is also opaque. Hard to see what each agent is doing, hard to steer, easy to lose trust. It is built for parallel bursts, not a long iterative outer loop you can automate and own.
+
+Agent teams are different again. The key property is that parallel peer agents can message each other — not only report up. That exists for a reason: when a few pieces are interdependent and the interface is still moving, they need to renegotiate live. Useful. Also not the engineer runtime. Coordination gets expensive, and transparency drops fast.
+
+So the pattern set today is lopsided. Single-agent is too simple. Multi-agent is too complex and non-transparent. Both lean parallel. Real outer-loop engineering is mostly iterative. That is the gap.
 
 ---
 
-/title: Loops of Today
+/title: Claude Code multi-agent screenshot
 
-What’s exciting is that a lot of the building blocks for loops already exist today.
+And here is the proof in the product UI itself.
 
-We have recurring workflows and scheduled goals — `/goal`, `/loop` in Claude Code, `/cron` in AdaL — systems that can keep going until a task is complete. We have dynamic workflows that adapt as they run, and agent teams that can parallelize work. We also have more autonomous permission modes — things like `/yolo`, or the very funny but very real `dangerously-skip-permissions` mode — where you can let the agent operate with much less interruption.
+I asked Claude Code: can you use dynamic workflow and agent teams?
 
-So the primitives for loops are starting to become real. The field is already shipping pieces. We’re still trying.
+Look at how it answers. Agent teams are the Agent tool. Dynamic workflows are the Workflow tool. Both are capabilities of this same coding agent session — forks, explore, plan, pipeline, parallel, SendMessage. It is still one agent explaining the tools it has.
+
+That is the point. Today’s multi-agent is often an extension of a single coding agent’s toolbelt — not a separate engineer-layer agent sitting above the workers.
+
+Hold that picture. It makes the AdaL Engineer claim sharper later.
+
+---
+
+/title: What Makes Outer-Loop Automation Possible
+
+So why are we even talking about automating the outer loop now?
+
+Two capability shifts finally make it possible in principle — especially for a complicated product development lifecycle, not just a one-shot coding task.
+
+First: self-validation. Browser use and computer use are still new. They are only starting to get mature enough that agents can close the test loop. They can check their own work with evidence — not only claim success. Build something, open it, click through it, inspect the machine, recover when it breaks.
+
+Second: separated roles — and this is where people say “context rot.”
+
+That is not a universal, standardized definition. The practical meaning is simple: as the context starts to grow, the model becomes increasingly unreliable. It may miss what is already in the window, over-weight the wrong parts, forget earlier constraints, or get too confident about its own prior work. The best research anchor here is still *Lost in the Middle* — Liu et al., 2023 — which showed that even when the answer is in the prompt, long-context models often fail depending on where that information sits.
+
+In agent terms, that is basically the same family of failure that pushed Claude Code toward dynamic workflows: agentic laziness on long checklists, self-preferential bias when one agent grades its own output, and goal drift as the conversation is compacted. Isolation and role separation are the structural response — Builder and Evaluator in separate context, independent review. One agent should not grade its own homework.
+
+Those two shifts matter. They make autonomous outer loops possible.
+
+They do not yet make them reliable, cheap, or productized.
 
 ---
 
@@ -203,7 +236,7 @@ So the primitives for loops are starting to become real. The field is already sh
 
 But the key point is: the surrounding system is still hard.
 
-Just because you can turn on `/yolo` or `dangerously-skip-permissions` doesn’t mean you automatically get production-quality autonomy.
+Just because the conditions exist — or because you can turn on `/yolo` or `dangerously-skip-permissions` — does not mean you automatically get production-quality autonomy.
 
 High complexity. Which agents should participate? What context does each one need, and when? How do they hand work off? How is quality evaluated independently — testing, review, recovery — without the same agent grading its own homework? How do you keep documentation and long-term state coherent as the work changes? Those choices differ by company, by role, and even by codebase.
 
@@ -211,7 +244,7 @@ High cost — tokenmaxxing. More agents, more context, more validation, and repe
 
 The Codex team is a really good example. They’ve shown that a lot is possible — even toward zero manually written lines — but it still takes a whole team and a carefully designed system around the agents: documentation, context, review, and the harness.
 
-So the real challenge is not just having the building blocks. It’s building the system around them.
+So the real challenge is not just having the building blocks. It’s building the system around them — an engineer-layer runtime that can carry that outer loop without a human team glued inside every step. That is the door into AdaL Engineer.
 
 ---
 
@@ -276,9 +309,15 @@ Autonomy rises when we automate the engineer layer — not when we overload a si
 
 This is the visualization of that path.
 
-AdaL Engineer is our first experiment with the previous slide’s thesis. Look at the diagram: one engineer-level agent above today’s workers — coding, browser use, deep research, code review. Not a bigger coding agent. A separate layer that operates the workers.
+AdaL Engineer is our first experiment — and the first thing to notice is identity.
 
-Our near-term goal is practical and bounded: deliver one engineering task end-to-end at human-level quality.
+It is not a coding agent that gained multi-agent tools. It is an agent with the identity of an engineer. It uses the workers of today exactly as a human engineer does: coding, browser use, deep research, code review — allocate, prompt, check, revise, hand off.
+
+That is the important distinction from the Claude Code screenshot. Agent teams and dynamic workflows are still capabilities of one coding agent session. AdaL Engineer is designed as a completely different agent. Separate seat. Separate job. Not a bolt-on to the worker.
+
+We believe this is the first serious approach to autonomy from the engineer seat: automate the role that already operates today’s agents, instead of stuffing more orchestration into the coding agent itself.
+
+Near-term goal, practical and bounded: deliver one engineering task end-to-end at human-level quality.
 
 And I want to be honest about where we are. This is not a finished answer. It will fail in places. It will expose gaps in context, memory, evaluation, safety, and judgment. That is part of the point of an experiment.
 
@@ -290,19 +329,17 @@ We are not asking you to believe a pitch. We are asking you to inspect the diagr
 
 If AdaL Engineer is sitting in the engineer seat, what is the experiment actually testing?
 
-Six parts of the engineer runtime.
+Five parts of the engineer runtime.
 
 First: operate workers — allocate, prompt, and monitor the right agents.
 
-Second: retain state — carry progress, decisions, and context across iterations.
+Second: engineer memory — persistent long-term memory. Carry progress, decisions, and context across iterations, and keep them alive beyond the current chat.
 
-Third: evaluate independently — a Builder implements; an Evaluator does not grade its own homework. That separation is the science beat. Same family of idea as adversarial training: one side produces, another side checks.
+Third: agentic dynamic workflow. Independent build/eval is one pattern — useful, but only one form. The engineer can run flexible multi-agent workflows under its control: clearer structure than today’s opaque dynamic workflows, with the main agent remaining agentic about which pattern to use, when to fan out, when to verify, and when to iterate. Not a fixed recipe bolted onto a coding agent.
 
-Fourth: bound the loop — know when to stop, escalate, or hand the work back to a human.
+Fourth: adaptive autonomy — run autonomously. Humans can take over anytime, or collaborate at the same time — correct, redirect, multi-task — without forcing a “bound the loop / stop and escalate” gate as the product. If the loop is always waiting on a human stop condition, it collapses back into a simple single-worker session with a babysitter.
 
-Fifth: adaptive autonomy — orchestrate the workflow autonomously, but allow seamless manual takeover when you need to correct, redirect, or multi-task. Autopilot when it should run; human hands back on the controls when it shouldn’t.
-
-Sixth: avoid cognitive debt — keep the work in a clear structure, and leave a handover that is easy to walk through. Plans, decisions, evidence, and current state should be reviewable without forcing a human to surrender judgment or reverse-engineer the whole run.
+Fifth: avoid cognitive debt — keep the work in a clear structure, and leave a handover that is easy to walk through. Plans, decisions, evidence, and current state should be reviewable without forcing a human to surrender judgment or reverse-engineer the whole run.
 
 ---
 

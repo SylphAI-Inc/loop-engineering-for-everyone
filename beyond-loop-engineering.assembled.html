@@ -62,6 +62,8 @@
       border-radius: var(--radius);
       overflow: hidden;
       background: #0a0b0d;
+      container-type: size;
+      container-name: deck;
     }
 
     .slide {
@@ -69,9 +71,10 @@
       inset: 0;
       display: none;
       grid-template-rows: auto minmax(0, 1fr) auto;
-      gap: clamp(14px, 1.5vw, 26px);
-      padding: clamp(28px, 3vw, 52px);
+      gap: clamp(10px, 1.4cqh, 26px);
+      padding: clamp(18px, 4.2cqh, 52px) clamp(20px, 3.2cqw, 52px);
       min-width: 0;
+      min-height: 0;
     }
 
     .slide.active {
@@ -81,10 +84,13 @@
     .slide-title {
       margin: 0;
       color: var(--text);
-      font-size: clamp(28px, 3.5vw, 52px);
+      font-size: clamp(24px, min(3.5vw, 7.2cqh), 52px);
       line-height: 1.1;
       letter-spacing: -0.035em;
       font-weight: 650;
+      z-index: 3;
+      min-width: 0;
+      background: linear-gradient(180deg, #0a0b0d 70%, rgba(10, 11, 13, 0.92) 100%);
     }
 
     .slide-lead {
@@ -112,29 +118,38 @@
 
     .slide-body {
       min-height: 0;
+      min-width: 0;
       width: min(100%, 1400px);
       margin: 0 auto;
       display: grid;
-      align-content: center;
+      /* safe center: center when content fits; top-align when it would overflow upward under the title */
+      align-content: safe center;
       justify-items: center;
+      overflow: hidden;
     }
 
     /* Deck visual system: editorial grid, quiet surfaces, one purposeful accent. */
+    /* Accent mark sits on the title so it tracks padding changes */
     .slide::before {
-      content: "";
-      position: absolute;
-      top: clamp(28px, 3vw, 52px);
-      left: clamp(28px, 3vw, 52px);
-      width: 42px;
-      height: 2px;
-      border-radius: 999px;
-      background: var(--accent);
+      display: none;
     }
 
     .slide-title {
       position: relative;
       max-width: 100%;
-      padding-top: clamp(13px, 1.25vw, 18px);
+      padding-top: clamp(10px, 1.4cqh, 18px);
+    }
+
+    .slide-title::before {
+      content: "";
+      position: absolute;
+      z-index: 4;
+      top: 0;
+      left: 0;
+      width: 42px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--accent);
     }
 
     .slide-title::after {
@@ -292,30 +307,33 @@
 
     .loops-today-list {
       list-style: none;
-      margin: 16px auto 32px;
+      margin: 0;
       padding: 0;
       max-width: 1000px;
       width: 100%;
+      min-height: 0;
       display: grid;
-      gap: 16px;
+      gap: clamp(8px, 1.4cqh, 16px);
       text-align: left;
+      align-content: start;
     }
 
     .loops-today-list li {
       position: relative;
-      padding: 20px 24px 20px 56px;
+      min-height: 0;
+      padding: clamp(10px, 1.8cqh, 20px) clamp(14px, 1.8cqw, 24px) clamp(10px, 1.8cqh, 20px) clamp(40px, 4.5cqw, 56px);
       border: 1px solid var(--line);
       border-radius: 16px;
       background: rgba(255, 255, 255, 0.03);
       color: var(--text);
-      font-size: clamp(18px, 1.8vw, 26px);
+      font-size: clamp(14px, min(1.6vw, 3cqh), 26px);
       letter-spacing: -0.005em;
     }
 
     .loops-today-list li::before {
       content: "";
       position: absolute;
-      left: 24px;
+      left: clamp(14px, 1.8cqw, 24px);
       top: 50%;
       transform: translateY(-50%);
       width: 10px;
@@ -328,13 +346,13 @@
     .loops-today-takeaway {
       margin: 0 auto;
       max-width: 1000px;
-      padding: 24px 32px;
+      padding: clamp(10px, 1.8cqh, 24px) clamp(14px, 2cqw, 32px);
       border-left: 4px solid var(--accent);
       border-radius: 12px;
       background: rgba(255, 88, 152, 0.06);
       color: var(--text);
-      font-size: clamp(20px, 2vw, 28px);
-      line-height: 1.45;
+      font-size: clamp(15px, min(1.8vw, 3.2cqh), 28px);
+      line-height: 1.35;
       text-align: center;
       user-select: text;
     }
@@ -355,15 +373,23 @@
     }
 
     .barrier-card {
-      min-height: 114px;
+      min-height: 140px;
       display: grid;
       align-content: center;
-      gap: 24px;
-      padding: clamp(24px, 3vw, 40px);
+      gap: 12px;
+      padding: clamp(28px, 3.2vw, 44px);
       border: 1px solid var(--line);
       border-top: 4px solid var(--accent);
       border-radius: var(--radius);
       background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+    }
+
+    .barrier-card strong {
+      color: var(--text);
+      font-size: clamp(32px, 3.4vw, 52px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      font-weight: 700;
     }
 
     .codex-callout {
@@ -591,6 +617,22 @@
       max-width: 100%;
     }
 
+    /* Inline body links — blend into copy; light underline only */
+    .inline-doc-link {
+      color: inherit;
+      font-weight: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+      transition: border-color 140ms ease, color 140ms ease;
+    }
+
+    .inline-doc-link:hover,
+    .inline-doc-link:focus-visible {
+      color: var(--text);
+      border-bottom-color: rgba(255, 255, 255, 0.55);
+      outline: none;
+    }
+
     .agent-cite {
       display: block;
       color: var(--muted);
@@ -770,14 +812,53 @@
       text-transform: uppercase;
     }
 
+    /* References is the one slide allowed to scroll on small screens */
+    .slide[aria-labelledby="slide-12-title"] {
+      overflow: hidden;
+    }
+
+    .slide[aria-labelledby="slide-12-title"] .slide-body {
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      align-content: start;
+      justify-items: stretch;
+      width: min(100%, 1480px);
+      height: 100%;
+      min-height: 0;
+      padding-right: 4px;
+      scrollbar-gutter: stable;
+    }
+
+    .slide[aria-labelledby="slide-12-title"] .slide-body::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .slide[aria-labelledby="slide-12-title"] .slide-body::-webkit-scrollbar-thumb {
+      background: rgba(255, 88, 152, 0.35);
+      border-radius: 999px;
+    }
+
     .references-grid {
       width: min(100%, 1400px);
-      max-height: 100%;
+      max-height: none;
+      height: auto;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px 32px;
-      overflow: auto;
-      padding: 4px 16px 4px 4px;
+      gap: clamp(14px, 2cqh, 24px) clamp(16px, 2.2cqw, 32px);
+      overflow: visible;
+      padding: 4px 8px 12px 4px;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 900px), (max-height: 760px) {
+      .references-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .references-grid .reference-list a {
+        font-size: clamp(14px, 1.3vw, 18px);
+        padding: 8px 12px;
+      }
     }
 
     .references-grid .reference-group + .reference-group {
@@ -1064,12 +1145,16 @@
     /* Large-monitor layout for the layers / outer-loop diagram */
     .slide[aria-labelledby="slide-layers-workflow-title"] .slide-body,
     .layers-workflow-body {
-      width: min(100%, 1680px) !important;
+      width: min(100%, 1760px) !important;
       height: 100%;
-      grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
-      gap: clamp(20px, 2.5vw, 48px);
-      align-items: stretch;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.45fr);
+      gap: clamp(28px, 3.5vw, 56px);
+      align-items: center;
       justify-items: stretch;
+      padding-inline: clamp(8px, 1.5vw, 24px);
+      box-sizing: border-box;
     }
 
     .slide[aria-labelledby="slide-layers-workflow-title"] .layers-workflow-diagram,
@@ -1077,8 +1162,16 @@
       width: 100% !important;
       max-width: none !important;
       height: 100%;
-      min-height: clamp(360px, 52vh, 720px);
-      padding: clamp(10px, 1.2vw, 18px);
+      min-height: clamp(380px, 58vh, 760px);
+      min-width: 0;
+      padding: 0;
+      box-sizing: border-box;
+      display: grid;
+      place-items: center start;
+      overflow: visible;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
     }
 
     .slide[aria-labelledby="slide-layers-workflow-title"] .layers-workflow-svg,
@@ -1086,14 +1179,25 @@
       width: 100% !important;
       height: 100% !important;
       max-width: none !important;
-      max-height: none !important;
+      max-height: min(72vh, 100%) !important;
+      display: block;
     }
 
     .layers-workflow-copy {
       display: grid;
-      gap: clamp(18px, 2.2vw, 32px);
-      align-content: center;
+      gap: clamp(16px, 2vw, 28px);
+      align-content: end;
+      justify-items: end;
       min-width: 0;
+      height: 100%;
+      padding: 0 clamp(4px, 1vw, 12px) clamp(8px, 1.5vh, 24px) clamp(4px, 1vw, 16px);
+      box-sizing: border-box;
+    }
+
+    .layers-workflow-copy .layers-workflow-lead,
+    .layers-workflow-copy .layers-workflow-question {
+      text-align: right !important;
+      justify-self: end;
     }
 
     .layers-workflow-lead {
@@ -1108,6 +1212,7 @@
       text-align: left !important;
       font-size: clamp(24px, 2.3vw, 36px) !important;
       line-height: 1.3;
+      max-width: none;
     }
 
     .layers-workflow-question-label {
@@ -1118,6 +1223,37 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-bottom: 12px;
+    }
+
+    @media (max-width: 1200px) {
+      .slide[aria-labelledby="slide-layers-workflow-title"] .slide-body,
+      .layers-workflow-body {
+        grid-template-columns: 1fr !important;
+        gap: clamp(24px, 3vw, 36px) !important;
+        align-content: center;
+      }
+
+      .layers-workflow-copy {
+        padding-left: 0;
+        justify-items: start;
+        align-content: start;
+      }
+
+      .layers-workflow-copy .layers-workflow-lead,
+      .layers-workflow-copy .layers-workflow-question {
+        text-align: left !important;
+        justify-self: start;
+      }
+
+      .layers-workflow-lead,
+      .layers-workflow-question {
+        max-width: none !important;
+      }
+
+      .slide[aria-labelledby="slide-layers-workflow-title"] .layers-workflow-svg,
+      .layers-workflow-svg {
+        max-height: min(46vh, 420px) !important;
+      }
     }
 
 
@@ -1216,18 +1352,23 @@
       height: 100%;
       min-height: 0;
       display: grid;
-      grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
-      gap: clamp(20px, 2.6vw, 44px);
+      grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr);
+      gap: clamp(14px, 2.6vw, 40px);
       align-items: stretch;
       justify-items: stretch;
+      padding-inline: clamp(4px, 1vw, 12px);
+      box-sizing: border-box;
+      overflow: hidden;
     }
 
     .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-copy {
       min-width: 0;
+      min-height: 0;
       height: 100%;
       display: grid;
-      gap: clamp(14px, 1.6vw, 22px);
+      gap: clamp(10px, 1.8cqh, 28px);
       align-content: center;
+      overflow: hidden;
     }
 
     .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-diagram-wrap {
@@ -1238,43 +1379,728 @@
       display: grid;
       place-items: center;
       overflow: hidden;
+      padding-inline: 0;
+      box-sizing: border-box;
     }
 
     .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-illustration {
       width: 100% !important;
-      max-width: none !important;
-      height: 100% !important;
-      max-height: min(70vh, 100%);
-      min-height: clamp(360px, 54vh, 760px);
+      max-width: 100% !important;
+      height: auto !important;
+      max-height: min(78cqh, 100%);
+      min-height: 0;
       display: block;
     }
 
-    .slide[aria-labelledby="slide-layers-workflow-title"] .slide-body,
-    .layers-workflow-body {
+    .slide[aria-labelledby="slide-v2-adal-eng-title"] .loop-engineering-panel strong,
+    .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-panel-text {
+      display: block;
+      margin-top: clamp(4px, 0.9cqh, 14px);
+      font-size: clamp(15px, min(2.1vw, 4cqh), 32px) !important;
+      line-height: 1.25 !important;
+      font-weight: 620;
+    }
+
+    /* Dense left/right slides — spacing + viewport fit */
+    .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-body,
+    .slide[aria-labelledby="slide-v2-when-loops-title"] .slide-body,
+    .slide[aria-labelledby="slide-v2-automate-title"] .slide-body,
+    .slide[aria-labelledby="slide-humans-next-title"] .slide-body,
+    .slide[aria-labelledby="slide-v2-risks-title"] .slide-body,
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .slide-body,
+    .slide[aria-labelledby="slide-intro-title"] .slide-body,
+    .slide[aria-labelledby="slide-v2-loop-eng-title"] .slide-body,
+    .slide[aria-labelledby="slide-v2-why-possible-title"] .slide-body {
       width: min(100%, 1680px) !important;
       height: 100%;
-      grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
-      gap: clamp(20px, 2.5vw, 48px);
-      align-items: stretch;
+      min-height: 0;
+      box-sizing: border-box;
+      padding-inline: clamp(8px, 1.6vw, 28px);
+      gap: clamp(12px, 2.2cqh, 48px) !important;
+      align-content: center;
+      justify-items: stretch !important;
+      overflow: hidden;
+    }
+
+    .slide[aria-labelledby="slide-intro-title"] .slide-body > div,
+    .slide[aria-labelledby="slide-v2-loop-eng-title"] .slide-body > div,
+    .slide[aria-labelledby="slide-v2-why-possible-title"] .slide-body > div,
+    .slide[aria-labelledby="slide-v2-automate-title"] .slide-body > div:first-child,
+    .slide[aria-labelledby="slide-v2-when-loops-title"] .slide-body > div {
+      min-height: 0;
+    }
+
+    .slide[aria-labelledby="slide-intro-title"] .loop-engineering-panel strong,
+    .slide[aria-labelledby="slide-v2-loop-eng-title"] .loop-engineering-panel strong,
+    .slide[aria-labelledby="slide-v2-why-possible-title"] .loop-engineering-panel strong {
+      font-size: clamp(18px, min(2.5vw, 4.6cqh), 42px) !important;
+      line-height: 1.2 !important;
+    }
+
+    .slide[aria-labelledby="slide-v2-automate-title"] .loop-engineering-panel strong,
+    .slide[aria-labelledby="slide-v2-when-loops-title"] .loop-engineering-panel strong,
+    .slide[aria-labelledby="slide-v2-risks-title"] .loop-engineering-panel strong,
+    .slide[aria-labelledby="slide-humans-next-title"] .loop-engineering-panel strong {
+      font-size: clamp(16px, min(2.2vw, 4cqh), 34px) !important;
+      line-height: 1.2 !important;
+    }
+
+    .slide[aria-labelledby="slide-intro-title"] .lifecycle-reasons,
+    .slide[aria-labelledby="slide-v2-automate-title"] .lifecycle-reasons,
+    .slide[aria-labelledby="slide-v2-when-loops-title"] .lifecycle-reasons,
+    .slide[aria-labelledby="slide-humans-next-title"] .lifecycle-reasons {
+      font-size: clamp(14px, min(1.45vw, 2.8cqh), 24px) !important;
+      margin-top: clamp(8px, 1.2cqh, 22px) !important;
+      gap: clamp(6px, 1cqh, 14px);
+    }
+
+    .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-body {
+      grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr) !important;
+      align-items: stretch !important;
+      overflow: hidden;
+    }
+
+    .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-body > div:first-child {
+      min-width: 0;
+      min-height: 0;
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: clamp(8px, 1.2cqh, 18px);
+      align-content: stretch;
+      padding-right: clamp(4px, 1vw, 18px);
+      overflow: hidden;
+    }
+
+    .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-body > div:first-child > div {
+      display: grid;
+      grid-template-rows: repeat(5, minmax(0, 1fr));
+      gap: clamp(6px, 0.9cqh, 12px) !important;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .slide[aria-labelledby="slide-v2-experiment-testing-title"] .loop-engineering-panel {
+      padding: clamp(8px, 1.2cqh, 16px) clamp(10px, 1.2cqw, 18px) !important;
+      gap: clamp(4px, 0.7cqh, 10px) !important;
+      align-content: center;
+    }
+
+    .slide[aria-labelledby="slide-v2-experiment-testing-title"] .loop-engineering-panel strong {
+      font-size: clamp(13px, min(1.4vw, 2.8cqh), 22px) !important;
+      line-height: 1.2 !important;
+    }
+
+    .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-body > div:last-of-type {
+      min-width: 0;
+      min-height: 0;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      padding-left: clamp(4px, 1vw, 16px);
+    }
+
+    .slide[aria-labelledby="slide-v2-experiment-testing-title"] .illustration {
+      width: 100% !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: min(78cqh, 100%) !important;
+      min-height: 0 !important;
+    }
+
+    .slide[aria-labelledby="slide-v2-when-loops-title"] .slide-body > div,
+    .slide[aria-labelledby="slide-humans-next-title"] .slide-body > div,
+    .slide[aria-labelledby="slide-v2-automate-title"] .slide-body > div:first-child {
+      width: 100%;
+      gap: clamp(12px, 2.2cqh, 40px);
+      min-height: 0;
+    }
+
+    .slide[aria-labelledby="slide-v2-when-loops-title"] .loop-engineering-panel,
+    .slide[aria-labelledby="slide-humans-next-title"] .loop-engineering-panel,
+    .slide[aria-labelledby="slide-v2-automate-title"] .loop-engineering-panel,
+    .slide[aria-labelledby="slide-v2-adal-eng-title"] .loop-engineering-panel,
+    .slide[aria-labelledby="slide-v2-risks-title"] .loop-engineering-panel,
+    .slide[aria-labelledby="slide-intro-title"] .loop-engineering-panel,
+    .slide[aria-labelledby="slide-v2-loop-eng-title"] .loop-engineering-panel,
+    .slide[aria-labelledby="slide-v2-why-possible-title"] .loop-engineering-panel {
+      padding: clamp(12px, 2.2cqh, 36px) clamp(14px, 2cqw, 36px);
+      min-height: 0;
+    }
+
+    .slide[aria-labelledby="slide-v2-when-loops-title"] .lifecycle-reasons,
+    .slide[aria-labelledby="slide-v2-automate-title"] .lifecycle-reasons,
+    .slide[aria-labelledby="slide-humans-next-title"] .lifecycle-reasons {
+      gap: clamp(6px, 1cqh, 16px);
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .slide-body,
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-body {
+      width: min(100%, 1680px) !important;
+      height: 100%;
+      min-height: 0;
+      display: grid !important;
+      grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr) !important;
+      gap: clamp(18px, 2.6cqw, 44px) !important;
+      align-items: center !important;
+      align-content: safe center !important;
+      justify-items: stretch !important;
+      overflow: hidden;
+      padding-inline: clamp(4px, 1cqw, 16px);
+      box-sizing: border-box;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-thesis {
+      min-width: 0;
+      min-height: 0;
+      height: auto;
+      align-self: center;
+      border-left: 4px solid var(--accent);
+      padding: clamp(4px, 1cqh, 12px) 0 clamp(4px, 1cqh, 12px) clamp(14px, 1.8cqw, 28px);
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-thesis .density-strong {
+      font-size: clamp(26px, min(3.1vw, 5.8cqh), 46px) !important;
+      line-height: 1.12 !important;
+      margin-top: 0 !important;
+      max-width: 12ch;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-diagram {
+      min-width: 0;
+      min-height: 0;
+      width: 100%;
+      display: grid;
+      gap: clamp(14px, 2cqh, 22px);
+      align-content: center;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-row {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(120px, 0.42fr);
+      gap: clamp(8px, 1.2cqw, 14px);
+      align-items: center;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-mode {
+      min-width: 0;
+      min-height: 0;
+      height: auto;
+      display: grid;
+      gap: clamp(8px, 1.1cqh, 14px);
+      align-content: start;
+      padding: clamp(12px, 1.8cqh, 20px) clamp(12px, 1.5cqw, 18px) !important;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-pointer {
+      width: clamp(36px, 4.5cqw, 64px);
+      display: grid;
+      place-items: center;
+      opacity: 0.9;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-pointer svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-callout {
+      min-width: 0;
+      padding: clamp(10px, 1.4cqh, 16px) clamp(12px, 1.3cqw, 16px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-callout strong {
+      display: block !important;
+      margin: 0 0 6px !important;
+      color: var(--text) !important;
+      font-size: clamp(15px, min(1.5vw, 2.8cqh), 22px) !important;
+      font-weight: 650 !important;
+      letter-spacing: -0.02em !important;
+      line-height: 1.15 !important;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-callout p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(12px, min(1.15vw, 2.2cqh), 16px);
+      line-height: 1.3;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-mode-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      min-height: 0;
+      display: grid;
+      gap: clamp(8px, 1.2cqh, 12px);
+      align-content: start;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-mode-list > li {
+      display: grid;
+      gap: clamp(5px, 0.8cqh, 8px);
+      min-width: 0;
+      padding: clamp(8px, 1.1cqh, 12px) clamp(10px, 1.1cqw, 14px);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    /* Multi-agent stays neutral — pink is reserved for AdaL-specific beats */
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-mode--multi {
+      border-color: rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.03);
+      box-shadow: none;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-mode--multi .loop-engineering-panel-label {
+      color: var(--muted);
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-mode--multi .loops-today-mode-list > li {
+      border-color: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-mode--multi .loops-today-inline-link {
+      border-bottom-color: rgba(255, 255, 255, 0.35);
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-mode--multi .loops-today-inline-link:hover,
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-mode--multi .loops-today-inline-link:focus-visible {
+      color: var(--text);
+      border-bottom-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-mode--multi .loops-today-chips code {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    @media (max-width: 900px) {
+      .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-body {
+        grid-template-columns: 1fr !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-pointer {
+        display: none;
+      }
+    }
+
+    @container deck (max-width: 900px) {
+      .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-body {
+        grid-template-columns: 1fr !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-row {
+        grid-template-columns: 1fr;
+      }
+
+      .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-pointer {
+        display: none;
+      }
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-item-title {
+      display: block;
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(15px, min(1.45vw, 2.8cqh), 22px);
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-inline-link {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 88, 152, 0.45);
+      transition: color 120ms ease, border-color 120ms ease;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-inline-link:hover,
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-inline-link:focus-visible {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      outline: none;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-chips {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: clamp(6px, 0.9cqh, 10px) clamp(8px, 1cqw, 12px);
+      min-width: 0;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-chips code {
+      display: inline-block;
+      max-width: 100%;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      white-space: normal;
+      font-family: var(--mono);
+      color: var(--text);
+      font-size: clamp(11px, min(1.1vw, 2.1cqh), 15px);
+      line-height: 1.25;
+      padding: 3px 7px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-meta {
+      color: var(--muted);
+      font-size: clamp(12px, min(1.15vw, 2.2cqh), 16px);
+      line-height: 1.25;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-item-copy {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(13px, min(1.25vw, 2.4cqh), 18px);
+      line-height: 1.3;
+    }
+
+    .slide[aria-labelledby="slide-4-title"] .drained-body {
+      width: min(100%, 1480px) !important;
+      height: 100%;
+      min-height: 0;
+      align-content: safe center;
+      justify-items: stretch;
+      overflow: hidden;
+    }
+
+    .slide[aria-labelledby="slide-4-title"] .drained-layout {
+      width: 100%;
+      min-height: 0;
+      display: grid;
+      gap: clamp(14px, 2.2cqh, 36px);
       justify-items: stretch;
     }
 
-    .slide[aria-labelledby="slide-layers-workflow-title"] .layers-workflow-diagram,
-    .layers-workflow-diagram {
-      width: 100% !important;
+    .slide[aria-labelledby="slide-4-title"] .drained-quote {
+      margin: 0 !important;
       max-width: none !important;
-      height: 100%;
-      min-height: clamp(380px, 56vh, 760px);
-      padding: clamp(10px, 1.2vw, 18px);
+      font-size: clamp(18px, min(2vw, 3.4cqh), 32px) !important;
+      line-height: 1.3 !important;
     }
 
-    .slide[aria-labelledby="slide-layers-workflow-title"] .layers-workflow-svg,
-    .layers-workflow-svg {
-      width: 100% !important;
-      height: 100% !important;
-      max-width: none !important;
-      max-height: none !important;
+    .slide[aria-labelledby="slide-4-title"] .drained-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(12px, 1.8cqw, 24px);
+      min-height: 0;
+      align-items: stretch;
     }
+
+    .slide[aria-labelledby="slide-4-title"] .drained-stat {
+      display: block;
+      margin-top: clamp(4px, 0.8cqh, 10px);
+      font-size: clamp(28px, min(3.2vw, 7cqh), 52px) !important;
+      line-height: 1 !important;
+      letter-spacing: -0.04em;
+      font-weight: 650;
+    }
+
+    .slide[aria-labelledby="slide-4-title"] .loop-engineering-panel {
+      padding: clamp(12px, 2cqh, 32px) clamp(14px, 1.8cqw, 28px);
+      gap: clamp(6px, 1cqh, 14px);
+    }
+
+    @media (max-width: 900px) {
+      .slide[aria-labelledby="slide-4-title"] .drained-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @container deck (max-width: 900px) {
+      .slide[aria-labelledby="slide-4-title"] .drained-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .slide[aria-labelledby="slide-v2-hard-title"] .barrier-layout {
+      width: min(100%, 1500px);
+      gap: clamp(20px, 3.5cqw, 72px);
+      padding-inline: clamp(8px, 1.5vw, 24px);
+      box-sizing: border-box;
+      min-height: 0;
+    }
+
+    .slide[aria-labelledby="slide-v2-hard-title"] .slide-body {
+      align-content: safe center;
+      overflow: hidden;
+      height: 100%;
+      min-height: 0;
+    }
+
+    .slide[aria-labelledby="slide-v2-risks-title"] .slide-body > div:first-child {
+      width: 100%;
+      gap: clamp(18px, 2.2vw, 32px) !important;
+    }
+
+    /* Viewport fallback for browsers without container queries */
+    @media (max-width: 900px) {
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-body,
+      .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-body,
+      .slide[aria-labelledby="slide-v2-loops-today-title"] .slide-body,
+      .slide[aria-labelledby="slide-v2-hard-title"] .barrier-layout,
+      .slide[aria-labelledby="slide-intro-title"] .slide-body > div,
+      .slide[aria-labelledby="slide-v2-when-loops-title"] .slide-body > div,
+      .slide[aria-labelledby="slide-humans-next-title"] .slide-body > div,
+      .slide[aria-labelledby="slide-v2-automate-title"] .slide-body > div:first-child,
+      .slide[aria-labelledby="slide-v2-risks-title"] .slide-body > div:first-child,
+      .slide[aria-labelledby="slide-v2-loop-eng-title"] .slide-body > div,
+      .slide[aria-labelledby="slide-v2-why-possible-title"] .slide-body > div {
+        grid-template-columns: 1fr !important;
+        gap: clamp(12px, 2vw, 24px) !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .illustration,
+      .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-illustration {
+        max-height: min(34vh, 260px) !important;
+      }
+    }
+
+    /* Short laptop / browser chrome heights: compress dense content to stay inside 16:9 */
+    @media (max-height: 900px) {
+      .slide {
+        gap: clamp(8px, 1.1vw, 16px);
+        padding: clamp(16px, 2.2vw, 28px) clamp(18px, 2.4vw, 36px);
+      }
+
+      .slide-title {
+        font-size: clamp(22px, 2.8vw, 40px);
+      }
+
+      .slide-title::after {
+        bottom: -6px;
+      }
+
+      .loop-engineering-panel {
+        gap: clamp(8px, 1vw, 14px) !important;
+        padding: clamp(12px, 1.4vw, 20px) !important;
+      }
+
+      .loop-engineering-panel-label {
+        font-size: clamp(11px, 0.9vw, 14px);
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .illustration,
+      .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-illustration {
+        max-height: min(72vh, 100%) !important;
+        min-height: 0 !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-lead,
+      .slide[aria-labelledby="slide-v2-when-loops-title"] .slide-lead,
+      .slide[aria-labelledby="slide-humans-next-title"] .slide-lead,
+      .slide[aria-labelledby="slide-v2-loops-today-title"] .slide-lead,
+      .slide[aria-labelledby="slide-intro-title"] .slide-lead {
+        font-size: clamp(14px, 1.2vw, 18px) !important;
+        margin-top: 8px !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-body > div:first-child {
+        gap: clamp(8px, 1vw, 12px);
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-body > div:first-child > div {
+        gap: 6px !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .loop-engineering-panel strong {
+        font-size: clamp(13px, 1.2vw, 18px) !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-body {
+        gap: clamp(14px, 2vw, 28px) !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-copy {
+        gap: clamp(10px, 1.4vw, 18px) !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-loop-eng-title"] .slide-body,
+      .slide[aria-labelledby="slide-v2-why-possible-title"] .slide-body,
+      .slide[aria-labelledby="slide-v2-automate-title"] .slide-body,
+      .slide[aria-labelledby="slide-v2-when-loops-title"] .slide-body {
+        gap: clamp(12px, 1.6vw, 24px) !important;
+      }
+
+      .lifecycle-reasons {
+        gap: clamp(6px, 0.8vw, 10px);
+      }
+    }
+
+    @media (max-height: 760px) {
+      .slide {
+        gap: 8px;
+        padding: 14px 18px 16px;
+      }
+
+      .slide-title {
+        font-size: clamp(20px, 2.5vw, 32px);
+        padding-top: 8px;
+      }
+
+      .loop-engineering-panel {
+        gap: 6px !important;
+        padding: 10px 12px !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .illustration,
+      .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-illustration {
+        max-height: min(64vh, 100%) !important;
+        min-height: 0 !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .loop-engineering-panel strong,
+      .slide[aria-labelledby="slide-v2-adal-eng-title"] .loop-engineering-panel strong {
+        font-size: clamp(12px, 1.1vw, 16px) !important;
+      }
+
+      .loops-today-takeaway {
+        font-size: clamp(13px, 1.15vw, 18px) !important;
+        padding-top: 4px !important;
+      }
+
+      .agent-cite-stack {
+        gap: 4px;
+      }
+
+      .agent-cite {
+        font-size: 11px;
+      }
+    }
+
+    /* Deck-height container queries: scale with the 16:9 frame, not just the window */
+    @container deck (max-height: 720px) {
+      .slide {
+        gap: 8px;
+        padding: 14px 18px;
+      }
+
+      .slide-title {
+        font-size: clamp(20px, 4.6cqh, 34px);
+      }
+
+      .loop-engineering-panel {
+        gap: 6px !important;
+        padding: 10px 12px !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .illustration,
+      .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-illustration {
+        max-height: min(70cqh, 100%) !important;
+        min-height: 0 !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .loop-engineering-panel {
+        padding: 8px 10px !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .loop-engineering-panel strong {
+        font-size: clamp(12px, 2.2cqh, 16px) !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-adal-eng-title"] .loop-engineering-panel strong {
+        font-size: clamp(14px, 2.6cqh, 22px) !important;
+      }
+
+      .slide[aria-labelledby="slide-intro-title"] .loop-engineering-panel strong,
+      .slide[aria-labelledby="slide-v2-loop-eng-title"] .loop-engineering-panel strong,
+      .slide[aria-labelledby="slide-v2-why-possible-title"] .loop-engineering-panel strong,
+      .slide[aria-labelledby="slide-v2-automate-title"] .loop-engineering-panel strong,
+      .slide[aria-labelledby="slide-v2-when-loops-title"] .loop-engineering-panel strong {
+        font-size: clamp(16px, 3cqh, 28px) !important;
+      }
+
+      .slide[aria-labelledby="slide-intro-title"] .lifecycle-reasons,
+      .slide[aria-labelledby="slide-v2-automate-title"] .lifecycle-reasons,
+      .slide[aria-labelledby="slide-v2-when-loops-title"] .lifecycle-reasons {
+        font-size: clamp(13px, 2.3cqh, 18px) !important;
+        margin-top: 8px !important;
+      }
+    }
+
+    @container deck (max-height: 600px) {
+      .slide {
+        gap: 6px;
+        padding: 12px 14px;
+      }
+
+      .slide-title {
+        font-size: clamp(18px, 4.2cqh, 28px);
+        padding-top: 6px;
+      }
+
+      /* Keep side-by-side when the frame is wide enough; only compress height */
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .illustration,
+      .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-illustration {
+        max-height: min(62cqh, 100%) !important;
+        min-height: 0 !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .loop-engineering-panel {
+        padding: 6px 8px !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .loop-engineering-panel-label {
+        font-size: 10px;
+      }
+    }
+
+    /* Narrow deck frames only — stack dense two-column slides */
+    @container deck (max-width: 900px) {
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .slide-body,
+      .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-body,
+      .slide[aria-labelledby="slide-v2-loops-today-title"] .slide-body,
+      .slide[aria-labelledby="slide-intro-title"] .slide-body > div,
+      .slide[aria-labelledby="slide-v2-automate-title"] .slide-body > div:first-child,
+      .slide[aria-labelledby="slide-v2-when-loops-title"] .slide-body > div,
+      .slide[aria-labelledby="slide-humans-next-title"] .slide-body > div,
+      .slide[aria-labelledby="slide-v2-risks-title"] .slide-body > div:first-child,
+      .slide[aria-labelledby="slide-v2-loop-eng-title"] .slide-body > div,
+      .slide[aria-labelledby="slide-v2-why-possible-title"] .slide-body > div {
+        grid-template-columns: 1fr !important;
+      }
+
+      .slide[aria-labelledby="slide-v2-experiment-testing-title"] .illustration,
+      .slide[aria-labelledby="slide-v2-adal-eng-title"] .adal-eng-illustration {
+        max-height: min(32cqh, 220px) !important;
+      }
+    }
+
+    @container deck (min-height: 820px) {
+      .slide {
+        gap: clamp(16px, 2.2cqh, 28px);
+        padding: clamp(32px, 4.5cqh, 56px) clamp(36px, 3.6cqw, 64px);
+      }
+
+      .slide-title {
+        font-size: clamp(34px, 5.8cqh, 56px);
+      }
+
+      .loop-engineering-panel {
+        gap: clamp(14px, 1.8cqh, 28px);
+        padding: clamp(24px, 3cqh, 48px) clamp(24px, 2.8cqw, 48px);
+      }
+    }
+
+
 
     svg text, svg tspan {
       user-select: text;
@@ -1316,7 +2142,7 @@
     .loops-today-thesis strong {
       display: block;
       color: var(--text);
-      font-size: clamp(32px, 3.5vw, 54px);
+      font-size: clamp(22px, min(2.8vw, 5cqh), 42px);
       line-height: 1.12;
       letter-spacing: -0.035em;
     }
@@ -1378,8 +2204,8 @@
       min-height: 0;
       display: grid;
       align-content: center;
-      gap: clamp(16px, 1.8vw, 28px);
-      padding: clamp(28px, 3vw, 48px);
+      gap: clamp(10px, 1.6cqh, 28px);
+      padding: clamp(14px, 2.6cqh, 48px) clamp(16px, 2.4cqw, 48px);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: rgba(255,255,255,0.025);
@@ -1407,10 +2233,38 @@
 
     .loop-engineering-panel strong {
       color: var(--text);
-      font-size: clamp(31px, 3.15vw, 52px);
+      font-size: clamp(22px, min(3.15vw, 5.5cqh), 52px);
       font-weight: 620;
       letter-spacing: -0.045em;
-      line-height: 1.08;
+      line-height: 1.12;
+    }
+
+    /* Shared density tokens — prefer these over inline clamps so media/container queries can win */
+    .density-strong {
+      display: block;
+      margin-top: clamp(6px, 1.1cqh, 18px);
+      font-size: clamp(18px, min(2.6vw, 4.8cqh), 42px) !important;
+      line-height: 1.2 !important;
+      font-weight: 620;
+      letter-spacing: -0.03em;
+    }
+
+    .density-strong--md {
+      font-size: clamp(16px, min(2.3vw, 4.2cqh), 36px) !important;
+      line-height: 1.25 !important;
+    }
+
+    .density-lead {
+      margin: clamp(8px, 1.2cqh, 16px) 0 0 !important;
+      max-width: none !important;
+      font-size: clamp(14px, min(1.4vw, 2.7cqh), 23px) !important;
+      line-height: 1.35 !important;
+    }
+
+    .density-list {
+      margin-top: clamp(8px, 1.2cqh, 22px) !important;
+      font-size: clamp(13px, min(1.4vw, 2.6cqh), 24px) !important;
+      gap: clamp(5px, 0.9cqh, 12px);
     }
 
     .loop-engineering-panel--outcome strong {
@@ -1625,24 +2479,24 @@
 <article class="slide" aria-labelledby="slide-intro-title">
   <h2 id="slide-intro-title" class="slide-title">Why We’re Here</h2>
   <div class="slide-body">
-    <div style="width:min(100%,1280px);display:grid;grid-template-columns:minmax(0,0.95fr) minmax(0,1.05fr);gap:clamp(24px,3vw,48px);align-items:stretch;">
+    <div style="width:min(100%,1280px);height:100%;min-height:0;display:grid;grid-template-columns:minmax(0,0.95fr) minmax(0,1.05fr);gap:clamp(14px,2.4cqw,48px);align-items:stretch;">
       <section class="loop-engineering-panel">
         <p class="loop-engineering-panel-label">Li Yin</p>
-        <strong style="font-size:clamp(26px,2.6vw,40px);line-height:1.15;">Builder of harnesses, agents, and open source</strong>
-        <ul class="lifecycle-reasons" style="margin-top:12px;font-size:clamp(18px,1.55vw,24px);">
+        <strong class="density-strong">Builder of harnesses, agents, and open source</strong>
+        <ul class="lifecycle-reasons density-list">
           <li>Ex-AI researcher at Meta AI</li>
           <li>~3 years building LLM harnesses</li>
           <li>Creator of AdalFlow</li>
           <li>Co-founder and CEO of AdaL</li>
         </ul>
-        <p class="slide-lead" style="margin:18px 0 0;max-width:none;font-size:clamp(16px,1.35vw,21px);">
+        <p class="slide-lead density-lead">
           AdaL is an AI research lab focused on autonomy — agents and memory.
         </p>
       </section>
       <section class="loop-engineering-panel loop-engineering-panel--outcome">
         <p class="loop-engineering-panel-label">Questions for Today</p>
-        <strong style="font-size:clamp(26px,2.6vw,40px);line-height:1.15;">What we’ll explore</strong>
-        <ul class="lifecycle-reasons" style="margin-top:16px;font-size:clamp(18px,1.55vw,24px);">
+        <strong class="density-strong">What we’ll explore</strong>
+        <ul class="lifecycle-reasons density-list">
           <li>Why isn’t model capability the same as autonomy?</li>
           <li>What is the next stage of autonomy?</li>
           <li>When to use loops — and when not</li>
@@ -1659,29 +2513,29 @@
 </article>
 <article class="slide" aria-labelledby="slide-4-title">
   <h2 id="slide-4-title" class="slide-title">More Productive. More Drained.</h2>
-  <div class="slide-body">
-    <div style="width:min(100%,1320px);display:grid;gap:clamp(22px,2.8vw,40px);justify-items:stretch;">
-      <p class="supporting-quote" style="margin:0;">
+  <div class="slide-body drained-body">
+    <div class="drained-layout">
+      <p class="supporting-quote drained-quote">
         Midjourney’s founder says AI coding tools make engineers more productive — and <strong>“extremely drained.”</strong>
       </p>
-      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,24px);">
-        <section class="loop-engineering-panel" style="min-height:0;padding:clamp(20px,2.2vw,32px);">
+      <div class="drained-grid">
+        <section class="loop-engineering-panel">
           <p class="loop-engineering-panel-label">Adoption</p>
-          <strong style="font-size:clamp(34px,3.4vw,52px);line-height:1;">42%</strong>
-          <p class="slide-lead" style="margin:10px 0 0;max-width:none;font-size:clamp(16px,1.35vw,21px);">
+          <strong class="drained-stat">42%</strong>
+          <p class="slide-lead density-lead">
             of committed code is AI-generated or significantly AI-assisted
           </p>
         </section>
-        <section class="loop-engineering-panel" style="min-height:0;padding:clamp(20px,2.2vw,32px);">
+        <section class="loop-engineering-panel">
           <p class="loop-engineering-panel-label">The gap</p>
-          <strong style="font-size:clamp(26px,2.4vw,36px);line-height:1.15;">Creation got cheaper</strong>
-          <p class="slide-lead" style="margin:10px 0 0;max-width:none;font-size:clamp(16px,1.35vw,21px);">
+          <strong class="density-strong density-strong--md">Creation got cheaper</strong>
+          <p class="slide-lead density-lead">
             Review, validation, and ownership did not keep up
           </p>
         </section>
-        <section class="loop-engineering-panel loop-engineering-panel--outcome" style="min-height:0;padding:clamp(20px,2.2vw,32px);">
+        <section class="loop-engineering-panel loop-engineering-panel--outcome">
           <p class="loop-engineering-panel-label">The question</p>
-          <strong style="font-size:clamp(24px,2.2vw,34px);line-height:1.2;">Why are we still babysitting agents 12 hours a day?</strong>
+          <strong class="density-strong density-strong--md">Why are we still babysitting agents 12 hours a day?</strong>
         </section>
       </div>
     </div>
@@ -1906,18 +2760,18 @@
 </article>
 <article class="slide" aria-labelledby="slide-v2-loop-eng-title">
   <h2 id="slide-v2-loop-eng-title" class="slide-title">Loop Engineering</h2>
-  <div class="slide-body" style="width:min(100%,1680px);height:100%;min-height:0;display:grid;gap:clamp(36px,4.2vw,72px);align-content:center;justify-items:stretch;padding-block:clamp(8px,1.2vw,20px);">
-    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,3.2vw,56px);align-items:stretch;">
-      <section class="loop-engineering-panel" style="min-height:0;padding:clamp(28px,3vw,48px);">
+  <div class="slide-body" style="width:min(100%,1680px);height:100%;min-height:0;display:grid;gap:clamp(16px,3cqh,72px);align-content:safe center;justify-items:stretch;padding-block:clamp(4px,1cqh,20px);">
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2.4cqw,56px);align-items:stretch;min-height:0;">
+      <section class="loop-engineering-panel">
         <p class="loop-engineering-panel-label">The shift</p>
-        <strong style="font-size:clamp(28px,2.8vw,42px);line-height:1.2;display:block;margin-top:clamp(10px,1.2vw,18px);">Instead of prompting, build loops that prompt the system.</strong>
+        <strong class="density-strong">Instead of prompting, build loops that prompt the system.</strong>
       </section>
-      <section class="loop-engineering-panel loop-engineering-panel--outcome" style="min-height:0;padding:clamp(28px,3vw,48px);">
+      <section class="loop-engineering-panel loop-engineering-panel--outcome">
         <p class="loop-engineering-panel-label">AdaL’s working definition</p>
-        <strong style="font-size:clamp(24px,2.4vw,36px);line-height:1.28;display:block;margin-top:clamp(10px,1.2vw,18px);">A goal-driven system that coordinates multiple agents to a verified outcome — autonomously, without humans in the loop.</strong>
+        <strong class="density-strong density-strong--md">A goal-driven system that coordinates multiple agents to a verified outcome — autonomously, without humans in the loop.</strong>
       </section>
     </div>
-    <p class="loops-today-takeaway" style="margin:0;text-align:left;max-width:none;padding-top:clamp(4px,0.8vw,12px);">
+    <p class="loops-today-takeaway" style="margin:0;text-align:left;max-width:none;">
       Aligned with the industry direction. The exact definition is still emerging — this is <strong>how we make the outer-loop claim precise enough to build against</strong>.
     </p>
   </div>
@@ -1930,111 +2784,192 @@
   </div>
   <p class="slide-foot"><span></span></p>
 </article>
-<article class="slide" aria-labelledby="slide-v2-why-possible-title">
-  <h2 id="slide-v2-why-possible-title" class="slide-title">Why Loops Became Possible</h2>
-  <div class="slide-body" style="width:min(100%,1580px);display:grid;gap:clamp(28px,3.2vw,48px);align-content:center;justify-items:stretch;">
-    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.4vw,36px);">
-      <section class="loop-engineering-panel" style="min-height:0;">
-        <p class="loop-engineering-panel-label">01 · Self-validation</p>
-        <strong style="font-size:clamp(26px,2.5vw,38px);line-height:1.15;">Close the test loop</strong>
-        <p class="slide-lead" style="margin:16px 0 0;max-width:none;font-size:clamp(17px,1.45vw,23px);">
-          <strong style="color:var(--text);">Browser use</strong> and <strong style="color:var(--text);">computer use</strong> let agents check their own work with evidence — not only claim success.
-        </p>
-      </section>
-      <section class="loop-engineering-panel loop-engineering-panel--outcome" style="min-height:0;">
-        <p class="loop-engineering-panel-label">02 · Multi-agent roles</p>
-        <strong style="font-size:clamp(26px,2.5vw,38px);line-height:1.15;">Fight context rot</strong>
-        <p class="slide-lead" style="margin:16px 0 0;max-width:none;font-size:clamp(17px,1.45vw,23px);">
-          Separate Builder and Evaluator roles, isolated context, specialized prompts, independent review.
-        </p>
-      </section>
-    </div>
-    <p class="loops-today-takeaway" style="margin:0;text-align:left;max-width:none;">
-      These make autonomous loops <em>possible</em>. They do not yet make the full human outer loop reliable.
-    </p>
-  </div>
-  <p class="slide-foot"><span></span></p>
-</article>
 <article class="slide" aria-labelledby="slide-v2-loops-today-title">
-  <h2 id="slide-v2-loops-today-title" class="slide-title">Loops of Today</h2>
-  <div class="slide-body" style="width:min(100%,1580px);display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:clamp(22px,3vw,48px);align-items:center;justify-items:stretch;">
-    <div class="loops-today-thesis" style="padding:clamp(12px,1.5vw,22px) 0 clamp(12px,1.5vw,22px) clamp(18px,2vw,28px);">
-      <p class="loops-today-thesis-label">What has been tried</p>
-      <strong style="font-size:clamp(28px,2.8vw,42px);line-height:1.12;">The field is already shipping pieces.</strong>
-      <p class="slide-lead" style="margin:18px 0 0;max-width:30ch;font-size:clamp(17px,1.45vw,23px);">
-        Claude Code, AdaL, agent teams — real attempts at goals, schedules, permissions, and parallel work.
-      </p>
+  <h2 id="slide-v2-loops-today-title" class="slide-title">Patterns of Today</h2>
+  <div class="slide-body loops-today-body">
+    <div class="loops-today-thesis">
+      <strong class="density-strong">Neither pattern is the outer loop.</strong>
     </div>
-    <ul class="loops-today-list" aria-label="Loop primitives in the field today" style="margin:0;width:100%;max-width:none;">
-      <li>
-        <strong style="display:block;margin-bottom:6px;font-size:0.95em;">Repeat &amp; schedule</strong>
-        <code style="font-family:var(--mono);color:var(--accent);font-size:0.9em;padding:2px 6px;background:var(--accent-soft);border-radius:4px;">/goal</code>
-        <code style="font-family:var(--mono);color:var(--accent);font-size:0.9em;padding:2px 6px;background:var(--accent-soft);border-radius:4px;">/loop</code>
-        <span style="color:var(--muted);"> (Claude Code)</span>
-        ·
-        <code style="font-family:var(--mono);color:var(--accent);font-size:0.9em;padding:2px 6px;background:var(--accent-soft);border-radius:4px;">/cron</code>
-        <span style="color:var(--muted);"> (AdaL)</span>
-      </li>
-      <li>
-        <strong style="display:block;margin-bottom:6px;font-size:0.95em;">Permission modes</strong>
-        <code style="font-family:var(--mono);color:var(--accent);font-size:0.85em;padding:2px 6px;background:var(--accent-soft);border-radius:4px;">--dangerously-skip-permissions</code>
-        <span style="color:var(--muted);"> / </span>
-        <code style="font-family:var(--mono);color:var(--accent);font-size:0.85em;padding:2px 6px;background:var(--accent-soft);border-radius:4px;">--yolo</code>
-        <span style="color:var(--muted);"> — more autonomy, more risk</span>
-      </li>
-      <li>
-        <strong style="display:block;margin-bottom:6px;font-size:0.95em;">Dynamic workflows</strong>
-        <span style="color:var(--text);">Agents that adapt the plan as they run</span>
-      </li>
-      <li>
-        <strong style="display:block;margin-bottom:6px;font-size:0.95em;">Agent teams</strong>
-        <span style="color:var(--text);">Parallel full agents for execution at scale (Claude)</span>
-      </li>
-    </ul>
+
+    <div class="loops-today-diagram" aria-label="Single-agent and multi-agent patterns with critiques">
+      <div class="loops-today-row">
+        <section class="loop-engineering-panel loops-today-mode">
+          <p class="loop-engineering-panel-label">Single-agent · early autonomy</p>
+          <ul class="loops-today-mode-list">
+            <li>
+              <strong class="loops-today-item-title">Repeat &amp; schedule</strong>
+              <div class="loops-today-chips">
+                <code>/goal</code>
+                <code>/loop</code>
+                <span class="loops-today-meta">Claude Code</span>
+                <code>/cron</code>
+                <span class="loops-today-meta">AdaL</span>
+              </div>
+            </li>
+            <li>
+              <strong class="loops-today-item-title">Permission modes</strong>
+              <div class="loops-today-chips">
+                <code>--dangerously-skip-permissions</code>
+                <code>--yolo</code>
+              </div>
+            </li>
+          </ul>
+        </section>
+        <div class="loops-today-pointer" aria-hidden="true">
+          <svg viewBox="0 0 72 24" preserveAspectRatio="xMidYMid meet">
+            <path d="M4 12 H54" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2"/>
+            <path d="M50 6 L62 12 L50 18" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <aside class="loops-today-callout">
+          <strong>Too simple</strong>
+          <p>One trajectory. One context.</p>
+        </aside>
+      </div>
+
+      <div class="loops-today-row">
+        <section class="loop-engineering-panel loops-today-mode loops-today-mode--multi">
+          <p class="loop-engineering-panel-label">Multi-agent · parallel jobs</p>
+          <ul class="loops-today-mode-list">
+            <li>
+              <strong class="loops-today-item-title">
+                <a class="loops-today-inline-link" href="https://claudefa.st/blog/guide/development/dynamic-workflows" target="_blank" rel="noopener noreferrer">Dynamic workflows</a>
+              </strong>
+              <p class="loops-today-item-copy">Isolated agents · coverage &amp; verification</p>
+            </li>
+            <li>
+              <strong class="loops-today-item-title">
+                <a class="loops-today-inline-link" href="https://code.claude.com/docs/en/agent-teams" target="_blank" rel="noopener noreferrer">Agent teams</a>
+              </strong>
+              <p class="loops-today-item-copy">Peers can message each other</p>
+            </li>
+          </ul>
+        </section>
+        <div class="loops-today-pointer" aria-hidden="true">
+          <svg viewBox="0 0 72 24" preserveAspectRatio="xMidYMid meet">
+            <path d="M4 12 H54" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2"/>
+            <path d="M50 6 L62 12 L50 18" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <aside class="loops-today-callout">
+          <strong>Too opaque</strong>
+          <p>Hard to see. Hard to steer. Hard to trust.</p>
+        </aside>
+      </div>
+    </div>
   </div>
   <div class="agent-cite-stack">
     <a class="agent-cite" href="https://x.com/ClaudeDevs/status/2074208949205881033?s=20" target="_blank" rel="noopener noreferrer">Claude Developers — loop engineering guide ↗</a>
   </div>
   <p class="slide-foot"><span></span></p>
 </article>
+<article class="slide" aria-labelledby="slide-claude-code-multiagent-screenshot" style="padding: 0; grid-template-rows: 1fr; background: #000;">
+  <h2 id="slide-claude-code-multiagent-screenshot" class="sr-only">Claude Code multi-agent is still one agent’s tools</h2>
+  <div style="width: 100%; height: 100%; min-height: 0; display: flex; align-items: center; justify-content: center;">
+    <img
+      src="materials/claude_code_agent_workflow_tools.png"
+      alt="Claude Code session explaining Agent teams and Dynamic workflows as tools of the same coding agent"
+      style="width: 100%; height: 100%; object-fit: contain;"
+    >
+  </div>
+</article>
+<article class="slide" aria-labelledby="slide-v2-why-possible-title">
+  <h2 id="slide-v2-why-possible-title" class="slide-title">What Makes Outer-Loop Automation Possible</h2>
+  <div class="slide-body" style="width:min(100%,1580px);display:grid;gap:clamp(14px,2.8cqh,48px);align-content:safe center;justify-items:stretch;">
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,2cqw,36px);min-height:0;">
+      <section class="loop-engineering-panel">
+        <p class="loop-engineering-panel-label">01 · Self-validation</p>
+        <strong class="density-strong">Close the test loop</strong>
+        <p class="slide-lead density-lead">
+          <a class="inline-doc-link" href="https://docs.sylph.ai/features/browser-use" target="_blank" rel="noopener noreferrer">Browser use</a>
+          and
+          <a class="inline-doc-link" href="https://developers.openai.com/api/docs/guides/tools-computer-use" target="_blank" rel="noopener noreferrer">computer use</a>
+          are maturing now — agents can check work with evidence, not only claim success.
+        </p>
+      </section>
+      <section class="loop-engineering-panel">
+        <p class="loop-engineering-panel-label">02 · Separated roles</p>
+        <strong class="density-strong">Fight context rot</strong>
+        <p class="slide-lead density-lead">
+          Not a formal standard — as context grows, the model gets less reliable.
+          Same pressure behind laziness, self-preferential bias, and goal drift.
+          Builder ≠ Evaluator: isolated context, independent review.
+        </p>
+      </section>
+    </div>
+    <p class="loops-today-takeaway" style="margin:0;text-align:left;max-width:none;">
+      These conditions make automating the <strong>product outer loop</strong> possible. They do not make it cheap, transparent, or productized yet.
+    </p>
+  </div>
+  <div class="agent-cite-stack">
+    <a class="agent-cite" href="https://arxiv.org/abs/2307.03172" target="_blank" rel="noopener noreferrer">Liu et al. — Lost in the Middle ↗</a>
+  </div>
+  <p class="slide-foot"><span></span></p>
+</article>
 <article class="slide" aria-labelledby="slide-v2-hard-title">
-  <h2 id="slide-v2-hard-title" class="slide-title">Yet It's Still Hard</h2>
+  <h2 id="slide-v2-hard-title" class="slide-title">Yet It’s Still Hard</h2>
   <div class="slide-body" style="width:min(100%,1500px);display:grid;gap:clamp(22px,2.8vw,40px);align-content:center;">
     <div class="barrier-layout" style="width:100%;">
       <aside class="codex-callout" aria-label="OpenAI Codex Team harness engineering example">
-        <strong>Building blocks exist. The system around them is still hard.</strong>
-        <p>It took a whole Codex team to reach zero manually written lines — and a full engineering team still maintains documentation, context, review, and the harness.</p>
+        <strong>Codex already ran the experiment.</strong>
+        <p>Toward zero manually written lines — but a full team still owns docs, context, review, and the harness. Possible ≠ productized.</p>
         <a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer">OpenAI — Harness engineering ↗</a>
       </aside>
       <div class="barrier-grid" aria-label="The hard part">
-        <div class="barrier-card"><strong>High complexity</strong></div>
-        <div class="barrier-card"><strong>High cost</strong><span style="display:block;margin-top:8px;font-size:0.72em;font-weight:500;color:var(--muted);">tokenmaxxing</span></div>
+        <div class="barrier-card"><strong>High complexity</strong><span style="display:block;margin-top:10px;font-size:clamp(16px,1.4vw,22px);font-weight:500;color:var(--muted);letter-spacing:0.01em;line-height:1.25;">roles · state · eval · handover</span></div>
+        <div class="barrier-card"><strong>High cost</strong><span style="display:block;margin-top:10px;font-size:clamp(22px,2.1vw,34px);font-weight:600;color:var(--muted);letter-spacing:0.01em;line-height:1.15;">tokenmaxxing</span></div>
       </div>
     </div>
   </div>
   <p class="slide-foot"><span></span></p>
 </article>
+<article class="slide" aria-labelledby="slide-v2-risks-title">
+  <h2 id="slide-v2-risks-title" class="slide-title">When Understanding Falls Behind</h2>
+  <div class="slide-body" style="display:grid;align-content:safe center;">
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2cqw,28px);min-height:0;">
+      <section class="loop-engineering-panel">
+        <p class="loop-engineering-panel-label">Cognitive debt</p>
+        <strong class="density-strong density-strong--md">Code ships that no one can truly maintain</strong>
+      </section>
+      <section class="loop-engineering-panel">
+        <p class="loop-engineering-panel-label">Cognitive surrender</p>
+        <strong class="density-strong density-strong--md">Accept the answer before you form a judgment</strong>
+      </section>
+      <section class="loop-engineering-panel">
+        <p class="loop-engineering-panel-label">Orchestration tax</p>
+        <strong class="density-strong density-strong--md">Agents scale. Attention does not.</strong>
+      </section>
+    </div>
+    <p class="loops-today-takeaway" style="margin:0;text-align:left;max-width:none;">
+      <strong>Explain it or don’t ship it.</strong> Ownership without understanding is just deferred risk.
+    </p>
+  </div>
+  <div class="agent-cite-stack">
+    <a class="agent-cite" href="https://addyosmani.com/blog/own-the-outer-loop/" target="_blank" rel="noopener noreferrer">Addy Osmani — Own the Outer Loop ↗</a>
+  </div>
+  <p class="slide-foot"><span></span></p>
+</article>
 <article class="slide" aria-labelledby="slide-v2-automate-title">
   <h2 id="slide-v2-automate-title" class="slide-title">A Different Path to Autonomy</h2>
-  <div class="slide-body" style="width:min(100%,1680px);height:100%;min-height:0;display:grid;gap:clamp(28px,3.2vw,48px);align-content:center;justify-items:stretch;">
-    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(18px,2.4vw,36px);align-items:stretch;">
-      <section class="loop-engineering-panel" style="min-height:0;padding:clamp(22px,2.4vw,36px);">
+  <div class="slide-body" style="display:grid;align-content:safe center;">
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);align-items:stretch;gap:clamp(14px,2.2cqw,40px);min-height:0;">
+      <section class="loop-engineering-panel">
         <p class="loop-engineering-panel-label">Not this path</p>
-        <strong style="font-size:clamp(24px,2.3vw,34px);line-height:1.2;">A better single agent</strong>
-        <ul class="lifecycle-reasons" style="margin-top:16px;font-size:clamp(17px,1.5vw,24px);">
+        <strong class="density-strong density-strong--md">A better single agent</strong>
+        <ul class="lifecycle-reasons density-list">
           <li>Still mostly one agent, one trajectory</li>
           <li>Product dev is multi-stage — plan, build, test, review, iterate</li>
           <li>Stuffing the outer loop into the worker complicates a well-defined infra scope</li>
           <li>Coding agents stay great for manual collab — keep them simple</li>
         </ul>
       </section>
-      <section class="loop-engineering-panel loop-engineering-panel--outcome" style="min-height:0;padding:clamp(22px,2.4vw,36px);">
+      <section class="loop-engineering-panel loop-engineering-panel--outcome">
         <p class="loop-engineering-panel-label">This path · loop engineering</p>
-        <strong style="font-size:clamp(24px,2.3vw,34px);line-height:1.2;">Model what the engineer still does</strong>
-        <ul class="lifecycle-reasons" style="margin-top:16px;font-size:clamp(17px,1.5vw,24px);">
+        <strong class="density-strong density-strong--md">Model what the engineer still does</strong>
+        <ul class="lifecycle-reasons density-list">
           <li>Start from the 3rd layer: the human outer loop</li>
           <li>Replace that role with another agent — the engineer runtime</li>
-          <li>It models engineer behaviors across the lifecycle</li>
+          <li>Maintain docs and deliver structured, easy-to-review output — fight cognitive debt</li>
           <li>It works with coding agents of today — does not replace them</li>
         </ul>
       </section>
@@ -2049,20 +2984,20 @@
   <h2 id="slide-v2-adal-eng-title" class="slide-title">AdaL Engineer — Our First Experiment</h2>
   <div class="slide-body adal-eng-body">
     <div class="adal-eng-copy">
-      <section class="loop-engineering-panel" style="min-height:0;padding:clamp(22px,2.4vw,36px);">
+      <section class="loop-engineering-panel">
         <p class="loop-engineering-panel-label">What it is</p>
-        <strong style="font-size:clamp(22px,2.1vw,32px);line-height:1.3;display:block;margin-top:clamp(8px,1vw,14px);">
-          An engineer-level agent that operates today’s workers toward a verified outcome.
+        <strong class="adal-eng-panel-text">
+          An agent with the identity of an engineer — using today’s workers the way a human engineer does.
         </strong>
       </section>
-      <section class="loop-engineering-panel loop-engineering-panel--outcome" style="min-height:0;padding:clamp(22px,2.4vw,36px);">
-        <p class="loop-engineering-panel-label">Near-term goal</p>
-        <strong style="font-size:clamp(22px,2.1vw,32px);line-height:1.3;display:block;margin-top:clamp(8px,1vw,14px);">
-          Deliver one engineering task end-to-end at human-level quality.
+      <section class="loop-engineering-panel loop-engineering-panel--outcome">
+        <p class="loop-engineering-panel-label">Why first</p>
+        <strong class="adal-eng-panel-text">
+          The first approach to autonomy from the engineer seat — not a coding agent with multi-agent tools bolted on.
         </strong>
       </section>
       <p class="loops-today-takeaway" style="margin:0;text-align:left;max-width:none;">
-        Not a finished answer. <strong>An experiment you can inspect.</strong>
+        Near-term goal: <strong>one engineering task end-to-end at human-level quality.</strong>
       </p>
     </div>
     <div class="adal-eng-diagram-wrap">
@@ -2117,41 +3052,37 @@
 </article>
 <article class="slide" aria-labelledby="slide-v2-experiment-testing-title">
   <h2 id="slide-v2-experiment-testing-title" class="slide-title">What the Experiment Is Testing</h2>
-  <div class="slide-body" style="width:min(100%,1580px);height:100%;min-height:0;display:grid;grid-template-columns:minmax(0,0.92fr) minmax(0,1.08fr);gap:clamp(16px,2vw,32px);align-items:stretch;justify-items:stretch;">
-    <div style="min-height:0;display:grid;gap:clamp(10px,1.2vw,16px);align-content:center;">
-      <p class="slide-lead" style="margin:0;max-width:none;font-size:clamp(15px,1.3vw,20px);color:var(--text);">
-        Five parts of the <strong style="font-weight:600;">engineer runtime</strong> the experiment is trying to carry.
-      </p>
-      <div style="display:grid;gap:clamp(6px,0.9vw,10px);">
-        <section class="loop-engineering-panel" style="min-height:0;padding:clamp(10px,1.2vw,16px);">
+  <div class="slide-body" style="display:grid;">
+    <div>
+      <div style="display:grid;">
+        <section class="loop-engineering-panel">
           <p class="loop-engineering-panel-label">01 · Operate workers</p>
-          <strong style="font-size:clamp(15px,1.35vw,20px);line-height:1.25;">Allocate, prompt, and monitor the right agents</strong>
+          <strong style="font-size:clamp(16px,1.4vw,22px);line-height:1.25;">Allocate, prompt, and monitor the right agents</strong>
         </section>
-        <section class="loop-engineering-panel" style="min-height:0;padding:clamp(10px,1.2vw,16px);">
-          <p class="loop-engineering-panel-label">02 · Retain state</p>
-          <strong style="font-size:clamp(15px,1.35vw,20px);line-height:1.25;">Carry progress, decisions, and context across iterations</strong>
+        <section class="loop-engineering-panel">
+          <p class="loop-engineering-panel-label">02 · Engineer memory</p>
+          <strong style="font-size:clamp(16px,1.4vw,22px);line-height:1.25;">Persistent long-term memory — carry progress, decisions, and context across iterations</strong>
         </section>
-        <section class="loop-engineering-panel" style="min-height:0;padding:clamp(10px,1.2vw,16px);">
-          <p class="loop-engineering-panel-label">03 · Evaluate independently</p>
-          <strong style="font-size:clamp(15px,1.35vw,20px);line-height:1.25;">Builder implements · Evaluator does not grade its own homework</strong>
+        <section class="loop-engineering-panel">
+          <p class="loop-engineering-panel-label">03 · Agentic dynamic workflow</p>
+          <strong style="font-size:clamp(16px,1.4vw,22px);line-height:1.25;">Flexible multi-agent patterns under the engineer — build/eval is one form, not the only form</strong>
         </section>
-        <section class="loop-engineering-panel" style="min-height:0;padding:clamp(10px,1.2vw,16px);">
-          <p class="loop-engineering-panel-label">04 · Bound the loop</p>
-          <strong style="font-size:clamp(15px,1.35vw,20px);line-height:1.25;">Know when to stop, escalate, or hand back to a human</strong>
+        <section class="loop-engineering-panel">
+          <p class="loop-engineering-panel-label">04 · Adaptive autonomy</p>
+          <strong style="font-size:clamp(16px,1.4vw,22px);line-height:1.25;">Run autonomously — humans can take over anytime, or collaborate at the same time</strong>
         </section>
-        <section class="loop-engineering-panel loop-engineering-panel--outcome" style="min-height:0;padding:clamp(10px,1.2vw,16px);">
-          <p class="loop-engineering-panel-label">05 · Adaptive autonomy</p>
-          <strong style="font-size:clamp(15px,1.35vw,20px);line-height:1.25;">Orchestrate autonomously — with seamless manual takeover for correction and multi-tasking</strong>
+        <section class="loop-engineering-panel loop-engineering-panel--outcome">
+          <p class="loop-engineering-panel-label">05 · Avoid cognitive debt</p>
+          <strong style="font-size:clamp(16px,1.4vw,22px);line-height:1.25;">Clear structure and easy-to-walk-through handover</strong>
         </section>
       </div>
     </div>
-    <div style="min-width:0;min-height:0;height:100%;display:grid;place-items:center;overflow:hidden;">
+    <div>
       <svg
         class="illustration"
         viewBox="40 10 720 560"
         preserveAspectRatio="xMidYMid meet"
-        aria-label="AdaL Engineer orchestration: shared state, Builder, Evaluator, Reviewer, feedback and fix loop"
-        style="width:100%;height:100%;max-width:100%;max-height:min(62vh,100%);display:block;"
+        aria-label="AdaL Engineer orchestration: shared state, Builder, Evaluator, Reviewer"
       >
         <defs>
           <filter id="v2ExpCoreGlow" x="-20%" y="-20%" width="140%" height="140%">
@@ -2167,67 +3098,60 @@
         </defs>
 
         <!-- Shared state -->
-        <rect x="260" y="210" width="280" height="120" rx="14" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="6,4"></rect>
-        <text x="400" y="258" fill="var(--text)" font-size="20" font-weight="600" text-anchor="middle">Shared State</text>
-        <text x="400" y="286" fill="var(--muted)" font-size="15" text-anchor="middle">progress · decisions · context</text>
+        <rect x="250" y="200" width="300" height="130" rx="16" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="6,4"></rect>
+        <text x="400" y="252" fill="var(--text)" font-size="26" font-weight="650" text-anchor="middle">Shared State</text>
+        <text x="400" y="286" fill="var(--muted)" font-size="18" text-anchor="middle">progress · decisions · context</text>
 
         <!-- AdaL Engineer -->
-        <circle cx="400" cy="78" r="46" fill="rgba(255, 88, 152, 0.15)" stroke="var(--accent)" stroke-width="2.5" filter="url(#v2ExpCoreGlow)"></circle>
-        <text x="400" y="74" fill="var(--text)" font-size="18" font-weight="650" text-anchor="middle">AdaL</text>
-        <text x="400" y="94" fill="var(--text)" font-size="16" font-weight="650" text-anchor="middle">Engineer</text>
-        <text x="400" y="138" fill="var(--accent)" font-size="13" font-weight="600" letter-spacing="1" text-anchor="middle">ROLE RUNTIME</text>
+        <circle cx="400" cy="78" r="52" fill="rgba(255, 88, 152, 0.15)" stroke="var(--accent)" stroke-width="2.5" filter="url(#v2ExpCoreGlow)"></circle>
+        <text x="400" y="72" fill="var(--text)" font-size="24" font-weight="650" text-anchor="middle">AdaL</text>
+        <text x="400" y="98" fill="var(--text)" font-size="20" font-weight="650" text-anchor="middle">Engineer</text>
+        <text x="470" y="84" fill="var(--accent)" font-size="16" font-weight="600" letter-spacing="1.2" text-anchor="start">ROLE RUNTIME</text>
 
         <!-- Workers -->
-        <circle cx="140" cy="460" r="54" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.4)" stroke-width="2"></circle>
-        <text x="140" y="456" fill="var(--text)" font-size="18" font-weight="600" text-anchor="middle">Builder</text>
-        <text x="140" y="476" fill="var(--muted)" font-size="13" text-anchor="middle">implements</text>
+        <circle cx="140" cy="460" r="60" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.4)" stroke-width="2"></circle>
+        <text x="140" y="468" fill="var(--text)" font-size="22" font-weight="650" text-anchor="middle">Builder</text>
 
-        <circle cx="400" cy="460" r="54" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.4)" stroke-width="2"></circle>
-        <text x="400" y="456" fill="var(--text)" font-size="18" font-weight="600" text-anchor="middle">Evaluator</text>
-        <text x="400" y="476" fill="var(--muted)" font-size="13" text-anchor="middle">independent check</text>
+        <circle cx="400" cy="460" r="60" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.4)" stroke-width="2"></circle>
+        <text x="400" y="468" fill="var(--text)" font-size="22" font-weight="650" text-anchor="middle">Evaluator</text>
 
-        <circle cx="660" cy="460" r="54" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.4)" stroke-width="2"></circle>
-        <text x="660" y="456" fill="var(--text)" font-size="18" font-weight="600" text-anchor="middle">Reviewer</text>
-        <text x="660" y="476" fill="var(--muted)" font-size="13" text-anchor="middle">code review</text>
+        <circle cx="660" cy="460" r="60" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.4)" stroke-width="2"></circle>
+        <text x="660" y="468" fill="var(--text)" font-size="22" font-weight="650" text-anchor="middle">Reviewer</text>
 
-        <!-- Structure links -->
-        <path d="M 400 124 L 400 210" fill="none" stroke="var(--accent)" stroke-width="2" marker-end="url(#v2ExpArrowHead)"></path>
-        <path d="M 260 270 C 140 270 140 370 140 406" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" marker-end="url(#v2ExpArrowHeadNeutral)"></path>
-        <path d="M 400 330 L 400 406" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" marker-end="url(#v2ExpArrowHeadNeutral)"></path>
-        <path d="M 540 270 C 660 270 660 370 660 406" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" marker-end="url(#v2ExpArrowHeadNeutral)"></path>
+        <!-- Structure links: Engineer → Shared State → workers -->
+        <path d="M 400 130 L 400 200" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" marker-end="url(#v2ExpArrowHeadNeutral)"></path>
+        <path d="M 400 330 L 400 370" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2"></path>
+        <path d="M 140 370 H 660" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2"></path>
+        <path d="M 140 370 V 400" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" marker-end="url(#v2ExpArrowHeadNeutral)"></path>
+        <path d="M 400 370 V 400" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" marker-end="url(#v2ExpArrowHeadNeutral)"></path>
+        <path d="M 660 370 V 400" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" marker-end="url(#v2ExpArrowHeadNeutral)"></path>
 
-        <!-- Feedback + fix loop -->
-        <path d="M 445 410 C 560 320 560 210 445 118" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="8,6" marker-end="url(#v2ExpArrowHead)" filter="url(#v2ExpCoreGlow)"></path>
-        <text x="545" y="250" fill="var(--text)" font-size="15" font-weight="600" font-style="italic" text-anchor="middle">Feedback</text>
-
-        <path d="M 355 118 C 220 190 150 300 150 406" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="8,6" marker-end="url(#v2ExpArrowHead)" filter="url(#v2ExpCoreGlow)"></path>
-        <text x="195" y="245" fill="var(--accent)" font-size="15" font-weight="600" font-style="italic" text-anchor="middle">Fix loop</text>
-      </svg>
+              </svg>
     </div>
   </div>
   <p class="slide-foot"><span></span></p>
 </article>
 <article class="slide" aria-labelledby="slide-v2-when-loops-title">
   <h2 id="slide-v2-when-loops-title" class="slide-title">When to Use Loops — and When Not</h2>
-  <div class="slide-body" style="width:min(100%,1580px);display:grid;gap:clamp(18px,2.2vw,32px);align-content:center;justify-items:stretch;">
-    <p class="slide-lead" style="margin:0;max-width:none;font-size:clamp(18px,1.55vw,24px);color:var(--text);">
+  <div class="slide-body" style="display:grid;align-content:safe center;">
+    <p class="slide-lead density-lead" style="margin:0 !important;color:var(--text);">
       One principle: loop engineering only makes sense when the outcome is <strong style="font-weight:600;">clear enough to delegate</strong>.
     </p>
-    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,32px);align-items:stretch;">
-      <section class="loop-engineering-panel loop-engineering-panel--outcome" style="min-height:0;">
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:clamp(12px,2cqw,36px);min-height:0;">
+      <section class="loop-engineering-panel loop-engineering-panel--outcome">
         <p class="loop-engineering-panel-label">Use loops when</p>
-        <strong style="font-size:clamp(22px,2.1vw,30px);line-height:1.2;">The goal can be verified</strong>
-        <ul class="lifecycle-reasons" style="margin-top:14px;font-size:clamp(16px,1.4vw,22px);">
+        <strong class="density-strong density-strong--md">The goal can be verified</strong>
+        <ul class="lifecycle-reasons density-list">
           <li>Concrete outcome, not only an activity</li>
           <li>Success criteria you can check</li>
           <li>Scope, constraints, and stop conditions</li>
           <li>You’re ready to hand off execution</li>
         </ul>
       </section>
-      <section class="loop-engineering-panel" style="min-height:0;">
+      <section class="loop-engineering-panel">
         <p class="loop-engineering-panel-label">Don’t force loops when</p>
-        <strong style="font-size:clamp(22px,2.1vw,30px);line-height:1.2;">You’re still discovering the goal</strong>
-        <ul class="lifecycle-reasons" style="margin-top:14px;font-size:clamp(16px,1.4vw,22px);">
+        <strong class="density-strong density-strong--md">You’re still discovering the goal</strong>
+        <ul class="lifecycle-reasons density-list">
           <li>The idea is unclear or still evolving</li>
           <li>You want to brainstorm and explore</li>
           <li>The human should stay deep in the creative loop</li>
@@ -2235,7 +3159,7 @@
         </ul>
       </section>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,1.8vw,24px);">
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.8cqw,32px);min-height:0;">
       <p class="loops-today-takeaway" style="margin:0;text-align:left;max-width:none;">
         <strong>Good fit:</strong> ship a scoped PR to green with a known quality bar.
       </p>
@@ -2289,7 +3213,7 @@
 
             <!-- Right Video -->
             <div style="width: 100%; border-radius: 20px; overflow: hidden; border: 2px solid rgba(255,255,255,0.1); background: #000; box-shadow: 0 24px 64px rgba(0,0,0,0.6); position: relative; padding-bottom: 56.25%;">
-              <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/EYidNchYXGw" title="AdaL Engineer vs Claude Code" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/8EB9BPg71Po" title="AdaL Engineer vs Claude Code" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
           </div>
           <div class="agent-cite-stack">
@@ -2351,32 +3275,32 @@
         <p class="slide-foot"><span>11 / 15</span></p>
       </article>
 <article class="slide" aria-labelledby="slide-humans-next-title">
-        <h2 id="slide-humans-next-title" class="slide-title">What Will Humans Do Next?</h2>
-        <div class="slide-body">
-          <div style="width:min(100%,1280px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,3vw,48px);align-items:stretch;">
-            <section class="loop-engineering-panel">
-              <p class="loop-engineering-panel-label">Addy Osmani — we agree</p>
-              <strong style="font-size:clamp(24px,2.4vw,36px);line-height:1.2;">Humans keep the agency</strong>
-              <p class="slide-lead" style="margin:0;max-width:none;font-size:clamp(18px,1.6vw,24px);">Agents can run more of the inner loop. Humans still own accountability and answerability: evidence, risk, and the decision to ship.</p>
-            </section>
-            <section class="loop-engineering-panel loop-engineering-panel--outcome">
-              <p class="loop-engineering-panel-label">AdaL — our view</p>
-              <strong style="font-size:clamp(24px,2.4vw,36px);line-height:1.2;">Engineers move to higher leverage</strong>
-              <ul class="lifecycle-reasons" style="margin-top:8px;font-size:clamp(18px,1.55vw,24px);">
-                <li>Research new opportunities</li>
-                <li>Talk with users</li>
-                <li>Explore product needs</li>
-                <li>Brainstorm with teammates</li>
-                <li>Own metrics and product impact</li>
-              </ul>
-            </section>
-          </div>
-        </div>
-        <div class="agent-cite-stack">
-          <a class="agent-cite" href="https://addyosmani.com/blog/own-the-outer-loop/" target="_blank" rel="noopener noreferrer">Addy Osmani — Own the Outer Loop ↗</a>
-        </div>
-        <p class="slide-foot"><span></span></p>
-      </article>
+  <h2 id="slide-humans-next-title" class="slide-title">What Will Humans Do Next?</h2>
+  <div class="slide-body" style="display:grid;align-content:safe center;">
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;width:100%;gap:clamp(14px,2.2cqw,40px);min-height:0;">
+      <section class="loop-engineering-panel">
+        <p class="loop-engineering-panel-label">Addy Osmani — we agree</p>
+        <strong class="density-strong density-strong--md">Humans keep the agency</strong>
+        <p class="slide-lead density-lead">Agents can run more of the inner loop. Humans still own accountability and answerability: evidence, risk, and the decision to ship.</p>
+      </section>
+      <section class="loop-engineering-panel loop-engineering-panel--outcome">
+        <p class="loop-engineering-panel-label">AdaL — our view</p>
+        <strong class="density-strong density-strong--md">Engineers move to higher leverage</strong>
+        <ul class="lifecycle-reasons density-list">
+          <li>Research new opportunities</li>
+          <li>Talk with users</li>
+          <li>Explore product needs</li>
+          <li>Brainstorm with teammates</li>
+          <li>Own metrics and product impact</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+  <div class="agent-cite-stack">
+    <a class="agent-cite" href="https://addyosmani.com/blog/own-the-outer-loop/" target="_blank" rel="noopener noreferrer">Addy Osmani — Own the Outer Loop ↗</a>
+  </div>
+  <p class="slide-foot"><span></span></p>
+</article>
 <article class="slide" aria-labelledby="slide-12-title">
         <h2 id="slide-12-title" class="slide-title">References</h2>
 <div class="slide-body">
@@ -2451,7 +3375,7 @@
       <button class="control-button" type="button" data-action="prev" aria-label="Previous slide">‹</button>
       <button class="control-button" type="button" data-action="next" aria-label="Next slide">›</button>
       <div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
-      <div class="status" aria-live="polite">01 / 19</div>
+      <div class="status" aria-live="polite">01 / 21</div>
     </nav>
   </main>
 
@@ -2464,7 +3388,7 @@
       const nextButton = document.querySelector('[data-action="next"]');
       const querySlide = Number(new URLSearchParams(window.location.search).get('slide'));
       let current = Number.isFinite(querySlide) && querySlide >= 1 && querySlide <= slides.length ? querySlide - 1 : 0;
-      window.__deckIndex = { slides: [{"id": "1-title", "file": "1-title.html", "title": "Beyond Loop Engineering"}, {"id": "intro-title", "file": "intro-title.html", "title": "Why We\u2019re Here"}, {"id": "4-title", "file": "4-title.html", "title": "More Productive. More Drained."}, {"id": "layers-workflow-title", "file": "layers-workflow-title.html", "title": "Where We Are"}, {"id": "2-title", "file": "2-title.html", "title": "Agents: From ReAct to Coding Agents"}, {"id": "3-title", "file": "3-title.html", "title": "Harness: What Makes an Agent Real"}, {"id": "v2-loop-engineering-title", "file": "v2-loop-engineering-title.html", "title": "Loop Engineering"}, {"id": "v2-why-loops-possible-title", "file": "v2-why-loops-possible-title.html", "title": "Why Loops Became Possible"}, {"id": "v2-loops-of-today-title", "file": "v2-loops-of-today-title.html", "title": "Loops of Today"}, {"id": "v2-why-still-hard-title", "file": "v2-why-still-hard-title.html", "title": "Why It\u2019s Still Hard"}, {"id": "v2-what-to-automate-title", "file": "v2-what-to-automate-title.html", "title": "A Different Path to Autonomy"}, {"id": "v2-adal-engineer-title", "file": "v2-adal-engineer-title.html", "title": "AdaL Engineer \u2014 Our First Experiment"}, {"id": "v2-experiment-testing-title", "file": "v2-experiment-testing-title.html", "title": "What the Experiment Is Testing"}, {"id": "v2-when-to-use-loops-title", "file": "v2-when-to-use-loops-title.html", "title": "When to Use Loops \u2014 and When Not"}, {"id": "adal-pdf-screenshot", "file": "adal-pdf-screenshot.html", "title": "AdaL Builder / Evaluator Screenshot"}, {"id": "demo-title", "file": "demo-title.html", "title": "Demo Comparison"}, {"id": "11-title", "file": "11-title.html", "title": "Measure Autonomy"}, {"id": "humans-next-title", "file": "humans-next-title.html", "title": "What Will Humans Do Next?"}, {"id": "12-title", "file": "12-title.html", "title": "References"}] };
+      window.__deckIndex = { slides: [{"id": "1-title", "file": "1-title.html", "title": "Beyond Loop Engineering"}, {"id": "intro-title", "file": "intro-title.html", "title": "Why We\u2019re Here"}, {"id": "4-title", "file": "4-title.html", "title": "More Productive. More Drained."}, {"id": "layers-workflow-title", "file": "layers-workflow-title.html", "title": "Where We Are"}, {"id": "2-title", "file": "2-title.html", "title": "Agents: From ReAct to Coding Agents"}, {"id": "3-title", "file": "3-title.html", "title": "Harness: What Makes an Agent Real"}, {"id": "v2-loop-engineering-title", "file": "v2-loop-engineering-title.html", "title": "Loop Engineering"}, {"id": "v2-loops-of-today-title", "file": "v2-loops-of-today-title.html", "title": "Patterns of Today"}, {"id": "claude-code-multiagent-screenshot", "file": "claude-code-multiagent-screenshot.html", "title": "Claude Code: Multi-Agent as One Agent\u2019s Tools"}, {"id": "v2-why-loops-possible-title", "file": "v2-why-loops-possible-title.html", "title": "What Makes Outer-Loop Automation Possible"}, {"id": "v2-why-still-hard-title", "file": "v2-why-still-hard-title.html", "title": "Yet It\u2019s Still Hard"}, {"id": "v2-risks-getting-real-title", "file": "v2-risks-getting-real-title.html", "title": "When Understanding Falls Behind"}, {"id": "v2-what-to-automate-title", "file": "v2-what-to-automate-title.html", "title": "A Different Path to Autonomy"}, {"id": "v2-adal-engineer-title", "file": "v2-adal-engineer-title.html", "title": "AdaL Engineer \u2014 Our First Experiment"}, {"id": "v2-experiment-testing-title", "file": "v2-experiment-testing-title.html", "title": "What the Experiment Is Testing"}, {"id": "v2-when-to-use-loops-title", "file": "v2-when-to-use-loops-title.html", "title": "When to Use Loops \u2014 and When Not"}, {"id": "adal-pdf-screenshot", "file": "adal-pdf-screenshot.html", "title": "AdaL Builder / Evaluator Screenshot"}, {"id": "demo-title", "file": "demo-title.html", "title": "Demo Comparison"}, {"id": "11-title", "file": "11-title.html", "title": "Measure Autonomy"}, {"id": "humans-next-title", "file": "humans-next-title.html", "title": "What Will Humans Do Next?"}, {"id": "12-title", "file": "12-title.html", "title": "References"}] };
 
       function render() {
         slides.forEach((slide, index) => {

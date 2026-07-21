@@ -1,25 +1,33 @@
 <article class="slide" aria-labelledby="slide-v2-why-possible-title">
-  <h2 id="slide-v2-why-possible-title" class="slide-title">Why Loops Became Possible</h2>
-  <div class="slide-body" style="width:min(100%,1580px);display:grid;gap:clamp(28px,3.2vw,48px);align-content:center;justify-items:stretch;">
-    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.4vw,36px);">
-      <section class="loop-engineering-panel" style="min-height:0;">
+  <h2 id="slide-v2-why-possible-title" class="slide-title">What Makes Outer-Loop Automation Possible</h2>
+  <div class="slide-body" style="width:min(100%,1580px);display:grid;gap:clamp(14px,2.8cqh,48px);align-content:safe center;justify-items:stretch;">
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,2cqw,36px);min-height:0;">
+      <section class="loop-engineering-panel">
         <p class="loop-engineering-panel-label">01 · Self-validation</p>
-        <strong style="font-size:clamp(26px,2.5vw,38px);line-height:1.15;">Close the test loop</strong>
-        <p class="slide-lead" style="margin:16px 0 0;max-width:none;font-size:clamp(17px,1.45vw,23px);">
-          <strong style="color:var(--text);">Browser use</strong> and <strong style="color:var(--text);">computer use</strong> let agents check their own work with evidence — not only claim success.
+        <strong class="density-strong">Close the test loop</strong>
+        <p class="slide-lead density-lead">
+          <a class="inline-doc-link" href="https://docs.sylph.ai/features/browser-use" target="_blank" rel="noopener noreferrer">Browser use</a>
+          and
+          <a class="inline-doc-link" href="https://developers.openai.com/api/docs/guides/tools-computer-use" target="_blank" rel="noopener noreferrer">computer use</a>
+          are maturing now — agents can check work with evidence, not only claim success.
         </p>
       </section>
-      <section class="loop-engineering-panel loop-engineering-panel--outcome" style="min-height:0;">
-        <p class="loop-engineering-panel-label">02 · Multi-agent roles</p>
-        <strong style="font-size:clamp(26px,2.5vw,38px);line-height:1.15;">Fight context rot</strong>
-        <p class="slide-lead" style="margin:16px 0 0;max-width:none;font-size:clamp(17px,1.45vw,23px);">
-          Separate Builder and Evaluator roles, isolated context, specialized prompts, independent review.
+      <section class="loop-engineering-panel">
+        <p class="loop-engineering-panel-label">02 · Separated roles</p>
+        <strong class="density-strong">Fight context rot</strong>
+        <p class="slide-lead density-lead">
+          Not a formal standard — as context grows, the model gets less reliable.
+          Same pressure behind laziness, self-preferential bias, and goal drift.
+          Builder ≠ Evaluator: isolated context, independent review.
         </p>
       </section>
     </div>
     <p class="loops-today-takeaway" style="margin:0;text-align:left;max-width:none;">
-      These make autonomous loops <em>possible</em>. They do not yet make the full human outer loop reliable.
+      These conditions make automating the <strong>product outer loop</strong> possible. They do not make it cheap, transparent, or productized yet.
     </p>
+  </div>
+  <div class="agent-cite-stack">
+    <a class="agent-cite" href="https://arxiv.org/abs/2307.03172" target="_blank" rel="noopener noreferrer">Liu et al. — Lost in the Middle ↗</a>
   </div>
   <p class="slide-foot"><span></span></p>
 </article>
