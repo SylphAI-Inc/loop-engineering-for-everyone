@@ -331,7 +331,7 @@ First: operate workers — allocate, prompt, and monitor the right agents.
 
 Second: engineer memory — persistent long-term memory. Carry progress, decisions, and context across iterations, and keep them alive beyond the current chat.
 
-Third: agentic dynamic workflow. Independent build/eval is one pattern — useful, but only one form. The engineer can run flexible multi-agent workflows under its control: clearer structure than today’s opaque dynamic workflows, with the main agent remaining agentic about which pattern to use, when to fan out, when to verify, and when to iterate. Not a fixed recipe bolted onto a coding agent.
+Third: agentic workflow. Independent build/eval is one pattern — useful, but only one form. The engineer can run flexible multi-agent workflows under its control: clearer structure than today’s opaque dynamic workflows, with the main agent remaining agentic about which pattern to use, when to fan out, when to verify, and when to iterate. Not a fixed recipe bolted onto a coding agent.
 
 Fourth: adaptive autonomy — run autonomously. Humans can take over anytime, or collaborate at the same time — correct, redirect, multi-task — without forcing a “bound the loop / stop and escalate” gate as the product. If the loop is always waiting on a human stop condition, it collapses back into a simple single-worker session with a babysitter.
 

@@ -1565,8 +1565,43 @@
       min-height: 0;
       width: 100%;
       display: grid;
-      gap: clamp(14px, 2cqh, 22px);
+      gap: clamp(8px, 1.4cqh, 16px);
       align-content: center;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-bridge {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(120px, 0.42fr);
+      gap: clamp(8px, 1.2cqw, 14px);
+      align-items: center;
+      min-height: 0;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-bridge-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(8px, 1cqw, 14px);
+      min-width: 0;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-bridge-arrow {
+      width: clamp(16px, 1.8cqw, 22px);
+      height: clamp(36px, 5cqh, 52px);
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-bridge-note {
+      color: var(--muted);
+      font-size: clamp(12px, min(1.15vw, 2.1cqh), 16px);
+      font-weight: 550;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-bridge-spacer {
+      min-width: 0;
     }
 
     .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-row {
@@ -1686,7 +1721,8 @@
         gap: 8px;
       }
 
-      .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-pointer {
+      .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-pointer,
+      .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-bridge {
         display: none;
       }
     }
@@ -1700,7 +1736,8 @@
         grid-template-columns: 1fr;
       }
 
-      .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-pointer {
+      .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-pointer,
+      .slide[aria-labelledby="slide-v2-loops-today-title"] .loops-today-bridge {
         display: none;
       }
     }
@@ -2544,7 +2581,7 @@
   <h2 id="slide-layers-workflow-title" class="slide-title">Where We're Stuck</h2>
   <div class="slide-body layers-workflow-body">
     <div class="diagram layers-workflow-diagram">
-      <svg class="illustration layers-workflow-svg" viewBox="0 0 1040 600" role="img" aria-label="Model Intelligence, Agent plus Harness, and Human Manual Workflow with outer loop still manual">
+      <svg class="illustration layers-workflow-svg" viewBox="0 0 1040 600" role="img" aria-label="Model Intelligence, Agent plus Harness, and Human Manual Workflow">
         <defs>
           <marker id="layersUpArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="#FF5898"></path>
@@ -2565,9 +2602,8 @@
         <text x="166" y="408" fill="#ffffff" font-size="22" font-weight="650" text-anchor="middle">Agent + Harness</text>
 
         <rect x="36" y="56" width="260" height="150" rx="18" fill="#5c1f3d" stroke="#FF5898" stroke-width="3"/>
-        <text x="166" y="116" fill="#ffffff" font-size="22" font-weight="650" text-anchor="middle">Human Manual</text>
-        <text x="166" y="148" fill="#ffffff" font-size="22" font-weight="650" text-anchor="middle">Workflow</text>
-        <text x="166" y="180" fill="#ffc1da" font-size="15" text-anchor="middle">outer loop · still manual</text>
+        <text x="166" y="122" fill="#ffffff" font-size="22" font-weight="650" text-anchor="middle">Human Manual</text>
+        <text x="166" y="154" fill="#ffffff" font-size="22" font-weight="650" text-anchor="middle">Workflow</text>
 
         <path d="M 166 480 V 448" fill="none" stroke="#FF5898" stroke-width="3" marker-end="url(#layersUpArrow)"/>
         <path d="M 166 360 V 214" fill="none" stroke="#FF5898" stroke-width="3" marker-end="url(#layersUpArrow)"/>
@@ -2783,7 +2819,7 @@
       <strong class="density-strong">Neither pattern is the outer loop.</strong>
     </div>
 
-    <div class="loops-today-diagram" aria-label="Single-agent and multi-agent patterns with critiques">
+    <div class="loops-today-diagram" aria-label="Single-agent calls tools into multi-agent patterns, with critiques">
       <div class="loops-today-row">
         <section class="loop-engineering-panel loops-today-mode">
           <p class="loop-engineering-panel-label">Single-agent · early autonomy</p>
@@ -2817,6 +2853,18 @@
           <strong>Too simple</strong>
           <p>One trajectory. One context.</p>
         </aside>
+      </div>
+
+      <div class="loops-today-bridge" aria-hidden="true">
+        <div class="loops-today-bridge-flow">
+          <svg class="loops-today-bridge-arrow" viewBox="0 0 24 56" preserveAspectRatio="xMidYMid meet">
+            <path d="M12 4 V40" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+            <path d="M6 34 L12 46 L18 34" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          <span class="loops-today-bridge-note">call tools · same worker, bloated</span>
+        </div>
+        <div class="loops-today-bridge-spacer"></div>
+        <div class="loops-today-bridge-spacer"></div>
       </div>
 
       <div class="loops-today-row">
@@ -3054,7 +3102,7 @@
           <strong style="font-size:clamp(16px,1.4vw,22px);line-height:1.25;">Persistent long-term memory — carry progress, decisions, and context across iterations</strong>
         </section>
         <section class="loop-engineering-panel">
-          <p class="loop-engineering-panel-label">03 · Agentic dynamic workflow</p>
+          <p class="loop-engineering-panel-label">03 · Agentic Workflow</p>
           <strong style="font-size:clamp(16px,1.4vw,22px);line-height:1.25;">Flexible multi-agent patterns under the engineer — build/eval is one form, not the only form</strong>
         </section>
         <section class="loop-engineering-panel">
