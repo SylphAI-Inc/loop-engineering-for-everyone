@@ -65,9 +65,7 @@ Second: what is the next stage of autonomy after today’s coding agents?
 Third: when should we push for more autonomous loops — and when should we keep the human deeply in the creative loop?
 And finally: if work becomes more autonomous, what do engineers do next — and how is that different from agency?
 
-I don’t think these have one final answer yet. But they are the right questions if we want the future to feel exciting instead of exhausting.
-
-So let’s start with the feeling a lot of us already have.
+Let’s start with the feeling a lot of us already have.
 
 ---
 
@@ -77,9 +75,9 @@ Coding agents have made developers more productive. That part is real. We plan f
 
 But many of us also feel more drained. Midjourney’s founder put it bluntly: these tools make engineers more productive — and “extremely drained.”
 
-This is no longer a niche habit. Sonar’s 2026 State of Code report found that about 42% of committed code is AI-generated or significantly AI-assisted. Creation got cheaper. The scarce resources became human review, validation, understanding, and ownership.
+Sonar’s 2026 State of Code report found that about 42% of committed code is AI-generated. Creation got cheaper. The scarce resources became human review, validation, understanding, and ownership.
 
-Addy Osmani’s framing is useful here: generation moved faster than control. That is the trust-verification gap. We can produce more, but we still have to watch, correct, and answer for the result.
+**Addy Osmani’s framing is useful here: generation moved faster than control. That is the trust-verification gap. We can produce more, but we still have to watch, correct, and answer for the result.**
 
 If models are already so good at coding, why are we still babysitting our coding agents twelve hours a day?
 
