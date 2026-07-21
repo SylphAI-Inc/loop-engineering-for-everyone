@@ -8,7 +8,7 @@ Style: conversational, knowledge-sharing, not a product pitch.
 1. Beyond Loop Engineering
 2. Why We’re Here
 3. More Productive. More Drained.
-4. Where We Are
+4. Where We're Stuck
 5. Agents: From ReAct to Coding Agents
 6. Harness: What Makes an Agent Real
 7. Loop Engineering
@@ -73,23 +73,21 @@ Let’s start with the feeling a lot of us already have.
 
 Coding agents have made developers more productive. That part is real. We plan faster, scaffold faster, implement faster, and get to a first draft of a change much sooner than before.
 
-But many of us also feel more drained. Midjourney’s founder put it bluntly: these tools make engineers more productive — and “extremely drained.”
-
 Sonar’s 2026 State of Code report found that about 42% of committed code is AI-generated. Creation got cheaper. The scarce resources became human review, validation, understanding, and ownership.
 
-**Addy Osmani’s framing is useful here: generation moved faster than control. That is the trust-verification gap. We can produce more, but we still have to watch, correct, and answer for the result.**
+Addy Osmani’s framing is useful here: generation moved faster than control. That is the trust-verification gap. We can produce more, but we still have to watch, correct, and answer for the result.
 
-If models are already so good at coding, why are we still babysitting our coding agents twelve hours a day?
+Midjourney’s founder put the human cost bluntly: these tools make engineers more productive — and “extremely drained.”
 
-You say, “Please fix A,” and it fixes A—but also changes B. Or it solves the problem in a way that does not fit the rest of your codebase — alien code. Or it gets halfway through the task and needs you to take over again.
+Why are we babysitting coding agents 12 hours a day?
 
-So the experience is strange. These systems can feel extremely capable at generating code, and still surprisingly limited when we try to trust them with the full job. The hard question is no longer only whether an agent can produce code. It is whether we can trust it to deliver the right outcome.
+You say, “Please fix A,” and it fixes A — but also changes B. Or it solves the problem in a way that does not fit the rest of your codebase. Or it gets halfway through the task and needs you to take over again.
+
+That gap is the point. Model capability is not autonomy.
 
 ---
 
-/title: Where We Are
-
-The next question is structural: where are we stuck?
+/title: Where We're Stuck
 
 Think about what it takes to deliver one pull request from start to finish. You have to understand the problem, plan the change, write the code, test it, review it, fix what broke, and iterate until it is actually ready.
 
@@ -97,7 +95,7 @@ Today’s agents can already perform many of those steps. They can search a code
 
 But humans are still connecting the workflow.
 
-There are three reasons this becomes babysitting.
+**There are three reasons this becomes babysitting.**
 
 First, we still drive the outer loop of the dev lifecycle. It is still manual: understand, plan, build, test, review, iterate, deliver — across local, cloud, and GitHub environments — allocating and monitoring agents across stages.
 
@@ -127,6 +125,8 @@ Is loop engineering the answer?
 Before we define loop engineering, we need two pieces of builder vocabulary: agents, and the harness around them.
 
 ---
+
+[can try to be quick]
 
 /title: Agents: From ReAct to Coding Agents
 
@@ -170,7 +170,7 @@ A goal-driven system that coordinates multiple agents to a verified outcome — 
 
 That last part matters. Not “helps you prompt faster.” Not “stays useful while you babysit.” Autonomous means the outer loop can run toward a verified outcome without a human glued inside every step.
 
-Humans may still set the goal, the quality bar, and the stop conditions — and keep agency over what ships. But the loop itself should not require constant human orchestration to keep moving.
+**Humans may still set the goal, the quality bar, and the stop conditions — and keep agency over what ships. But the loop itself should not require constant human orchestration to keep moving.**
 
 ---
 
@@ -198,15 +198,15 @@ So the pattern set today is lopsided. Single-agent is too simple. Multi-agent is
 
 /title: Claude Code multi-agent screenshot
 
-And here is the proof in the product UI itself.
+A quick product example helps make the architecture concrete.
 
-I asked Claude Code: can you use dynamic workflow and agent teams?
+I asked Claude Code a simple question: can you use dynamic workflows and agent teams?
 
-Look at how it answers. Agent teams are the Agent tool. Dynamic workflows are the Workflow tool. Both are capabilities of this same coding agent session — forks, explore, plan, pipeline, parallel, SendMessage. It is still one agent explaining the tools it has.
+What it showed me was really useful. In its own UI, agent teams show up as the Agent tool. Dynamic workflows show up as the Workflow tool. Forks, explore, plan, pipeline, parallel work, SendMessage — these are all capabilities available inside the same coding-agent session.
 
-That is the point. Today’s multi-agent is often an extension of a single coding agent’s toolbelt — not a separate engineer-layer agent sitting above the workers.
+So when we say “multi-agent” today, a lot of what we mean is still one coding agent coordinating work through tools. That is a real step forward. It is also a specific design choice: multi-agent as part of one agent’s toolbelt.
 
-Hold that picture. It makes the AdaL Engineer claim sharper later.
+I am not saying that is wrong. I am saying it is worth naming clearly. Later, when we talk about AdaL Engineer, the distinction will be easier to see: a separate engineer-layer agent above workers, versus multi-agent tools inside one coding agent.
 
 ---
 
@@ -247,8 +247,6 @@ So the real challenge is not just having the building blocks. It’s building th
 ---
 
 /title: When Understanding Falls Behind
-
-And the human side is getting sharper too — not theoretical.
 
 Addy Osmani names three dangers that show up as soon as generation outruns comprehension.
 
@@ -351,7 +349,7 @@ Use loops when the goal can be verified: a concrete outcome, success criteria yo
 
 Do not force loops when you’re still discovering the goal. If the idea is unclear or evolving, if you want to brainstorm, design, or stay deep in the creative process, today’s agents as collaborators are the right tool. That is not a failure of autonomy. That is the right interaction model for discovery work.
 
-The sharp anti-example: “Make a billion. Make no mistakes.” That is motion without a stop condition. Don’t put a loop on that.
+The sharp anti-example: “Make a billion dollars. Make no mistakes.” That is motion without a stop condition. Don’t put a loop on that.
 
 Use loop engineering when the outcome is clear enough to delegate.
 Use today’s agents when discovering the goal is part of the work.

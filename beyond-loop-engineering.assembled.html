@@ -141,15 +141,7 @@
     }
 
     .slide-title::before {
-      content: "";
-      position: absolute;
-      z-index: 4;
-      top: 0;
-      left: 0;
-      width: 42px;
-      height: 2px;
-      border-radius: 999px;
-      background: var(--accent);
+      display: none;
     }
 
     .slide-title::after {
@@ -227,6 +219,7 @@
     }
 
     .title-slide::before,
+    .title-slide .slide-title::before,
     .title-slide .slide-title::after {
       display: none;
     }
@@ -1786,23 +1779,31 @@
       width: 100%;
       min-height: 0;
       display: grid;
-      gap: clamp(14px, 2.2cqh, 36px);
+      gap: clamp(28px, 4.5cqh, 64px);
       justify-items: stretch;
-    }
-
-    .slide[aria-labelledby="slide-4-title"] .drained-quote {
-      margin: 0 !important;
-      max-width: none !important;
-      font-size: clamp(18px, min(2vw, 3.4cqh), 32px) !important;
-      line-height: 1.3 !important;
     }
 
     .slide[aria-labelledby="slide-4-title"] .drained-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: clamp(12px, 1.8cqw, 24px);
       min-height: 0;
       align-items: stretch;
+    }
+
+    .slide[aria-labelledby="slide-4-title"] .drained-question {
+      margin: 0 !important;
+      max-width: min(42ch, 100%) !important;
+      justify-self: start;
+      padding: 0 0 0 clamp(16px, 1.6cqw, 24px);
+      border-left: 2px solid var(--accent);
+      background: none;
+      font-style: italic;
+      font-size: clamp(18px, min(1.9vw, 3.2cqh), 28px) !important;
+      font-weight: 450;
+      line-height: 1.35 !important;
+      color: var(--muted);
+      text-align: left;
     }
 
     .slide[aria-labelledby="slide-4-title"] .drained-stat {
@@ -2515,43 +2516,35 @@
   <h2 id="slide-4-title" class="slide-title">More Productive. More Drained.</h2>
   <div class="slide-body drained-body">
     <div class="drained-layout">
-      <p class="supporting-quote drained-quote">
-        Midjourney’s founder says AI coding tools make engineers more productive — and <strong>“extremely drained.”</strong>
-      </p>
       <div class="drained-grid">
         <section class="loop-engineering-panel">
-          <p class="loop-engineering-panel-label">Adoption</p>
+          <p class="loop-engineering-panel-label">Sonar 2026</p>
           <strong class="drained-stat">42%</strong>
-          <p class="slide-lead density-lead">
-            of committed code is AI-generated or significantly AI-assisted
-          </p>
+          <p class="slide-lead density-lead">of committed code is AI-generated</p>
         </section>
         <section class="loop-engineering-panel">
-          <p class="loop-engineering-panel-label">The gap</p>
-          <strong class="density-strong density-strong--md">Creation got cheaper</strong>
-          <p class="slide-lead density-lead">
-            Review, validation, and ownership did not keep up
-          </p>
-        </section>
-        <section class="loop-engineering-panel loop-engineering-panel--outcome">
-          <p class="loop-engineering-panel-label">The question</p>
-          <strong class="density-strong density-strong--md">Why are we still babysitting agents 12 hours a day?</strong>
+          <p class="loop-engineering-panel-label">Addy Osmani</p>
+          <strong class="density-strong density-strong--md">Generation &gt; control</strong>
+          <p class="slide-lead density-lead">Trust-verification gap</p>
         </section>
       </div>
+      <p class="supporting-quote drained-question">
+        Why are we babysitting coding agents 12 hours a day?
+      </p>
     </div>
   </div>
   <div class="agent-cite-stack">
-    <a class="agent-cite" href="https://www.businessinsider.com/midjourney-founder-ai-coding-friends-drained-2026-7" target="_blank" rel="noopener noreferrer">Business Insider — Midjourney ↗</a>
     <a class="agent-cite" href="https://www.sonarsource.com/state-of-code-developer-survey-report.pdf" target="_blank" rel="noopener noreferrer">Sonar — State of Code 2026 ↗</a>
     <a class="agent-cite" href="https://addyosmani.com/blog/own-the-outer-loop/" target="_blank" rel="noopener noreferrer">Addy Osmani — Own the Outer Loop ↗</a>
+    <a class="agent-cite" href="https://www.businessinsider.com/midjourney-founder-ai-coding-friends-drained-2026-7" target="_blank" rel="noopener noreferrer">Business Insider — Midjourney ↗</a>
   </div>
   <p class="slide-foot"><span></span></p>
 </article>
 <article class="slide" aria-labelledby="slide-layers-workflow-title">
-  <h2 id="slide-layers-workflow-title" class="slide-title">Where We Are</h2>
+  <h2 id="slide-layers-workflow-title" class="slide-title">Where We're Stuck</h2>
   <div class="slide-body layers-workflow-body">
     <div class="diagram layers-workflow-diagram">
-      <svg class="illustration layers-workflow-svg" viewBox="0 0 1040 600" role="img" aria-label="Model Intelligence, Agent plus Harness, and Human Manual Workflow with outer loop. Question: is loop engineering the answer?">
+      <svg class="illustration layers-workflow-svg" viewBox="0 0 1040 600" role="img" aria-label="Model Intelligence, Agent plus Harness, and Human Manual Workflow with outer loop still manual">
         <defs>
           <marker id="layersUpArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="#FF5898"></path>
@@ -2624,7 +2617,6 @@
         Generate → act → still babysit the outer loop.
       </p>
       <div class="loops-today-takeaway layers-workflow-question">
-        <strong class="layers-workflow-question-label">One question</strong>
         Is loop engineering the answer?
       </div>
     </div>
@@ -2891,9 +2883,7 @@
         <p class="loop-engineering-panel-label">02 · Separated roles</p>
         <strong class="density-strong">Fight context rot</strong>
         <p class="slide-lead density-lead">
-          Not a formal standard — as context grows, the model gets less reliable.
-          Same pressure behind laziness, self-preferential bias, and goal drift.
-          Builder ≠ Evaluator: isolated context, independent review.
+          Models get less reliable as context grows — laziness, self-preferential bias, goal drift.
         </p>
       </section>
     </div>
@@ -3134,9 +3124,6 @@
 <article class="slide" aria-labelledby="slide-v2-when-loops-title">
   <h2 id="slide-v2-when-loops-title" class="slide-title">When to Use Loops — and When Not</h2>
   <div class="slide-body" style="display:grid;align-content:safe center;">
-    <p class="slide-lead density-lead" style="margin:0 !important;color:var(--text);">
-      One principle: loop engineering only makes sense when the outcome is <strong style="font-weight:600;">clear enough to delegate</strong>.
-    </p>
     <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:clamp(12px,2cqw,36px);min-height:0;">
       <section class="loop-engineering-panel loop-engineering-panel--outcome">
         <p class="loop-engineering-panel-label">Use loops when</p>
@@ -3164,7 +3151,7 @@
         <strong>Good fit:</strong> ship a scoped PR to green with a known quality bar.
       </p>
       <p class="loops-today-takeaway" style="margin:0;text-align:left;max-width:none;">
-        <strong>Bad fit:</strong> “Make a billion. Make no mistakes.” — motion without a stop condition.
+        <strong>Bad fit:</strong> “Make a billion dollars. Make no mistakes.” — motion without a stop condition.
       </p>
     </div>
   </div>
@@ -3388,7 +3375,7 @@
       const nextButton = document.querySelector('[data-action="next"]');
       const querySlide = Number(new URLSearchParams(window.location.search).get('slide'));
       let current = Number.isFinite(querySlide) && querySlide >= 1 && querySlide <= slides.length ? querySlide - 1 : 0;
-      window.__deckIndex = { slides: [{"id": "1-title", "file": "1-title.html", "title": "Beyond Loop Engineering"}, {"id": "intro-title", "file": "intro-title.html", "title": "Why We\u2019re Here"}, {"id": "4-title", "file": "4-title.html", "title": "More Productive. More Drained."}, {"id": "layers-workflow-title", "file": "layers-workflow-title.html", "title": "Where We Are"}, {"id": "2-title", "file": "2-title.html", "title": "Agents: From ReAct to Coding Agents"}, {"id": "3-title", "file": "3-title.html", "title": "Harness: What Makes an Agent Real"}, {"id": "v2-loop-engineering-title", "file": "v2-loop-engineering-title.html", "title": "Loop Engineering"}, {"id": "v2-loops-of-today-title", "file": "v2-loops-of-today-title.html", "title": "Patterns of Today"}, {"id": "claude-code-multiagent-screenshot", "file": "claude-code-multiagent-screenshot.html", "title": "Claude Code: Multi-Agent as One Agent\u2019s Tools"}, {"id": "v2-why-loops-possible-title", "file": "v2-why-loops-possible-title.html", "title": "What Makes Outer-Loop Automation Possible"}, {"id": "v2-why-still-hard-title", "file": "v2-why-still-hard-title.html", "title": "Yet It\u2019s Still Hard"}, {"id": "v2-risks-getting-real-title", "file": "v2-risks-getting-real-title.html", "title": "When Understanding Falls Behind"}, {"id": "v2-what-to-automate-title", "file": "v2-what-to-automate-title.html", "title": "A Different Path to Autonomy"}, {"id": "v2-adal-engineer-title", "file": "v2-adal-engineer-title.html", "title": "AdaL Engineer \u2014 Our First Experiment"}, {"id": "v2-experiment-testing-title", "file": "v2-experiment-testing-title.html", "title": "What the Experiment Is Testing"}, {"id": "v2-when-to-use-loops-title", "file": "v2-when-to-use-loops-title.html", "title": "When to Use Loops \u2014 and When Not"}, {"id": "adal-pdf-screenshot", "file": "adal-pdf-screenshot.html", "title": "AdaL Builder / Evaluator Screenshot"}, {"id": "demo-title", "file": "demo-title.html", "title": "Demo Comparison"}, {"id": "11-title", "file": "11-title.html", "title": "Measure Autonomy"}, {"id": "humans-next-title", "file": "humans-next-title.html", "title": "What Will Humans Do Next?"}, {"id": "12-title", "file": "12-title.html", "title": "References"}] };
+      window.__deckIndex = { slides: [{"id": "1-title", "file": "1-title.html", "title": "Beyond Loop Engineering"}, {"id": "intro-title", "file": "intro-title.html", "title": "Why We\u2019re Here"}, {"id": "4-title", "file": "4-title.html", "title": "More Productive. More Drained."}, {"id": "layers-workflow-title", "file": "layers-workflow-title.html", "title": "Where We're Stuck"}, {"id": "2-title", "file": "2-title.html", "title": "Agents: From ReAct to Coding Agents"}, {"id": "3-title", "file": "3-title.html", "title": "Harness: What Makes an Agent Real"}, {"id": "v2-loop-engineering-title", "file": "v2-loop-engineering-title.html", "title": "Loop Engineering"}, {"id": "v2-loops-of-today-title", "file": "v2-loops-of-today-title.html", "title": "Patterns of Today"}, {"id": "claude-code-multiagent-screenshot", "file": "claude-code-multiagent-screenshot.html", "title": "Claude Code: Multi-Agent as One Agent\u2019s Tools"}, {"id": "v2-why-loops-possible-title", "file": "v2-why-loops-possible-title.html", "title": "What Makes Outer-Loop Automation Possible"}, {"id": "v2-why-still-hard-title", "file": "v2-why-still-hard-title.html", "title": "Yet It\u2019s Still Hard"}, {"id": "v2-risks-getting-real-title", "file": "v2-risks-getting-real-title.html", "title": "When Understanding Falls Behind"}, {"id": "v2-what-to-automate-title", "file": "v2-what-to-automate-title.html", "title": "A Different Path to Autonomy"}, {"id": "v2-adal-engineer-title", "file": "v2-adal-engineer-title.html", "title": "AdaL Engineer \u2014 Our First Experiment"}, {"id": "v2-experiment-testing-title", "file": "v2-experiment-testing-title.html", "title": "What the Experiment Is Testing"}, {"id": "v2-when-to-use-loops-title", "file": "v2-when-to-use-loops-title.html", "title": "When to Use Loops \u2014 and When Not"}, {"id": "adal-pdf-screenshot", "file": "adal-pdf-screenshot.html", "title": "AdaL Builder / Evaluator Screenshot"}, {"id": "demo-title", "file": "demo-title.html", "title": "Demo Comparison"}, {"id": "11-title", "file": "11-title.html", "title": "Measure Autonomy"}, {"id": "humans-next-title", "file": "humans-next-title.html", "title": "What Will Humans Do Next?"}, {"id": "12-title", "file": "12-title.html", "title": "References"}] };
 
       function render() {
         slides.forEach((slide, index) => {
