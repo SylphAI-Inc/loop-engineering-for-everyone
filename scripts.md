@@ -8,7 +8,7 @@ Style: conversational, knowledge-sharing, not a product pitch.
 1. Beyond Loop Engineering
 2. Why We’re Here
 3. More Productive. More Drained.
-4. Where We're Stuck
+4. Where We Are Stuck
 5. Agents: From ReAct to Coding Agents
 6. Harness: What Makes an Agent Real
 7. Loop Engineering
@@ -87,7 +87,7 @@ That gap is the point. Model capability is not autonomy.
 
 ---
 
-/title: Where We're Stuck
+/title: Where We Are Stuck
 
 Think about what it takes to deliver one pull request from start to finish. You have to understand the problem, plan the change, write the code, test it, review it, fix what broke, and iterate until it is actually ready.
 
