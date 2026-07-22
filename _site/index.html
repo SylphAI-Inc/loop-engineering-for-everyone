@@ -1,0 +1,1502 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Loop Engineering For Everyone — V1 Deck</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050506;
+      --text: #f4f4f5;
+      --muted: #b9bdc4;
+      --faint: #6c727a;
+      --line: rgba(255, 255, 255, 0.12);
+      --accent: #FF5898;
+      --accent-soft: rgba(255, 88, 152, 0.18);
+      --radius: 18px;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      overflow-x: hidden;
+      line-height: 1.45;
+    }
+
+    .deck-shell {
+      width: 100%;
+      min-height: 100vh;
+      padding: clamp(12px, 2vw, 28px);
+      overflow-x: hidden;
+    }
+
+    .deck {
+      position: relative;
+      width: min(96vw, calc(86vh * 16 / 9));
+      aspect-ratio: 16 / 9;
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #0a0b0d;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: clamp(14px, 1.5vw, 26px);
+      padding: clamp(28px, 3vw, 52px);
+      min-width: 0;
+    }
+
+    .slide.active {
+      display: grid;
+    }
+
+    .slide-title {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(28px, 3.5vw, 52px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      font-weight: 650;
+    }
+
+    .slide-lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(20px, 2.2vw, 32px);
+      line-height: 1.45;
+      max-width: 1000px;
+    }
+
+    .slide-lead code {
+      font-family: var(--mono);
+      font-size: 0.92em;
+      color: var(--accent);
+      padding: 1px 6px;
+      border-radius: 6px;
+      background: var(--accent-soft);
+    }
+
+    .slide-lead em {
+      color: var(--text);
+      font-style: italic;
+      font-weight: 550;
+    }
+
+    .slide-body {
+      min-height: 0;
+      width: min(100%, 1400px);
+      margin: 0 auto;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+    }
+
+    /* Deck visual system: editorial grid, quiet surfaces, one purposeful accent. */
+    .slide::before {
+      content: "";
+      position: absolute;
+      top: clamp(28px, 3vw, 52px);
+      left: clamp(28px, 3vw, 52px);
+      width: 42px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .slide-title {
+      position: relative;
+      max-width: 100%;
+      padding-top: clamp(13px, 1.25vw, 18px);
+    }
+
+    .slide-title::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: clamp(-12px, -0.8vw, -8px);
+      width: min(18vw, 170px);
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0.56;
+    }
+
+    .content-panel,
+    .statement {
+      width: min(100%, 1020px);
+      padding: clamp(32px, 4vw, 56px);
+      border-left: 4px solid var(--accent);
+      background: linear-gradient(90deg, var(--accent-soft), transparent 72%);
+    }
+
+    .statement .slide-lead {
+      max-width: 900px;
+      color: var(--text);
+      font-size: clamp(24px, 2.5vw, 36px);
+      line-height: 1.35;
+    }
+
+    .feature-quote {
+      width: min(100%, 1100px);
+      margin: 0;
+      padding: clamp(32px, 4vw, 56px) 0 clamp(32px, 4vw, 56px) clamp(32px, 4vw, 56px);
+      border-left: 4px solid var(--accent);
+      color: var(--text);
+      font-size: clamp(36px, 4vw, 64px);
+      font-weight: 560;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+    }
+
+    .drainage-insight {
+      width: min(100%, 1100px);
+      display: grid;
+      gap: clamp(24px, 3vw, 48px);
+    }
+
+    .drainage-insight .feature-quote {
+      width: 100%;
+    }
+
+    .supporting-quote {
+      max-width: 900px;
+      margin: 0 0 0 clamp(32px, 4vw, 56px);
+      color: var(--muted);
+      font-size: clamp(22px, 2vw, 32px);
+      line-height: 1.45;
+    }
+
+    .supporting-quote strong {
+      color: var(--text);
+      font-weight: 580;
+    }
+
+    .hero-statement {
+      width: min(100%, 1020px);
+      margin: 0;
+      padding: clamp(20px, 2.5vw, 36px) 0 clamp(20px, 2.5vw, 36px) clamp(24px, 3vw, 42px);
+      border-left: 2px solid var(--accent);
+      color: var(--text);
+      font-size: clamp(23px, 2.15vw, 38px);
+      font-weight: 520;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      text-align: left;
+    }
+
+    .title-slide::before,
+    .title-slide .slide-title::after {
+      display: none;
+    }
+
+    .title-slide h1 {
+      background: linear-gradient(110deg, var(--text) 22%, #ffc1da 70%, var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .slide-foot {
+      display: none;
+    }
+
+    .status {
+      display: block;
+    }
+
+    .title-slide {
+      grid-template-rows: 1fr;
+      place-items: center;
+      padding: clamp(36px, 4vw, 72px);
+      text-align: center;
+    }
+
+    .title-slide > div {
+      width: min(100%, 1180px);
+      padding: 0 8px 14px;
+      transform: translateY(-2%);
+    }
+
+    .title-slide h1 {
+      display: block;
+      max-width: 100%;
+      padding: 0 0.04em 0.18em;
+      font-size: clamp(42px, 6vw, 96px);
+      letter-spacing: -0.06em;
+      line-height: 1.16;
+      overflow: visible;
+    }
+
+    .title-credit {
+      margin: clamp(48px, 6vw, 72px) 0 0;
+      color: var(--muted);
+      font-size: clamp(26px, 2.5vw, 36px);
+      line-height: 1.45;
+      letter-spacing: -0.015em;
+    }
+
+    .title-credit strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .slide-body-agent {
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      gap: 18px;
+      text-align: center;
+    }
+
+    .slide-body-agent .slide-lead {
+      margin: 0 auto 32px;
+      max-width: 1000px;
+      text-align: center;
+    }
+
+    .react-note {
+      margin: 32px auto 0;
+      color: var(--muted);
+      font-size: clamp(20px, 2.2vw, 32px);
+      line-height: 1.45;
+      max-width: 1100px;
+      text-align: center;
+    }
+
+    .loops-today-list {
+      list-style: none;
+      margin: 16px auto 32px;
+      padding: 0;
+      max-width: 1000px;
+      width: 100%;
+      display: grid;
+      gap: 16px;
+      text-align: left;
+    }
+
+    .loops-today-list li {
+      position: relative;
+      padding: 20px 24px 20px 56px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      font-size: clamp(18px, 1.8vw, 26px);
+      letter-spacing: -0.005em;
+    }
+
+    .loops-today-list li::before {
+      content: "";
+      position: absolute;
+      left: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
+    }
+
+    .loops-today-takeaway {
+      margin: 0 auto;
+      max-width: 1000px;
+      padding: 24px 32px;
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      background: rgba(255, 88, 152, 0.06);
+      color: var(--text);
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.45;
+      text-align: center;
+      user-select: text;
+    }
+
+    .barrier-grid {
+      width: min(100%, 1060px);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(24px, 3.5vw, 48px);
+    }
+
+    .barrier-card {
+      min-height: 320px;
+      display: grid;
+      align-content: center;
+      gap: 24px;
+      padding: clamp(32px, 4vw, 56px);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--accent);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+    }
+
+    .barrier-card strong {
+      color: var(--text);
+      font-size: clamp(32px, 3.5vw, 48px);
+      font-weight: 580;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+    }
+
+    .barrier-card span {
+      color: var(--muted);
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.5;
+    }
+
+    .agent-line {
+      margin: 0 auto;
+      padding: 16px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: clamp(14px, 1.05vw, 18px);
+      letter-spacing: -0.005em;
+      text-align: center;
+      display: inline-block;
+      max-width: 100%;
+    }
+
+    .agent-cite {
+      display: block;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: clamp(16px, 1.2vw, 20px);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      opacity: 0.78;
+      transition: color 160ms ease-out, opacity 160ms ease-out;
+    }
+
+    .agent-cite:hover,
+    .agent-cite:focus-visible {
+      color: var(--accent);
+      opacity: 1;
+      outline: none;
+    }
+
+    .agent-cite-stack {
+      position: absolute;
+      right: clamp(20px, 2vw, 36px);
+      bottom: clamp(16px, 1.6vw, 28px);
+      display: grid;
+      gap: 4px;
+      text-align: right;
+    }
+
+    .lifecycle {
+      width: min(100%, 1100px);
+    }
+
+    .lifecycle-diagram {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+      font-family: var(--sans);
+    }
+
+    .reference-list {
+      display: grid;
+      gap: 6px;
+      max-height: 100%;
+      overflow: auto;
+      padding-right: 6px;
+    }
+
+    .reference-list a {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      padding: 14px 20px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      text-decoration: none;
+      font-size: clamp(18px, 1.8vw, 24px);
+    }
+
+    .reference-list a:focus-visible,
+    .reference-list a:hover {
+      outline: none;
+      border-color: rgba(255, 88, 152, 0.6);
+      color: var(--accent);
+    }
+
+    .reference-list small {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: clamp(14px, 1.2vw, 18px);
+    }
+
+    .reference-group + .reference-group {
+      margin-top: 24px;
+    }
+
+    .reference-group h2 {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-size: clamp(16px, 1.4vw, 20px);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .references-grid {
+      width: min(100%, 1400px);
+      max-height: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px 32px;
+      overflow: auto;
+      padding: 4px 16px 4px 4px;
+    }
+
+    .references-grid .reference-group + .reference-group {
+      margin-top: 0;
+    }
+
+    .references-grid .reference-list {
+      gap: 4px;
+      overflow: visible;
+      padding-right: 0;
+    }
+
+    .references-grid .reference-list a {
+      gap: 12px;
+      padding: 10px 14px;
+      font-size: clamp(16px, 1.4vw, 20px);
+      line-height: 1.25;
+    }
+
+    .references-grid .reference-list small {
+      font-size: clamp(12px, 1.1vw, 16px);
+      white-space: nowrap;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .deck-controls {
+      width: min(96vw, calc(86vh * 16 / 9));
+      margin: 14px auto 0;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: clamp(14px, 1.2vw, 18px);
+      letter-spacing: 0.06em;
+    }
+
+    .control-button {
+      appearance: none;
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      background: rgba(10, 10, 12, 0.6);
+      color: var(--text);
+      font: 700 20px/1 var(--mono);
+      cursor: pointer;
+    }
+
+    .control-button:hover,
+    .control-button:focus-visible {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .control-button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 3px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 10%;
+      background: var(--accent);
+      transition: width 180ms ease-out;
+    }
+
+    .status {
+      white-space: nowrap;
+    }
+
+    .slide-body-expansion {
+      width: min(100%, 1400px);
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(340px, 1.1fr);
+      align-items: center;
+      gap: clamp(28px, 4vw, 68px);
+      text-align: left;
+    }
+
+    .expansion-copy {
+      display: grid;
+      gap: clamp(22px, 2.5vw, 34px);
+      align-content: center;
+    }
+
+    .slide-body-expansion .slide-lead {
+      max-width: 430px;
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(20px, 1.55vw, 28px);
+      line-height: 1.3;
+    }
+
+    .expansion {
+      width: min(100%, 560px);
+      margin: 0;
+      position: relative;
+      display: grid;
+      gap: 14px;
+      justify-items: center;
+    }
+
+    .expansion-axis {
+      position: absolute;
+      left: clamp(8px, 1.6vw, 22px);
+      top: 50%;
+      transform: translateY(-50%);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 8px;
+      align-items: center;
+      justify-items: center;
+      min-height: 220px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: clamp(10px, 0.65vw, 12px);
+      letter-spacing: 0.04em;
+      pointer-events: none;
+    }
+
+    .expansion-axis small {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      color: var(--faint);
+      white-space: nowrap;
+    }
+
+    .expansion-axis-stem {
+      width: 1px;
+      height: 100%;
+      min-height: 140px;
+      background: linear-gradient(180deg, var(--accent), rgba(255, 88, 152, 0.18));
+    }
+
+    .expansion-axis-tip {
+      color: var(--accent);
+      font-size: clamp(13px, 0.85vw, 15px);
+      line-height: 1;
+    }
+
+    .expansion-harness,
+    .expansion-context,
+    .expansion-prompt {
+      position: relative;
+    }
+
+    .expansion-harness,
+    .expansion-context,
+    .expansion-prompt {
+      width: 100%;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .expansion-harness {
+      border: 1.5px dashed rgba(255, 255, 255, 0.45);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .expansion-context {
+      border: 1.5px solid rgba(255, 88, 152, 0.55);
+      border-radius: 24px;
+      background: rgba(255, 88, 152, 0.06);
+      width: 84%;
+    }
+
+    .expansion-prompt {
+      border: 1.5px solid rgba(255, 88, 152, 0.92);
+      border-radius: 999px;
+      background: rgba(255, 88, 152, 0.12);
+      width: 56%;
+      padding: 14px;
+    }
+
+    .expansion-label {
+      display: grid;
+      gap: 5px;
+      color: var(--text);
+      font-size: clamp(16px, 1.2vw, 21px);
+      font-weight: 580;
+      letter-spacing: -0.018em;
+    }
+
+    .expansion-label small {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: clamp(11px, 0.78vw, 14px);
+      letter-spacing: 0.04em;
+    }
+
+    .expansion-progression {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: clamp(11px, 0.7vw, 13px);
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+
+    .slide[aria-labelledby="slide-3-title"] .expansion-harness-note {
+      max-width: 800px;
+      margin: 0;
+      padding: 0 0 0 24px;
+      border-left: 4px solid var(--accent);
+      color: var(--muted);
+      font-size: clamp(20px, 2.2vw, 32px);
+      line-height: 1.45;
+      text-align: left;
+      user-select: text;
+    }
+
+    /* Illustration system: quiet surfaces, hairline geometry, and one pink signal. */
+    .diagram {
+      width: min(100%, 980px);
+      height: 100%;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(12px, 1.4vw, 22px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 88, 152, 0.09), transparent 46%),
+        rgba(255, 255, 255, 0.018);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+    }
+
+    .illustration, .lifecycle-diagram {
+      display: block;
+      width: min(100%, 1400px);
+      height: 100%;
+      max-height: 100%;
+      font-family: var(--sans);
+    }
+    
+    svg text, svg tspan {
+      user-select: text;
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      cursor: text;
+      pointer-events: auto;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 1ms !important;
+        transition-duration: 1ms !important;
+        scroll-behavior: auto !important;
+      }
+      .progress-fill {
+        transition: none;
+      }
+    }
+
+    @media (max-width: 760px), (max-aspect-ratio: 11 / 10) {
+      .deck-shell {
+        padding: 0;
+      }
+
+      .deck {
+        width: 100%;
+        min-height: calc(100vh - 64px);
+        aspect-ratio: auto;
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+      }
+
+      .slide {
+        position: relative;
+        min-height: calc(100vh - 64px);
+        padding: 22px 18px 24px;
+        grid-template-rows: auto minmax(0, 1fr) auto;
+      }
+
+      .slide:not(.active) {
+        display: none;
+      }
+
+      .lifecycle {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .slide-body-expansion {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .expansion-copy,
+      .slide-body-expansion .slide-lead,
+      .slide[aria-labelledby="slide-3-title"] .expansion-harness-note {
+        max-width: 100%;
+      }
+
+      .expansion {
+        margin: 0 auto;
+      }
+
+      .stage {
+        min-height: 110px;
+      }
+
+      .agent-loop {
+        --size: min(86vw, 320px);
+      }
+
+      .agent-loop .agent-node {
+        font-size: 12px;
+        padding: 8px 11px;
+      }
+
+      .deck-controls {
+        position: sticky;
+        bottom: 0;
+        width: 100%;
+        margin: 0;
+        padding: 10px 14px;
+        background: rgba(5, 5, 6, 0.92);
+        backdrop-filter: blur(8px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck-shell">
+    <section class="deck" aria-label="Loop Engineering For Everyone V1 deck">
+      <article class="slide title-slide active" aria-labelledby="slide-1-title">
+        <div style="position: absolute; top: clamp(32px, 4vw, 64px); left: clamp(48px, 5vw, 80px); display: flex; align-items: center; z-index: 10;">
+          <img src="materials/adal-icon-pink.svg" alt="AdaL A-Logo" style="height: clamp(32px, 3vw, 48px); width: auto;">
+        </div>
+        <div>
+          <h1 id="slide-1-title" class="slide-title">Beyond Loop Engineering</h1>
+          <p class="title-credit"><strong>Li Yin</strong> · founder at AdaL and creator of AdalFlow</p>
+        </div>
+        <div class="agent-cite-stack">
+          <a class="agent-cite" href="https://adalagent.ai" target="_blank" rel="noopener noreferrer">adalagent.ai ↗</a>
+        </div>
+        <p class="slide-foot"><span>01 / 14</span></p>
+      </article>
+
+      <article class="slide" aria-labelledby="slide-2-title">
+        <h2 id="slide-2-title" class="slide-title">Agentic Engineering of Today</h2>
+        <div class="slide-body">
+          <p class="slide-lead" style="margin: 0 auto 80px; text-align: center; max-width: 1000px; font-size: clamp(24px, 2.5vw, 36px);">
+            An agent is a model running a loop of tool calls. A subagent is simply another tool call (for example, agentic search).
+          </p>
+          <svg style="max-width: 1400px; width: 100%; display: block; margin: 0 auto;" viewBox="0 0 900 160" aria-label="Agent loop: Model to Decide to Tool call to Observation back to Model">
+            <defs>
+              <marker id="loopArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"></path>
+              </marker>
+              <linearGradient id="agentGradient" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="var(--bg)"/>
+                <stop offset="50%" stop-color="rgba(255, 88, 152, 0.08)"/>
+                <stop offset="100%" stop-color="var(--bg)"/>
+              </linearGradient>
+            </defs>
+            <rect x="50" y="40" width="800" height="80" rx="40" fill="url(#agentGradient)" stroke="var(--line)" stroke-width="1.5"/>
+            <path d="M 200 80 L 230 80" stroke="var(--accent)" stroke-width="2" marker-end="url(#loopArrow)"/>
+            <path d="M 370 80 L 400 80" stroke="var(--accent)" stroke-width="2" marker-end="url(#loopArrow)"/>
+            <path d="M 545 80 L 575 80" stroke="var(--accent)" stroke-width="2" marker-end="url(#loopArrow)"/>
+            <path d="M 725 80 L 755 80" stroke="var(--accent)" stroke-width="2" marker-end="url(#loopArrow)"/>
+            
+            <g fill="var(--text)" font-family="var(--sans)" font-size="22" font-weight="600" text-anchor="middle">
+              <text x="130" y="88">Model</text>
+              <text x="300" y="88">Decide</text>
+              <text x="470" y="88">Tool call</text>
+              <text x="650" y="88">Observation</text>
+              <text x="810" y="88">Model</text>
+            </g>
+          </svg>
+        </div>
+        <div class="agent-cite-stack">
+          <a class="agent-cite" href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener noreferrer">ReAct — Yao et al., 2022 ↗</a>
+          <a class="agent-cite" href="https://arxiv.org/abs/2501.16673" target="_blank" rel="noopener noreferrer">LLM-AutoDiff — Yin et al., 2025 ↗</a>
+        </div>
+        <p class="slide-foot"><span>02 / 14</span></p>
+      </article>
+
+      <article class="slide" aria-labelledby="slide-3-title">
+        <h2 id="slide-3-title" class="slide-title">From Prompt to Harness</h2>
+        <div class="slide-body slide-body-expansion">
+          <div class="expansion-copy" style="max-width: 600px;">
+            <p class="slide-lead">As context windows grew, agent systems expanded from prompt engineering to context and harness engineering.</p>
+            <p class="expansion-harness-note">The harness is code that changes the context: tools/MCP, compaction, prompt structure + caching, skills, @ files, images, and runtime environment.</p>
+          </div>
+          <svg class="illustration" viewBox="0 0 900 500" aria-label="Context window expansion: Prompt inside Context inside Harness" style="width: 100%; max-width: 1200px; justify-self: center;">
+            <defs>
+              <filter id="harnessGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="6" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+            
+            <!-- Axis line and labels -->
+            <path d="M 80 460 L 80 40" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="3" stroke-dasharray="6,6"/>
+            <text x="60" y="470" fill="var(--text)" font-family="var(--mono)" font-size="18" font-weight="bold" text-anchor="start" transform="rotate(-90 60 470)">LESS CONTEXT</text>
+            <text x="60" y="160" fill="var(--text)" font-family="var(--mono)" font-size="18" font-weight="bold" text-anchor="start" transform="rotate(-90 60 160)">MORE CONTEXT</text>
+            <polygon points="80,30 72,45 88,45" fill="rgba(255,255,255,0.5)"/>
+
+            <!-- Harness Engineering (Outer) -->
+            <rect x="150" y="20" width="700" height="460" rx="40" fill="rgba(255, 255, 255, 0.02)" stroke="rgba(255, 255, 255, 0.4)" stroke-width="2" stroke-dasharray="10,8"/>
+            <text x="500" y="80" fill="var(--text)" font-size="34" font-weight="600" text-anchor="middle">Harness Engineering</text>
+            <text x="500" y="110" fill="var(--muted)" font-family="var(--mono)" font-size="20" text-anchor="middle">code that changes the context</text>
+            
+            <!-- Context Engineering (Middle) -->
+            <rect x="200" y="150" width="600" height="310" rx="30" fill="rgba(255, 88, 152, 0.04)" stroke="rgba(255, 255, 255, 0.4)" stroke-width="2"/>
+            <text x="500" y="215" fill="var(--text)" font-size="34" font-weight="600" text-anchor="middle">Context Engineering</text>
+            <text x="500" y="245" fill="var(--muted)" font-family="var(--mono)" font-size="20" text-anchor="middle">everything the model sees</text>
+
+            <!-- Prompt Engineering (Inner) -->
+            <rect x="250" y="290" width="500" height="150" rx="75" fill="rgba(255, 88, 152, 0.1)" stroke="var(--accent)" stroke-width="3" filter="url(#harnessGlow)"/>
+            <text x="500" y="360" fill="var(--text)" font-size="34" font-weight="600" text-anchor="middle">Prompt Engineering</text>
+            <text x="500" y="390" fill="var(--muted)" font-family="var(--mono)" font-size="20" text-anchor="middle">instructions</text>
+          </svg>
+          <div class="agent-cite-stack">
+            <a class="agent-cite" href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener noreferrer">Context Engineering — Anthropic ↗</a>
+            <a class="agent-cite" href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer">Harness Engineering — OpenAI ↗</a>
+          </div>
+        </div>
+        <p class="slide-foot"><span>03 / 14</span></p>
+      </article>
+
+      <article class="slide" aria-labelledby="slide-4-title">
+        <h2 id="slide-4-title" class="slide-title">More Productive. More Drained.</h2>
+        <div class="slide-body">
+          <div class="drainage-insight">
+            <p class="feature-quote">The demand for babysitting, judgment, and taste is what makes developers extremely drained.</p>
+            <p class="supporting-quote">Midjourney’s founder says new AI coding tools are making friends more productive — and <strong>“extremely drained.”</strong></p>
+          </div>
+        </div>
+        <div class="agent-cite-stack">
+          <a class="agent-cite" href="https://www.businessinsider.com/midjourney-founder-ai-coding-friends-drained-2026-7" target="_blank" rel="noopener noreferrer">Business Insider — July 2026 ↗</a>
+        </div>
+        <p class="slide-foot"><span>04 / 14</span></p>
+      </article>
+
+      <article class="slide" aria-labelledby="slide-5-title">
+        <h2 id="slide-5-title" class="slide-title">The Manual Outer Loop: The Iterative Dev Lifecycle</h2>
+        <div class="slide-body">
+          <div class="lifecycle" aria-label="Development lifecycle stages">
+            <svg class="lifecycle-diagram" viewBox="0 0 1100 320" role="img" aria-label="Understand, Plan, Build, Test, and Review form the manual iterative outer loop. Deliver is a separate final outcome.">
+              <defs>
+                <marker id="lifecycle-arrow-neutral" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(255,255,255,0.4)"></path>
+                </marker>
+                <marker id="lifecycle-arrow-pink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"></path>
+                </marker>
+                <linearGradient id="boxGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="rgba(255, 255, 255, 0.04)"/>
+                  <stop offset="100%" stop-color="rgba(255, 255, 255, 0.0)"/>
+                </linearGradient>
+                <filter id="loopGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+              
+              <!-- Straight connecting arrows between boxes -->
+              <g fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#lifecycle-arrow-neutral)">
+                <path d="M 150 100 L 180 100"></path>
+                <path d="M 340 100 L 370 100"></path>
+                <path d="M 530 100 L 560 100"></path>
+                <path d="M 720 100 L 750 100"></path>
+              </g>
+
+              <!-- Final Deliver Arrow -->
+              <path d="M 910 100 L 940 100" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" marker-end="url(#lifecycle-arrow-pink)"></path>
+              
+              <!-- Iterative return loop (Review to Understand) -->
+              <path d="M 835 190 C 835 320 75 320 75 200 L 75 190" fill="none" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8,8" stroke-linecap="round" marker-end="url(#lifecycle-arrow-pink)" filter="url(#loopGlow)"></path>
+
+              <!-- Boxes -->
+              <g fill="url(#boxGradient)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5">
+                <rect x="0" y="10" width="150" height="180" rx="16"></rect>
+                <rect x="190" y="10" width="150" height="180" rx="16"></rect>
+                <rect x="380" y="10" width="150" height="180" rx="16"></rect>
+                <rect x="570" y="10" width="150" height="180" rx="16"></rect>
+              </g>
+              
+              <!-- Review box (Highlighted loop source) -->
+              <rect x="760" y="10" width="150" height="180" rx="16" fill="rgba(255, 88, 152, 0.05)" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="6,4"></rect>
+              
+              <!-- Deliver box (Final outcome) -->
+              <rect x="950" y="10" width="150" height="180" rx="16" fill="rgba(255, 88, 152, 0.15)" stroke="var(--accent)" stroke-width="2.5" filter="url(#loopGlow)"></rect>
+
+              <!-- Typography -->
+              <g text-anchor="middle">
+                <!-- Titles -->
+                <g fill="var(--text)" font-size="26" font-weight="600">
+                  <text x="75" y="70">Understand</text>
+                  <text x="265" y="70">Plan</text>
+                  <text x="455" y="70">Build</text>
+                  <text x="645" y="70">Test</text>
+                  <text x="835" y="70">Review</text>
+                  <text x="1025" y="70">Deliver</text>
+                </g>
+                <!-- Descriptions -->
+                <g fill="var(--muted)" font-size="18">
+                  <text x="75" y="120">deep research /</text>
+                  <text x="75" y="145">codebase insight</text>
+                  
+                  <text x="265" y="120">decomposition /</text>
+                  <text x="265" y="145">architecture</text>
+                  
+                  <text x="455" y="132">coding agent</text>
+                  
+                  <text x="645" y="120">browser use /</text>
+                  <text x="645" y="145">computer use</text>
+                  
+                  <text x="835" y="120">code review /</text>
+                  <text x="835" y="145">evaluator</text>
+                  
+                  <text x="1025" y="120">verification /</text>
+                  <text x="1025" y="145">human approval</text>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <p class="react-note">Different stages need different agent capabilities across local, cloud, and GitHub environments, forcing developers to manually run the iterative dev loop.</p>
+        </div>
+        <p class="slide-foot"><span>05 / 14</span></p>
+      </article>
+
+      <article class="slide" aria-labelledby="slide-6-title">
+        <h2 id="slide-6-title" class="slide-title">Loop Engineering: Automate the Outer Loop</h2>
+        <div class="slide-body">
+          <p class="hero-statement" style="font-size: clamp(32px, 3.5vw, 48px); line-height: 1.25; letter-spacing: -0.02em;">
+            Instead of prompting, <span style="color: var(--accent);">let’s build loops that prompt it.</span>
+          </p>
+        </div>
+        <div class="agent-cite-stack">
+          <a class="agent-cite" href="https://addyosmani.com/blog/loop-engineering/" target="_blank" rel="noopener noreferrer">Addy Osmani — Loop Engineering ↗</a>
+          <a class="agent-cite" href="https://x.com/akshay_pachaar/article/2069118430582866051" target="_blank" rel="noopener noreferrer">Akshay Pachaar — Loop Engineering article ↗</a>
+          <a class="agent-cite" href="https://gist.github.com/sanchez314c/a767997b030d2904c0d0f08fabae2d42" target="_blank" rel="noopener noreferrer">LOOPS.md — community mirror; attribution unverified ↗</a>
+        </div>
+        <p class="slide-foot"><span>06 / 14</span></p>
+      </article>
+
+      <article class="slide" aria-labelledby="slide-7-title">
+        <h2 id="slide-7-title" class="slide-title">What Makes Loops Possible</h2>
+        <div class="slide-body">
+          <ul style="list-style:none;padding:0;margin:0 auto;max-width:900px;display:grid;gap:42px; width: 100%;">
+            <li style="border-left: 4px solid var(--accent); padding-left: 24px;">
+              <strong style="color:var(--text);font-size: clamp(28px, 3.2vw, 42px); line-height: 1.2; display: block; margin-bottom: 8px;">Goal-driven work</strong>
+              <span style="color:var(--muted);font-size: clamp(20px, 2.2vw, 28px); line-height: 1.4; display: block;">A verifiable objective the loop can continuously measure itself against.</span>
+            </li>
+            <li style="border-left: 4px solid var(--accent); padding-left: 24px;">
+              <strong style="color:var(--text);font-size: clamp(28px, 3.2vw, 42px); line-height: 1.2; display: block; margin-bottom: 8px;">Self-validation</strong>
+              <span style="color:var(--muted);font-size: clamp(20px, 2.2vw, 28px); line-height: 1.4; display: block;">Browser use and computer use allow agents to close their own testing loops—something previously impossible.</span>
+            </li>
+            <li style="border-left: 4px solid var(--accent); padding-left: 24px;">
+              <strong style="color:var(--text);font-size: clamp(28px, 3.2vw, 42px); line-height: 1.2; display: block; margin-bottom: 8px;">Multi-agent roles</strong>
+              <span style="color:var(--muted);font-size: clamp(20px, 2.2vw, 28px); line-height: 1.4; display: block;">Separating Evaluator from Builder to prevent <em>"context rot"</em>—leveraging different models, isolated context windows, and specialized prompts.</span>
+            </li>
+          </ul>
+        </div>
+        <p class="slide-foot"><span>07 / 14</span></p>
+      </article>
+
+      <article class="slide" aria-labelledby="slide-8-title">
+        <h2 id="slide-8-title" class="slide-title">Loops of Today</h2>
+        <div class="slide-body slide-body-agent">
+          <ul class="loops-today-list" aria-label="Loop primitives from the Claude Developers guide" style="margin-top: 40px;">
+            <li><code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">/goal</code>, <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">/loop</code> (Claude Code) or <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">/cron</code> (AdaL)</li>
+            <li>permission bypass — <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">--dangerously-skip-permissions</code> (Claude) or <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">--yolo</code> (AdaL)</li>
+            <li>repeated or scheduled work — local intervals and cloud routines</li>
+            <li>dynamic workflows — agents that adapt as they run</li>
+            <li>Parallel Multi-agent — typically with subagents driven by a main agent</li>
+          </ul>
+          <p class="loops-today-takeaway">The user still designs the system: how many workers to spawn, how they communicate, when they hand work off, how they evaluate one another, how they recover from failures, and when to stop the loop.</p>
+        </div>
+        <div class="agent-cite-stack">
+          <a class="agent-cite" href="https://x.com/ClaudeDevs/status/2074208949205881033?s=20" target="_blank" rel="noopener noreferrer">Claude Developers — loop engineering guide ↗</a>
+        </div>
+        <p class="slide-foot"><span>08 / 14</span></p>
+      </article>
+
+      <article class="slide" aria-labelledby="slide-8a-title">
+        <h2 id="slide-8a-title" class="slide-title">What Makes Loops Inaccessible</h2>
+        <div class="slide-body">
+          <div class="barrier-grid">
+            <div class="barrier-card">
+              <strong>High complexity</strong>
+              <span>Reliable loops require coordinating goals, tools, workers, validation, recovery, state, and stop conditions.</span>
+            </div>
+            <div class="barrier-card">
+              <strong>High cost</strong>
+              <span>More capable models, longer contexts, browser use, repeated validation, and multiple workers compound runtime cost.</span>
+            </div>
+          </div>
+        </div>
+        <p class="slide-foot"><span>09 / 14</span></p>
+      </article>
+
+      <article class="slide" aria-labelledby="slide-9-title">
+        <h2 id="slide-9-title" class="slide-title">AdaL Engineer</h2>
+        <div class="slide-body">
+          <p class="slide-lead" style="margin: 0 auto 40px; text-align: center; max-width: 1100px; font-size: clamp(22px, 2.5vw, 36px);">
+            Goes beyond loop engineering: completely models an engineer's scope. It <span style="color: var(--accent);">allocates, prompts, and monitors</span> coding agents for you to deliver secure, autonomous, and high-quality results.
+          </p>
+        <div class="agent-cite-stack">
+          <a class="agent-cite" href="https://github.com/SylphAI-Inc/AdalFlow" target="_blank" rel="noopener noreferrer">AdalFlow — GitHub ↗</a>
+          <a class="agent-cite" href="https://x.com/panda_liyin/status/2074933173318984174?s=20" target="_blank" rel="noopener noreferrer">Loop Engineer — AdaL ↗</a>
+        </div>
+          <svg class="illustration" viewBox="0 0 900 500" aria-label="AdaL Engineer orchestrating Coding, Browser Use, Deep Research, and Code Review workers">
+            <defs>
+              <radialGradient id="engineerHalo">
+                <stop offset="0" stop-color="#ff5898" stop-opacity=".18"/>
+                <stop offset="1" stop-color="#ff5898" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="450" cy="122" r="103" fill="url(#engineerHalo)"/>
+            <circle cx="450" cy="122" r="62" fill="rgba(255,88,152,0.08)" stroke="#ff5898" stroke-width="1.6"/>
+            <text x="450" y="129" fill="#ff5898" font-size="24" font-weight="650" text-anchor="middle">Engineer</text>
+            <path d="M512 122h14" fill="none" stroke="#6c727a" stroke-width="1"/>
+            <text x="536" y="125" fill="#6c727a" font-size="11" letter-spacing="1.5" text-anchor="start">HUMAN-ROLE LEVEL</text>
+            <path d="M450 184v55M150 239h600" fill="none" stroke="rgba(255,88,152,0.62)" stroke-width="1.5"/>
+            <circle cx="450" cy="239" r="4" fill="#ff5898"/>
+            <g fill="none" stroke="rgba(255,88,152,0.62)" stroke-width="1.5">
+              <path d="M150 239v42M350 239v42M550 239v42M750 239v42"/>
+            </g>
+            <g>
+              <circle cx="150" cy="333" r="48" fill="rgba(255,88,152,0.055)" stroke="rgba(255,88,152,0.38)"/>
+              <path d="M123 322h18m-18 13h12m13-13h12m-12 13h19" fill="none" stroke="#ff5898" stroke-width="2.2" stroke-linecap="round"/>
+              <text x="150" y="415" fill="#f4f4f5" font-size="18" text-anchor="middle">Coding</text>
+              <circle cx="350" cy="333" r="48" fill="rgba(255,88,152,0.055)" stroke="rgba(255,88,152,0.38)"/>
+              <rect x="333" y="315" width="30" height="21" rx="3" fill="none" stroke="#ff5898" stroke-width="2"/>
+              <path d="M340 346h16M348 336v10" fill="none" stroke="#ff5898" stroke-width="2" stroke-linecap="round"/>
+              <text x="350" y="415" fill="#f4f4f5" font-size="18" text-anchor="middle">Browser Use</text>
+              <circle cx="550" cy="333" r="48" fill="rgba(255,88,152,0.055)" stroke="rgba(255,88,152,0.38)"/>
+              <circle cx="543" cy="326" r="11" fill="none" stroke="#ff5898" stroke-width="2"/>
+              <path d="M551 334l9 9" fill="none" stroke="#ff5898" stroke-width="2" stroke-linecap="round"/>
+              <text x="550" y="415" fill="#f4f4f5" font-size="18" text-anchor="middle">Deep Research</text>
+              <circle cx="750" cy="333" r="48" fill="rgba(255,88,152,0.055)" stroke="rgba(255,88,152,0.38)"/>
+              <path d="M727 331l14 14 28-31" fill="none" stroke="#ff5898" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <text x="750" y="415" fill="#f4f4f5" font-size="18" text-anchor="middle">Code Review</text>
+            </g>
+            <text x="450" y="475" fill="#ff5898" font-size="16" font-weight="650" letter-spacing="2" text-anchor="middle">WORKERS (AGENTS OF TODAY)</text>
+          </svg>
+        </div>
+        <p class="slide-foot"><span>09 / 14</span></p>
+      </article>
+
+      <article class="slide" aria-labelledby="slide-adal-how-title">
+        <h2 id="slide-adal-how-title" class="slide-title">Inside AdaL Engineer: Runs the iterative full dev lifecycle</h2>
+        <div class="slide-body" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 48px; align-items: center; justify-items: start;">
+          <div class="text-column" style="display: grid; gap: 32px;">
+            <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 24px; counter-reset: adal-benefits;">
+              <li style="border-left: 3px solid var(--accent); padding-left: 20px; position: relative;">
+                <strong style="color: var(--text); font-size: clamp(20px, 2vw, 28px); display: block; margin-bottom: 6px;"><span style="color: var(--accent); margin-right: 8px;">1.</span>GAN-Style Quality Loop</strong>
+                <span style="color: var(--muted); font-size: clamp(16px, 1.5vw, 22px); line-height: 1.45; display: block;">Pits specialized builders against independent evaluators to autonomously maximize quality.</span>
+              </li>
+              <li style="border-left: 3px solid var(--accent); padding-left: 20px; position: relative;">
+                <strong style="color: var(--text); font-size: clamp(20px, 2vw, 28px); display: block; margin-bottom: 6px;"><span style="color: var(--accent); margin-right: 8px;">2.</span>Persistent Long-Term Memory</strong>
+                <span style="color: var(--muted); font-size: clamp(16px, 1.5vw, 22px); line-height: 1.45; display: block;">Uses local markdown (e.g. <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">contract.md</code>, <code style="font-family: var(--mono); color: var(--accent); font-size: 0.9em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">eval_iter.md</code>) to orchestrate state across workers, organized automatically by month and day.</span>
+              </li>
+              <li style="border-left: 3px solid var(--accent); padding-left: 20px; position: relative;">
+                <strong style="color: var(--text); font-size: clamp(20px, 2vw, 28px); display: block; margin-bottom: 6px;"><span style="color: var(--accent); margin-right: 8px;">3.</span>Removes agent config complexity</strong>
+                <span style="color: var(--muted); font-size: clamp(16px, 1.5vw, 22px); line-height: 1.45; display: block;">Removes the complexity of manual worker setup—automatically choosing the right agent capability and model for each task.</span>
+              </li>
+              <li style="border-left: 3px solid var(--accent); padding-left: 20px; position: relative;">
+                <strong style="color: var(--text); font-size: clamp(20px, 2vw, 28px); display: block; margin-bottom: 6px;"><span style="color: var(--accent); margin-right: 8px;">4.</span>Adaptive Autonomy</strong>
+                <span style="color: var(--muted); font-size: clamp(16px, 1.5vw, 22px); line-height: 1.45; display: block;">Handles orchestration autonomously, but allows seamless "autopilot" manual override via chat.</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="svg-column" style="width: 100%; height: 100%;">
+            <svg class="illustration" viewBox="0 0 800 650" aria-label="AdaL Engineer Orchestration Loop Diagram" style="width: 100%; max-width: 800px; justify-self: center;">
+              <defs>
+                <filter id="coreGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="8" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+                <marker id="arrowHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"></path>
+                </marker>
+                <marker id="arrowHeadNeutral" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(255,255,255,0.4)"></path>
+                </marker>
+              </defs>
+
+              <!-- Central Brain / Persistent Storage -->
+              <rect x="250" y="230" width="300" height="150" rx="16" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="6,4"></rect>
+              <text x="400" y="260" fill="var(--text)" font-size="18" font-weight="600" text-anchor="middle">Shared State</text>
+              
+              <!-- contract.md + description -->
+              <text x="400" y="285" fill="var(--accent)" font-family="var(--mono)" font-size="14" font-weight="bold" text-anchor="middle">contract.md</text>
+              <text x="400" y="300" fill="var(--faint)" font-family="var(--sans)" font-size="11" text-anchor="middle">links docs, plans &amp; tracks workers</text>
+              
+              <!-- builder / eval plans -->
+              <text x="400" y="325" fill="var(--muted)" font-family="var(--mono)" font-size="14" text-anchor="middle">builder_plan.md</text>
+              <text x="400" y="345" fill="var(--muted)" font-family="var(--mono)" font-size="14" text-anchor="middle">evaluator_plan.md</text>
+              <text x="400" y="365" fill="var(--muted)" font-family="var(--mono)" font-size="14" text-anchor="middle">review_plan.md</text>
+
+              <!-- AdaL Engineer (Top) -->
+              <circle cx="400" cy="80" r="50" fill="rgba(255, 88, 152, 0.15)" stroke="var(--accent)" stroke-width="2.5" filter="url(#coreGlow)"></circle>
+              <text x="400" y="86" fill="var(--text)" font-size="20" font-weight="650" text-anchor="middle">AdaL</text>
+              <text x="400" y="145" fill="var(--accent)" font-size="16" font-weight="600" letter-spacing="1" text-anchor="middle">ENGINEER</text>
+
+              <!-- Builder Worker (Left) -->
+              <circle cx="100" cy="480" r="60" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.4)" stroke-width="2"></circle>
+              <text x="100" y="475" fill="var(--text)" font-size="18" font-weight="600" text-anchor="middle">Builder</text>
+              <text x="100" y="495" fill="var(--muted)" font-size="14" text-anchor="middle">Code &amp; Build</text>
+
+              <!-- Evaluator Worker (Center) -->
+              <circle cx="400" cy="480" r="60" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.4)" stroke-width="2"></circle>
+              <text x="400" y="475" fill="var(--text)" font-size="18" font-weight="600" text-anchor="middle">Evaluator</text>
+              <text x="400" y="495" fill="var(--muted)" font-size="14" text-anchor="middle">Review &amp; QA</text>
+
+              <!-- Code Reviewer (Right) -->
+              <circle cx="700" cy="480" r="60" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.4)" stroke-width="2"></circle>
+              <text x="700" y="475" fill="var(--text)" font-size="18" font-weight="600" text-anchor="middle">Reviewer</text>
+              <text x="700" y="495" fill="var(--muted)" font-size="14" text-anchor="middle">Code Review</text>
+
+              <!-- Flow Lines -->
+              <!-- Engineer to Shared State -->
+              <path d="M 400 130 L 400 230" fill="none" stroke="var(--accent)" stroke-width="2" marker-end="url(#arrowHead)"></path>
+              
+              <!-- Shared State to Workers -->
+              <path d="M 250 305 C 100 305 100 390 100 420" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" marker-end="url(#arrowHeadNeutral)"></path>
+              <path d="M 400 380 L 400 420" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" marker-end="url(#arrowHeadNeutral)"></path>
+              <path d="M 550 305 C 700 305 700 390 700 420" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" marker-end="url(#arrowHeadNeutral)"></path>
+
+              <!-- The GAN Iteration Loop (Pink) -->
+              <!-- Evaluator -> Engineer (Feedback) -->
+              <path d="M 450 430 C 580 330 580 230 450 120" fill="none" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8,6" marker-end="url(#arrowHead)" filter="url(#coreGlow)"></path>
+              <text x="540" y="290" fill="var(--text)" font-size="16" font-weight="600" font-style="italic" text-anchor="start" transform="rotate(-70 540 290)">Feedback</text>
+
+              <!-- Engineer -> Builder (Fix Loop) -->
+              <path d="M 350 120 C 200 200 120 320 120 420" fill="none" stroke="var(--accent)" stroke-width="3" stroke-dasharray="8,6" marker-end="url(#arrowHead)" filter="url(#coreGlow)"></path>
+              <text x="180" y="270" fill="var(--accent)" font-size="16" font-weight="600" font-style="italic" text-anchor="end" transform="rotate(55 180 270)">Fix Loop</text>
+              
+              <!-- Send Prompt (AdaL to Workers) -->
+              <path d="M 340 80 C -10 80 -10 420 50 440" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrowHeadNeutral)"></path>
+              <text x="-5" y="260" fill="rgba(255,255,255,0.4)" font-size="14" font-family="var(--mono)" transform="rotate(-90 -5 260)">send prompt / handle permission</text>
+              
+              <!-- Reviewer -> Engineer (Send Prompt right) -->
+              <path d="M 460 80 C 860 80 860 420 750 440" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrowHeadNeutral)"></path>
+              <text x="845" y="260" fill="rgba(255,255,255,0.4)" font-size="14" font-family="var(--mono)" transform="rotate(90 845 260)">send prompt / handle permission</text>
+
+            </svg>
+          </div>
+        </div>
+        <p class="slide-foot"><span>10 / 14</span></p>
+      </article>
+
+      <article class="slide" aria-labelledby="slide-demo-title">
+        <h2 id="slide-demo-title" class="slide-title">Demo Comparison</h2>
+        <div class="slide-body" style="display: flex; flex-direction: column; width: 100%; max-width: 1400px; justify-content: center;">
+          <p class="slide-lead" style="margin-bottom: 40px; text-align: left; max-width: 100%;">
+            Build a complicated web app end-to-end. All agents running on Sonnet 5. With browser use to auto-test.
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 100%; align-items: start;">
+            <!-- Left Table -->
+            <div style="width: 100%; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: rgba(255,255,255,0.02); font-size: clamp(18px, 1.4vw, 22px);">
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1.8fr; border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.04); font-weight: 600; padding: 16px 24px; gap: 16px;">
+                <div>Agent Loop</div>
+                <div>Running Time</div>
+                <div>Result</div>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1.8fr; border-bottom: 1px solid var(--line); padding: 16px 24px; align-items: center; gap: 16px;">
+                <div style="color: var(--text);">Claude Code</div>
+                <div style="color: var(--muted); font-family: var(--mono); font-size: 0.9em;">~30 mins</div>
+                <div style="color: var(--muted); line-height: 1.4;">copied UI</div>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1.8fr; border-bottom: 1px solid var(--line); padding: 16px 24px; align-items: center; gap: 16px;">
+                <div style="color: var(--text);">Claude Code <code style="font-family: var(--mono); color: var(--accent); font-size: 0.85em; padding: 2px 6px; background: var(--accent-soft); border-radius: 4px;">/goal</code></div>
+                <div style="color: var(--muted); font-family: var(--mono); font-size: 0.9em;">~20 mins</div>
+                <div style="color: var(--muted); line-height: 1.4;">copied UI, didn't try hard</div>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1.8fr; border-bottom: 1px solid var(--line); padding: 16px 24px; align-items: center; gap: 16px;">
+                <div style="color: var(--accent); font-weight: 600;">AdaL Engineer</div>
+                <div style="color: var(--muted); font-family: var(--mono); font-size: 0.9em; line-height: 1.3;">~2 hours<br><span style="font-size: 0.8em; opacity: 0.7;">6 iterations</span></div>
+                <div style="color: var(--text); font-weight: 500; line-height: 1.4;">advanced idea generation grounded by research papers, advanced UIs</div>
+              </div>
+              <!-- TODO(2026-07-16): Re-enable once benchmark is finished
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1.8fr; padding: 16px 24px; align-items: center; gap: 16px;">
+                <div style="color: var(--accent); font-weight: 600;">AdaL Engineer<br><span style="color: var(--muted); font-size: 0.75em; font-weight: 400; display: block; margin-top: 4px;">MiniMax M3 — 10x cheaper</span></div>
+                <div style="color: var(--muted); font-family: var(--mono); font-size: 0.9em;">[00:00:00]</div>
+                <div style="color: var(--muted); font-weight: 400; line-height: 1.4;">-</div>
+              </div>
+              -->
+            </div>
+
+            <!-- Right Video -->
+            <div style="width: 100%; border-radius: 20px; overflow: hidden; border: 2px solid rgba(255,255,255,0.1); background: #000; box-shadow: 0 24px 64px rgba(0,0,0,0.6); position: relative; padding-bottom: 56.25%;">
+              <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/EYidNchYXGw" title="AdaL Engineer vs Claude Code" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="agent-cite-stack">
+            <a class="agent-cite" href="https://github.com/aruzhanspvv/research-atlas-experiments" target="_blank" rel="noopener noreferrer">Source Code: research-atlas-experiments ↗</a>
+          </div>
+        </div>
+        <p class="slide-foot"><span>10 / 14</span></p>
+      </article>
+
+      <article class="slide" aria-labelledby="slide-11-title">
+        <h2 id="slide-11-title" class="slide-title">Measure Autonomy</h2>
+        <div class="slide-body">
+          <svg class="illustration" viewBox="0 0 1180 700" aria-label="Autonomy levels chart: L1 heavy supervision through L4 team autonomy, with today at L1.5 high capability but still prompting, and loop engineering bridging to L4 the real future.">
+            <line x1="100" y1="620" x2="100" y2="40" stroke="#FF5898" stroke-width="2"/>
+            <polygon points="100,35 95,45 105,45" fill="#FF5898"/>
+            <line x1="100" y1="620" x2="920" y2="620" stroke="#FF5898" stroke-width="2"/>
+            <polygon points="925,620 915,615 915,625" fill="#FF5898"/>
+            <text x="50" y="340" fill="#FF5898" font-size="18" font-weight="bold" transform="rotate(-90 50 340)" text-anchor="middle">Engineering autonomy</text>
+            <text x="500" y="670" fill="#FF5898" font-size="18" font-weight="bold" text-anchor="middle">Model capability</text>
+            <text x="130" y="655" fill="#999" font-size="16">Low</text>
+            <text x="880" y="655" fill="#999" font-size="16">High</text>
+            <line x1="100" y1="560" x2="900" y2="560" stroke="#FF5898" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+            <text x="110" y="555" fill="#f4f4f5" font-size="18" font-weight="bold">L1</text>
+            <text x="110" y="575" fill="#999" font-size="16" font-style="italic">Heavy supervision</text>
+            <text x="110" y="594" fill="#999" font-size="16" font-style="italic">Technician / Prompting</text>
+            <line x1="100" y1="460" x2="900" y2="460" stroke="#FF5898" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+            <text x="110" y="455" fill="#f4f4f5" font-size="18" font-weight="bold">L1.5</text>
+            <text x="110" y="477" fill="#999" font-size="16" font-style="italic">Current state</text>
+            <line x1="100" y1="360" x2="900" y2="360" stroke="#FF5898" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+            <text x="110" y="355" fill="#f4f4f5" font-size="18" font-weight="bold">L2</text>
+            <text x="110" y="375" fill="#999" font-size="16" font-style="italic">Single-task autonomy</text>
+            <text x="110" y="394" fill="#999" font-size="16" font-style="italic">Junior engineer</text>
+            <line x1="100" y1="240" x2="900" y2="240" stroke="#FF5898" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+            <text x="110" y="235" fill="#f4f4f5" font-size="18" font-weight="bold">L3</text>
+            <text x="110" y="255" fill="#999" font-size="16" font-style="italic">Multi-task</text>
+            <text x="110" y="274" fill="#999" font-size="16" font-style="italic">Tech Lead</text>
+            <line x1="100" y1="100" x2="900" y2="100" stroke="#FF5898" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+            <text x="110" y="95" fill="#f4f4f5" font-size="18" font-weight="bold">L4</text>
+            <text x="110" y="117" fill="#999" font-size="16" font-style="italic">Team</text>
+            <circle cx="780" cy="560" r="14" fill="#666" opacity="0.6"/>
+            <circle cx="780" cy="560" r="7" fill="#999"/>
+            <text x="820" y="550" fill="#f4f4f5" font-size="18" font-weight="bold">Claude Code</text>
+            <text x="820" y="570" fill="#999" font-size="15">high capability,</text>
+            <text x="820" y="588" fill="#999" font-size="15">low autonomy</text>
+            <path d="M780 540 C790 505 794 478 800 460 C811 425 817 390 825 360 C837 316 846 273 855 240 C868 193 877 144 885 120" fill="none" stroke="#FF5898" stroke-width="2" stroke-dasharray="6,4"/>
+            <polygon points="885,115 880,125 890,125" fill="#FF5898"/>
+            <circle cx="800" cy="460" r="12" fill="none" stroke="#FF5898" stroke-width="2"/>
+            <circle cx="800" cy="460" r="5" fill="#FF5898"/>
+            <text x="840" y="450" fill="#FF5898" font-size="18" font-weight="bold">Loop Engineering</text>
+            <text x="840" y="470" fill="#999" font-size="15">memory + planning + context</text>
+            <text x="840" y="488" fill="#999" font-size="15">turn capability into autonomy</text>
+            <circle cx="825" cy="360" r="14" fill="none" stroke="#FF5898" stroke-width="2" opacity="0.8"/>
+            <circle cx="825" cy="360" r="6" fill="#FF5898"/>
+            <text x="865" y="350" fill="#FF5898" font-size="18" font-weight="bold">AdaL Engineer</text>
+            <text x="865" y="370" fill="#999" font-size="15">deliver a task end-to-end</text>
+            <circle cx="855" cy="240" r="10" fill="none" stroke="#FF5898" stroke-width="1.5" opacity="0.6"/>
+            <circle cx="855" cy="240" r="4" fill="#FF5898" opacity="0.6"/>
+            <text x="895" y="240" fill="#FF5898" font-size="18" font-weight="bold">Continuous Learning Memory Model</text>
+            <circle cx="885" cy="100" r="20" fill="none" stroke="#FF5898" stroke-width="2" opacity="0.6"/>
+            <circle cx="885" cy="100" r="8" fill="#FF5898"/>
+            <text x="925" y="100" fill="#FF5898" font-size="18" font-weight="bold">Company Brain</text>
+          </svg>
+        </div>
+        <p class="slide-foot"><span>11 / 14</span></p>
+      </article>
+
+      <article class="slide" aria-labelledby="slide-12-title">
+        <h2 id="slide-12-title" class="slide-title">References</h2>
+        <div class="slide-body">
+          <div class="references-grid">
+            <div class="reference-group">
+              <h2>Foundations &amp; agent patterns</h2>
+              <div class="reference-list">
+                <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer"><span>Attention Is All You Need</span><small>arXiv:1706.03762</small></a>
+                <a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener noreferrer"><span>Language Models are Few-Shot Learners</span><small>arXiv:2005.14165</small></a>
+                <a href="https://arxiv.org/abs/2201.11903" target="_blank" rel="noopener noreferrer"><span>Chain-of-Thought Prompting</span><small>arXiv:2201.11903</small></a>
+                <a href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener noreferrer"><span>ReAct: Reasoning + Acting</span><small>arXiv:2210.03629</small></a>
+                <a href="https://www.deeplearning.ai/courses/agentic-ai/" target="_blank" rel="noopener noreferrer"><span>Ng — Agentic Design Patterns</span><small>DeepLearning.AI</small></a>
+              </div>
+            </div>
+            <div class="reference-group">
+              <h2>Optimization &amp; AdalFlow</h2>
+              <div class="reference-list">
+                <a href="https://arxiv.org/abs/2310.03714" target="_blank" rel="noopener noreferrer"><span>DSPy: Self-Improving Pipelines</span><small>arXiv:2310.03714</small></a>
+                <a href="https://arxiv.org/abs/2406.07496" target="_blank" rel="noopener noreferrer"><span>TextGrad: Automatic Differentiation via Text</span><small>arXiv:2406.07496</small></a>
+                <a href="https://arxiv.org/abs/2501.16673" target="_blank" rel="noopener noreferrer"><span>LLM-AutoDiff: Auto-Differentiate Any LLM Workflow</span><small>arXiv:2501.16673</small></a>
+                <a href="https://github.com/SylphAI-Inc/AdalFlow" target="_blank" rel="noopener noreferrer"><span>AdalFlow — LLM application and optimization library</span><small>GitHub</small></a>
+              </div>
+            </div>
+            <div class="reference-group">
+              <h2>Context windows &amp; caching</h2>
+              <div class="reference-list">
+                <a href="https://openai.com/index/gpt-4/" target="_blank" rel="noopener noreferrer"><span>OpenAI GPT-4 announcement</span><small>OpenAI · 2023</small></a>
+                <a href="https://www.anthropic.com/news/100k-context-windows" target="_blank" rel="noopener noreferrer"><span>Anthropic 100K context windows</span><small>Anthropic · 2023</small></a>
+                <a href="https://www.anthropic.com/news/claude-2-1" target="_blank" rel="noopener noreferrer"><span>Claude 2.1 / 200K context</span><small>Anthropic · 2023</small></a>
+                <a href="https://blog.google/technology/ai/google-gemini-next-generation-model-february-2024/" target="_blank" rel="noopener noreferrer"><span>Gemini 1.5 Pro / 1M context</span><small>Google · 2024</small></a>
+                <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching" target="_blank" rel="noopener noreferrer"><span>Anthropic Prompt Caching</span><small>Docs</small></a>
+                <a href="https://developers.openai.com/api/docs/guides/prompt-caching" target="_blank" rel="noopener noreferrer"><span>OpenAI Prompt Caching</span><small>Docs</small></a>
+                <a href="https://ai.google.dev/gemini-api/docs/caching" target="_blank" rel="noopener noreferrer"><span>Gemini Context Caching</span><small>Docs</small></a>
+              </div>
+            </div>
+            <div class="reference-group">
+              <h2>Harnesses &amp; loop engineering</h2>
+              <div class="reference-list">
+                <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener noreferrer"><span>Effective Context Engineering for AI Agents</span><small>Anthropic · 2025</small></a>
+                <a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer"><span>Harness Engineering: Leveraging Codex</span><small>OpenAI · 2026</small></a>
+                <a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents" target="_blank" rel="noopener noreferrer"><span>Effective Harnesses for Long-Running Agents</span><small>Anthropic · 2026</small></a>
+                <a href="https://addyosmani.com/blog/loop-engineering/" target="_blank" rel="noopener noreferrer"><span>Loop Engineering</span><small>Addy Osmani · 2025</small></a>
+                <a href="https://x.com/akshay_pachaar/article/2069118430582866051" target="_blank" rel="noopener noreferrer"><span>Loop Engineering article</span><small>Akshay Pachaar · X</small></a>
+              </div>
+            </div>
+            <div class="reference-group">
+              <h2>Safety &amp; bounded autonomy</h2>
+              <div class="reference-list">
+                <a href="https://docs.anthropic.com/en/docs/claude-code/security" target="_blank" rel="noopener noreferrer"><span>Claude Code Security</span><small>Anthropic Docs</small></a>
+                <a href="https://openai.github.io/openai-agents-python/human_in_the_loop/" target="_blank" rel="noopener noreferrer"><span>Human in the Loop</span><small>OpenAI Agents SDK</small></a>
+                <a href="https://simonwillison.net/2025/Oct/22/living-dangerously-with-claude/" target="_blank" rel="noopener noreferrer"><span>Living Dangerously with Claude</span><small>Simon Willison · 2025</small></a>
+                <a href="https://github.com/karpathy/autoresearch" target="_blank" rel="noopener noreferrer"><span>autoresearch</span><small>Karpathy · GitHub</small></a>
+                <a href="https://github.com/SylphAI-Inc/autoresearch-adal" target="_blank" rel="noopener noreferrer"><span>autoresearch-adal</span><small>SylphAI · GitHub</small></a>
+              </div>
+            </div>
+            <div class="reference-group">
+              <h2>Scaffolding &amp; terminology</h2>
+              <div class="reference-list">
+                <a href="https://acamh.onlinelibrary.wiley.com/doi/10.1111/j.1469-7610.1976.tb00381.x" target="_blank" rel="noopener noreferrer"><span>The Role of Tutoring in Problem Solving</span><small>Wood, Bruner &amp; Ross · 1976</small></a>
+                <a href="https://huggingface.co/blog/agent-glossary" target="_blank" rel="noopener noreferrer"><span>Harness, Scaffold, and AI Agent Terms</span><small>Hugging Face · 2025</small></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="slide-foot"><span>11 / 14</span></p>
+      </article>
+    </section>
+
+    <nav class="deck-controls" aria-label="Slide navigation">
+      <button class="control-button" type="button" data-action="prev" aria-label="Previous slide">‹</button>
+      <button class="control-button" type="button" data-action="next" aria-label="Next slide">›</button>
+      <div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+      <div class="status" aria-live="polite">01 / 14</div>
+    </nav>
+  </main>
+
+  <script>
+    (() => {
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const fill = document.querySelector('.progress-fill');
+      const status = document.querySelector('.status');
+      const prevButton = document.querySelector('[data-action="prev"]');
+      const nextButton = document.querySelector('[data-action="next"]');
+      const querySlide = Number(new URLSearchParams(window.location.search).get('slide'));
+      let current = Number.isFinite(querySlide) && querySlide >= 1 && querySlide <= slides.length ? querySlide - 1 : 0;
+
+      function render() {
+        slides.forEach((slide, index) => {
+          slide.classList.toggle('active', index === current);
+          slide.setAttribute('aria-hidden', index === current ? 'false' : 'true');
+        });
+        fill.style.width = `${((current + 1) / slides.length) * 100}%`;
+        status.textContent = `${String(current + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+        prevButton.disabled = current === 0;
+        nextButton.disabled = current === slides.length - 1;
+        document.title = `(${current + 1}/${slides.length}) Loop Engineering For Everyone`;
+      }
+
+      function goTo(index) {
+        current = Math.max(0, Math.min(slides.length - 1, index));
+        render();
+      }
+
+      function next() { goTo(current + 1); }
+      function prev() { goTo(current - 1); }
+
+      prevButton.addEventListener('click', prev);
+      nextButton.addEventListener('click', next);
+
+      window.addEventListener('keydown', (event) => {
+        if (event.altKey || event.ctrlKey || event.metaKey) return;
+        if (event.key === 'ArrowRight' || event.key === ' ') {
+          event.preventDefault();
+          next();
+        } else if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          prev();
+        } else if (event.key === 'Home') {
+          event.preventDefault();
+          goTo(0);
+        } else if (event.key === 'End') {
+          event.preventDefault();
+          goTo(slides.length - 1);
+        }
+      });
+
+      window.__loopEngineeringDeck = {
+        goToSlide: (slideNumber) => goTo(Number(slideNumber) - 1),
+        next,
+        prev,
+        getState: () => ({ current: current + 1, total: slides.length })
+      };
+
+      render();
+    })();
+  </script>
+</body>
+</html>
