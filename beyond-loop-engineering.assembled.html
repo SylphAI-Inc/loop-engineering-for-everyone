@@ -2209,7 +2209,36 @@
       height: 7px;
     }
 
-    .slide[aria-labelledby="slide-adal-pdf-screenshot"] img {
+    /* Full-bleed screenshot slides: never rely on bare height:100% img */
+    .slide.slide-screenshot {
+      padding: 0 !important;
+      grid-template-rows: 1fr !important;
+      background: #000 !important;
+      overflow: hidden;
+    }
+
+    .slide.slide-screenshot .slide-screenshot-frame {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      display: grid;
+      place-items: center;
+      box-sizing: border-box;
+      padding: clamp(8px, 1.2vh, 20px);
+    }
+
+    .slide.slide-screenshot .slide-screenshot-img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .slide[aria-labelledby="slide-adal-pdf-screenshot"] img,
+    .slide[aria-labelledby="slide-claude-code-multiagent-screenshot"] img {
       transform: none !important;
     }
 
@@ -2916,13 +2945,13 @@
   </div>
   <p class="slide-foot"><span></span></p>
 </article>
-<article class="slide" aria-labelledby="slide-claude-code-multiagent-screenshot" style="padding: 0; grid-template-rows: 1fr; background: #000;">
-  <h2 id="slide-claude-code-multiagent-screenshot" class="sr-only">Claude Code multi-agent is still one agent’s tools</h2>
-  <div style="width: 100%; height: 100%; min-height: 0; display: flex; align-items: center; justify-content: center;">
+<article class="slide slide-screenshot" aria-labelledby="slide-claude-code-multiagent-screenshot">
+  <h2 id="slide-claude-code-multiagent-screenshot" class="sr-only">Claude Code multi-agent is still one agent's tools</h2>
+  <div class="slide-screenshot-frame">
     <img
+      class="slide-screenshot-img"
       src="materials/claude_code_agent_workflow_tools.png"
       alt="Claude Code session explaining Agent teams and Dynamic workflows as tools of the same coding agent"
-      style="width: 100%; height: 100%; object-fit: contain;"
     >
   </div>
 </article>
@@ -3218,11 +3247,16 @@
   </div>
   <p class="slide-foot"><span></span></p>
 </article>
-<article class="slide" aria-labelledby="slide-adal-pdf-screenshot" style="padding: 0; grid-template-rows: 1fr; background: #000;">
-        <div style="width: 100%; height: 100%; min-height: 0; display: flex; align-items: center; justify-content: center;">
-          <img src="materials/adal_builder_evaluator_workers.jpg" alt="AdaL Engineer Builder and Evaluator workers screenshot" style="width: 100%; height: 100%; object-fit: contain; transform: scale(1.02);">
-        </div>
-      </article>
+<article class="slide slide-screenshot" aria-labelledby="slide-adal-pdf-screenshot">
+  <h2 id="slide-adal-pdf-screenshot" class="sr-only">AdaL Builder / Evaluator Screenshot</h2>
+  <div class="slide-screenshot-frame">
+    <img
+      class="slide-screenshot-img"
+      src="materials/adal_builder_evaluator_workers.jpg"
+      alt="AdaL Engineer Builder and Evaluator workers screenshot"
+    >
+  </div>
+</article>
 <article class="slide" aria-labelledby="slide-demo-title">
         <h2 id="slide-demo-title" class="slide-title">Demo Comparison</h2>
         <div class="slide-body" style="display: flex; flex-direction: column; width: 100%; max-width: 1400px; justify-content: center;">
